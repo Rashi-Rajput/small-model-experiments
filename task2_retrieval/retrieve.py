@@ -2,6 +2,7 @@ import argparse
 import hashlib
 import json
 import re
+from collections import Counter
 from pathlib import Path
 from urllib.request import urlopen
 
@@ -10,7 +11,7 @@ import pymupdf
 import torch
 
 from encoder import Encoder
-from local_model import CACHE, chat, model_file, serve, server_binary
+from local_model import CACHE, MODEL, chat, model_file, serve, server_binary
 
 
 HERE = Path(__file__).resolve().parent
@@ -65,33 +66,72 @@ def index_pages(model, pages, size):
     return chunks, vectors
 
 
-def search(chunks, vectors, query):
+def page_spans(page):
+    boundaries = [0]
+    for match in re.finditer(r'(?<=[.!?;])\s+(?=[A-Z0-9"(])|\s+(?=•\s)', page):
+        boundaries.append(match.end())
+    spans = []
+    for start, stop in zip(boundaries, boundaries[1:] + [len(page)], strict=True):
+        words = list(re.finditer(r"\S+", page[start:stop]))
+        for i in range(0, len(words), 80):
+            last = min(i + 80, len(words)) - 1
+            spans.append((start + words[i].start(), start + words[last].end()))
+    return spans
+
+
+def search(chunks, vectors, query, pages, spans):
     scores = vectors @ query
-    return [dict(**chunks[i], score=float(scores[i])) for i in np.argsort(-scores, kind="stable")[:5]]
+    hits = []
+    for i in np.argsort(-scores, kind="stable")[:5]:
+        seed = chunks[i]
+        number = seed["page"]
+        units = spans[number - 1]
+        covered = [j for j, (start, end) in enumerate(units) if end > seed["start"] and start < seed["end"]]
+        first = max(0, covered[0] - 1)
+        last = min(len(units) - 1, covered[-1] + 1)
+        start, end = units[first][0], units[last][1]
+        hits.append(dict(page=number, score=float(scores[i]), start=start, end=end,
+                         text=pages[number - 1][start:end], seed_start=seed["start"], seed_end=seed["end"]))
+    return hits
 
 
-def answer(url, model, question, vector, pages, hits):
-    candidates = {}
+def supporting_span(model, question, draft, choices):
+    texts = [text for _, text in choices]
+    q, a, *vectors = embed(model, [question, draft, *texts])
+    semantic = np.asarray(vectors) @ (0.25 * q + 0.75 * a)
+    token_ids = model.tokenizer([draft, *texts], add_special_tokens=False, verbose=False)["input_ids"]
+    terms = set(token_ids[0])
+    documents = [set(tokens) for tokens in token_ids[1:]]
+    frequency = Counter(token for doc in documents for token in doc)
+    weights = {t: 1 + np.log((1 + len(documents)) / (1 + frequency[t])) for t in terms}
+    denominator = sum(weights.values()) or 1
+    overlap = [sum(weights[t] for t in sorted(terms & doc)) / denominator for doc in documents]
+    return int(np.argmax(semantic + overlap))
+
+
+def answer(url, model, question, pages, spans, hits):
+    choices = []
+    seen = set()
     for hit in hits:
-        page = pages[hit["page"] - 1]
-        for sentence in re.finditer(r"\S.*?(?:[.!?](?=\s+[A-Z0-9•]|$)|$)", page):
-            if hit["start"] <= sentence.start() and sentence.end() <= hit["end"]:
-                text = sentence.group()
-                if len(text.split()) >= 5:
-                    candidates[(hit["page"], text)] = None
-    if not candidates:
-        return dict(answer=None, page=None, choices=[])
-    passages = list(candidates)
-    scores = embed(model, [s for _, s in passages]) @ vector
-    choices = [passages[i] for i in np.argsort(-scores, kind="stable")[:4]]
-    options = "\n".join(f"{i}. {s}" for i, (_, s) in enumerate(choices, 1))
-    messages = [dict(role="system", content="Choose the sentence that answers the question. "
-                     "Return its number, or 0 when no sentence answers it."),
-                dict(role="user", content=f"{question}\n{options}")]
-    grammar = f"root ::= [0-{len(choices)}]"
-    selected = int(chat(url, messages, 3, grammar)["choices"][0]["message"]["content"])
-    page, text = choices[selected - 1] if selected else (None, None)
-    return dict(answer=text, page=page, choices=choices)
+        number = hit["page"]
+        for start, end in spans[number - 1]:
+            key = (number, start)
+            if hit["start"] <= start and end <= hit["end"] and key not in seen:
+                seen.add(key)
+                choices.append((number, pages[number - 1][start:end]))
+    context = "\n".join(text for _, text in choices)
+    messages = [dict(role="system", content="Use the supplied HTTP excerpts to answer the question in one "
+                     "short sentence. Use the terminology of the source. If they do not contain an answer, "
+                     "reply UNKNOWN. Give only the answer."),
+                dict(role="user", content=f"{context}\n\nQuestion: {question}")]
+    if not choices:
+        return dict(draft=None, answer=None, page=None, choices=[])
+    draft = chat(url, messages, 80)["choices"][0]["message"]["content"].strip()
+    if not draft or re.match(r"^unknown\b", draft, flags=re.IGNORECASE):
+        return dict(draft=draft, answer=None, page=None, choices=choices)
+    index = supporting_span(model, question, draft, choices)
+    page, text = choices[index]
+    return dict(draft=draft, answer=text, page=page, choices=choices)
 
 
 def main():
@@ -102,14 +142,18 @@ def main():
     args = parser.parse_args()
     torch.set_num_threads(3)
     pages = read_pages()
+    spans = [page_spans(page) for page in pages]
     model = Encoder().eval()
     if args.ask:
         chunks, vectors = index_pages(model, pages, args.size)
         query = embed(model, [args.ask])[0]
-        hits = search(chunks, vectors, query)
-        with serve(server_binary(), model_file("Q8_0"), 4096) as (url, _):
-            result = answer(url, model, args.ask, query, pages, hits)
-            print(f"p. {result['page']}: {result['answer']}" if result["answer"] else "No supporting answer selected.")
+        hits = search(chunks, vectors, query, pages, spans)
+        with serve(server_binary(), model_file("Q4_K_M"), 8192) as (url, _):
+            result = answer(url, model, args.ask, pages, spans, hits)
+            if result["answer"]:
+                print(f"p. {result['page']}: {result['answer']}")
+            else:
+                print("No supporting answer selected.")
         for hit in hits:
             print(f"p. {hit['page']}: {hit['text']}")
         return
@@ -123,20 +167,26 @@ def main():
         chunks, vectors = index_pages(model, pages, size)
         records = []
         for q, vector in zip(questions, embeddings, strict=True):
-            hits = search(chunks, vectors, vector)
+            hits = search(chunks, vectors, vector, pages, spans)
             rank = next((r for r, h in enumerate(hits, 1)
                          if h["page"] == q["page"] and q["passage"] in h["text"]), None)
-            records.append(dict(id=q["id"], rank=rank, retrieved=hits))
+            seed_rank = next((r for r, h in enumerate(hits, 1) if h["page"] == q["page"] and
+                              q["passage"] in pages[h["page"] - 1][h["seed_start"]:h["seed_end"]]), None)
+            records.append(dict(id=q["id"], seed_rank=seed_rank, rank=rank, retrieved=hits))
         correct = sum(r["rank"] is not None for r in records)
         results["runs"][size] = dict(chunks=len(chunks), correct=correct, queries=records)
         print(f"{size} tokens: {correct}/{len(records)}", flush=True)
     (HERE / "results.json").write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
     if args.answers:
         answers = []
-        with serve(server_binary(), model_file("Q8_0"), 4096) as (url, _):
-            for q, row, query in zip(questions, results["runs"][args.size]["queries"], embeddings, strict=True):
-                selected = answer(url, model, q["question"], query, pages, row["retrieved"])
-                answers.append(dict(id=q["id"], size=args.size, **selected))
+        with serve(server_binary(), model_file("Q4_K_M"), 8192) as (url, _):
+            for q, row in zip(questions, results["runs"][args.size]["queries"], strict=True):
+                selected = answer(url, model, q["question"], pages, spans, row["retrieved"])
+                available = any(pg == q["page"] and q["passage"] in s for pg, s in selected["choices"])
+                matched = selected["page"] == q["page"] and q["passage"] in (selected["answer"] or "")
+                answers.append(dict(id=q["id"], model=MODEL, quant="Q4_K_M", size=args.size,
+                                    gold_offered=available, gold_selected=matched, **selected))
+                print(q["id"], selected["page"], flush=True)
         (HERE / "answers.json").write_text(json.dumps(answers, indent=2) + "\n", encoding="utf-8")
 
 

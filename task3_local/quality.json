@@ -1,0 +1,146 @@
+{
+  "rubric": "Credit an unambiguous correct answer despite extra formatting or prose. A conflicting or incorrect answer fails.",
+  "items": [
+    {
+      "id": "copy",
+      "label": "Copy parcel code",
+      "Q4_K_M": {
+        "text": "LT-408",
+        "observation": "LT-408",
+        "content_correct": true
+      },
+      "Q8_0": {
+        "text": "LT-408",
+        "observation": "LT-408",
+        "content_correct": true
+      }
+    },
+    {
+      "id": "sum",
+      "label": "Add bead counts",
+      "Q4_K_M": {
+        "text": "25",
+        "observation": "25",
+        "content_correct": true
+      },
+      "Q8_0": {
+        "text": "25",
+        "observation": "25",
+        "content_correct": true
+      }
+    },
+    {
+      "id": "sort",
+      "label": "Sort three integers",
+      "Q4_K_M": {
+        "text": "2, 9, 12",
+        "observation": "2, 9, 12",
+        "content_correct": true
+      },
+      "Q8_0": {
+        "text": "2, 9, 12",
+        "observation": "2, 9, 12",
+        "content_correct": true
+      }
+    },
+    {
+      "id": "extract",
+      "label": "Extract arrival time",
+      "Q4_K_M": {
+        "text": "09:40",
+        "observation": "09:40",
+        "content_correct": true
+      },
+      "Q8_0": {
+        "text": "09:40",
+        "observation": "09:40",
+        "content_correct": true
+      }
+    },
+    {
+      "id": "sentiment",
+      "label": "Label a review",
+      "Q4_K_M": {
+        "text": "Negative",
+        "observation": "Negative (capital N)",
+        "content_correct": true
+      },
+      "Q8_0": {
+        "text": "Negative",
+        "observation": "Negative (capital N)",
+        "content_correct": true
+      }
+    },
+    {
+      "id": "json",
+      "label": "Produce JSON",
+      "Q4_K_M": {
+        "text": "```json\n{\n  \"city\": \"Pune\",\n  \"seats\": 4\n}\n```",
+        "observation": "Correct object inside a Markdown fence",
+        "content_correct": true
+      },
+      "Q8_0": {
+        "text": "```json\n{\n  \"city\": \"Pune\",\n  \"seats\": 4\n}\n```",
+        "observation": "Correct object inside a Markdown fence",
+        "content_correct": true
+      }
+    },
+    {
+      "id": "deduction",
+      "label": "Find youngest",
+      "Q4_K_M": {
+        "text": "Jo",
+        "observation": "Jo",
+        "content_correct": true
+      },
+      "Q8_0": {
+        "text": "Jo",
+        "observation": "Jo",
+        "content_correct": true
+      }
+    },
+    {
+      "id": "missing",
+      "label": "Missing time",
+      "Q4_K_M": {
+        "text": "UNKNOWN",
+        "observation": "UNKNOWN",
+        "content_correct": true
+      },
+      "Q8_0": {
+        "text": "UNKNOWN",
+        "observation": "UNKNOWN",
+        "content_correct": true
+      }
+    },
+    {
+      "id": "units",
+      "label": "Convert units",
+      "Q4_K_M": {
+        "text": "250",
+        "observation": "250",
+        "content_correct": true
+      },
+      "Q8_0": {
+        "text": "250",
+        "observation": "250",
+        "content_correct": true
+      }
+    },
+    {
+      "id": "initials",
+      "label": "Form initials",
+      "Q4_K_M": {
+        "text": "baa",
+        "observation": "baa (expected bay)",
+        "content_correct": false
+      },
+      "Q8_0": {
+        "text": "baa",
+        "observation": "baa (expected bay)",
+        "content_correct": false
+      }
+    }
+  ],
+  "interpretation": "Both precisions produced identical text on all ten prompts and across repeats. The strict scorer rejected the capitalised sentiment label and the fenced JSON, although both conveyed the requested content. Both models gave baa instead of bay. The speed difference was measurable on this CPU. These prompts revealed no output-quality difference."
+}

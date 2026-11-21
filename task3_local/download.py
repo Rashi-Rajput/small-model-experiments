@@ -5,10 +5,10 @@ from urllib.request import urlopen
 from local_model import CACHE, model_file
 
 
-SOURCE = "https://huggingface.co/bartowski/SmolLM2-135M-Instruct-GGUF/resolve/09816acd5d99df7be770d85ea30822623dab342c"
+SOURCE = "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF/resolve/91cad51170dc346986eccefdc2dd33a9da36ead9"
 HASHES = {
-    "Q4_K_M": "2e8040ceae7815abe0dcb3540b9995eaa1fa0d2ca9e797d0a635ae4433c68c2d",
-    "Q8_0": "5a1395716f7913741cc51d98581b9b1228d80987a9f7d3664106742eb06bba83",
+    "Q4_K_M": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e",
+    "Q8_0": "d7efb072e7724d25048a4fda0a3e10b04bdef5d06b1403a1c93bd9f1240a63c8",
 }
 
 

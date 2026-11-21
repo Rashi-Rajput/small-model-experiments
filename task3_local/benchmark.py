@@ -6,11 +6,12 @@ from pathlib import Path
 
 import psutil
 
-from local_model import chat, model_file, serve, server_binary
+from local_model import MODEL, chat, model_file, post, serve, server_binary
 
 
 HERE = Path(__file__).resolve().parent
 ORDER = ("Q4_K_M", "Q8_0", "Q8_0", "Q4_K_M")
+SPEED_PROMPT = "Write a travel diary about a walk along the coast."
 
 
 def passes(case, text):
@@ -53,16 +54,20 @@ def measure(quant, prompts):
         finally:
             done.set()
             sampler.join()
+        control = post(url + "/completion", dict(prompt=SPEED_PROMPT, n_predict=128, ignore_eos=True,
+                       temperature=0, seed=41, cache_prompt=False))["timings"]
+        if control["predicted_n"] != 128:
+            raise ValueError("Fixed-length decode ended early")
         return dict(quant=quant, file_bytes=model.stat().st_size, warm_rss=samples[0],
-                    peak_rss=max(samples), samples=len(samples), outputs=rows)
+                    peak_rss=max(samples), samples=len(samples), control=control, outputs=rows)
 
 
 def main():
     prompts = json.loads((HERE / "prompts.json").read_text(encoding="utf-8"))
     version = subprocess.run([server_binary(), "--version"], capture_output=True, text=True, check=True)
-    results = dict(platform=platform.platform(), cpu=platform.processor(), physical_cores=psutil.cpu_count(logical=False),
+    results = dict(model=MODEL, platform=platform.platform(), cpu=platform.processor(), physical_cores=psutil.cpu_count(logical=False),
                    runtime=(version.stdout + version.stderr).strip(), threads=4, context=1024, max_tokens=64,
-                   temperature=0, seed=41, rss_interval_ms=25, runs=[], summary={})
+                   temperature=0, seed=41, rss_interval_ms=25, control_prompt=SPEED_PROMPT, runs=[], summary={})
     for quant in ORDER:
         run = measure(quant, prompts)
         results["runs"].append(run)
@@ -72,7 +77,10 @@ def main():
         rows = [row for r in runs for row in r["outputs"]]
         tokens = sum(r["tokens"] for r in rows)
         seconds = sum(r["decode_ms"] for r in rows) / 1000
+        control_speed = sum(r["control"]["predicted_n"] for r in runs) * 1000 / sum(
+            r["control"]["predicted_ms"] for r in runs)
         results["summary"][quant] = dict(tokens=tokens, decode_seconds=seconds, tokens_per_second=tokens / seconds,
+                                        control_tokens_per_second=control_speed,
                                         peak_mib=max(r["peak_rss"] for r in runs) / 2**20,
                                         first_passes=sum(r["passed"] for r in runs[0]["outputs"]),
                                         repeated_outputs=sum(a["text"] == b["text"] for a, b in

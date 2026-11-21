@@ -2,11 +2,13 @@
 
 [Read the four-page report](report.pdf) for the results, error analysis and memory calculations. All three experiments ran locally on an Intel Core i7-1165G7 using CPU inference and training.
 
+The revised evaluation uses the same banking test split, retrieval questions and benchmark prompts. The [initial runs and report](https://github.com/Rashi-Rajput/small-model-experiments/tree/014c1fdd6c1a0306f569456e66f823f6ca02d5f5) retain the original reader outputs and SmolLM2 measurements. The questions, report prose and qualitative assessments were AI-drafted.
+
 | Experiment | Inputs and implementation | Saved evidence |
 | --- | --- | --- |
 | Banking intent classification | [LoRA trainer and label descriptions](task1_lora/train.py) | [All held-out predictions](task1_lora/results.json), [trained adapter](task1_lora/adapter.safetensors), [7B calculation](task1_lora/memory.json) |
-| Question answering over HTTP Semantics | [Index, search and answer selection](task2_retrieval/retrieve.py), [questions with exact gold passages](task2_retrieval/questions.json) | [Top five chunks for each question and size](task2_retrieval/results.json), [reader selections and alternatives](task2_retrieval/answers.json) |
-| Local quantisation comparison | [Benchmark](task3_local/benchmark.py), [prompts and expected outputs](task3_local/prompts.json) | [Raw responses, timing and memory](task3_local/results.json), [serving calculation](task3_local/capacity.json) |
+| Question answering over HTTP Semantics | [Index and reader](task2_retrieval/retrieve.py), [questions with gold passages](task2_retrieval/questions.json) | [Top-five hits](task2_retrieval/results.json), [reader outputs](task2_retrieval/answers.json), [answer and citation review](task2_retrieval/answer_review.json) |
+| Local quantisation comparison | [Benchmark](task3_local/benchmark.py), [prompts and expected outputs](task3_local/prompts.json) | [Raw responses, timing and memory](task3_local/results.json), [content and format observations](task3_local/quality.json), [serving calculation](task3_local/capacity.json) |
 
 ## Reproduce the runs
 
@@ -23,6 +25,7 @@ curl.exe -fLsS https://github.com/ggml-org/llama.cpp/releases/download/b12608/ll
 Expand-Archive .cache/llama.zip -DestinationPath .cache/llama -Force
 python -m task2_retrieval.retrieve --answers
 python -m task3_local.benchmark
+python -m task3_local.capacity
 ```
 
 To regenerate the report from the saved runs, install `reportlab==5.1.0` and run `python report/build.py`.
@@ -37,13 +40,17 @@ python -m task2_retrieval.retrieve --ask "What unit is used for a numeric retry 
 
 The classifier compares each request to the same frozen intent-description vectors before and after training. Its train and test samples come from separate official splits. The adapter contains only the new query and value weights. Reconstruct the classifier with the pinned backbone and label descriptions in the trainer.
 
-The retriever uses the unmodified encoder. A hit requires the entire gold passage on its annotated PDF page in a single top-five chunk. An alternative passage may give a correct answer while missing this test. The reader ranks complete in-chunk text spans by cosine similarity, then asks the local model to select one or abstain. Every returned answer can be checked against its page.
+The retriever embeds 64- and 192-token windows with the original MiniLM encoder. For each of the five highest-scoring windows, it completes the boundary spans and adds one neighbour on either side within the page. Long spans are divided at 80 words. Each record stores the original window offsets and the expanded text. A strict hit requires the whole annotated passage on its source page.
 
-The benchmark starts fresh server processes in Q4, Q8, Q8, Q4 order. Each receives a warm-up before the same ten prompts. Throughput pools server-reported generated tokens over decode time. Process RSS includes weights, KV cache and runtime allocations. The format score accepts surrounding whitespace, insignificant JSON formatting and spaces around list separators. Semantically correct extra prose still fails an answer-only instruction.
+Qwen2.5-1.5B-Instruct Q4 reads all distinct spans and drafts a short answer. UNKNOWN produces an abstention. Otherwise the program ranks the source spans using cosine similarity to the draft (75%) and question (25%), plus the fraction of draft tokens covered, weighted by inverse frequency across the candidates. It returns the winning verbatim span and PDF page. The draft stays in the raw results for auditing. The batch reader uses 192-token seeds by default. An equivalent answer elsewhere in the RFC can miss the strict passage metric. [Earlier reader trials](task2_retrieval/reader_comparison.json) include the numbered-choice and constrained-quotation approaches.
+
+The benchmark starts fresh server processes in Q4, Q8, Q8, Q4 order. Each receives a warm-up before the same ten prompts. Throughput pools server-reported generated tokens over decode time. A separate control generates exactly 128 tokens per pass with the same prompt and end-of-sequence stopping disabled. RSS is sampled only during the ten-prompt workload and includes weights, KV cache and runtime allocations. The format score accepts surrounding whitespace, insignificant JSON formatting and spaces around list separators. The content review credits an unambiguous correct answer even when it includes extra formatting or explanation. Incorrect or conflicting claims fail the content review.
+
+Four retrieval regression checks run with `python -m unittest -v task2_retrieval.test_retrieve`. A separate live check asked which method removes the association between a URI and its current functionality. The system returned the passage for 421 Misdirected Request on page 141. The correct method was DELETE. This extra check is outside the 15-question scores.
 
 ## Sources
 
 - [Banking77](https://github.com/PolyAI-LDN/task-specific-datasets/tree/57ec275d8078af65b7731c2a98be812d844a6d6b/banking_data) by Casanueva et al. The saved examples are a selected subset of the original evaluation split. [Paper](https://aclanthology.org/2020.nlp4convai-1.5/) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/tree/1110a243fdf4706b3f48f1d95db1a4f5529b4d41), Apache 2.0. Used as the base encoder for both classification and retrieval.
 - [RFC 9110, HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.pdf), R. Fielding, M. Nottingham and J. Reschke. Excerpts are identified by PDF page. Copyright IETF Trust and the document authors. [IETF Trust provisions](https://trustee.ietf.org/license-info/)
-- [SmolLM2-135M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct), Apache 2.0, using [bartowski's GGUF conversions](https://huggingface.co/bartowski/SmolLM2-135M-Instruct-GGUF/tree/09816acd5d99df7be770d85ea30822623dab342c).
+- [Qwen2.5-1.5B-Instruct, official GGUF weights](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF/tree/91cad51170dc346986eccefdc2dd33a9da36ead9), Apache 2.0. The first experiment used [SmolLM2-135M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct).

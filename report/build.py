@@ -96,22 +96,22 @@ def classification(pdf):
     r = load("task1_lora/results.json")
     m = load("task1_lora/memory.json")
     p = Page(pdf, 1, "Task 1  /  Low-rank adaptation", "Routing banking requests")
-    p.paragraph(f"Can a small encoder tell a delayed transfer from a declined payment? I selected 12 related "
-                f"Banking77 intents, sampled {r['train_size']} training requests and held out {r['test_size']} "
-                "from the official test split. Each intent had equal representation. I removed exact text "
-                "duplicates after normalising whitespace and case.")
+    p.paragraph(f"Can a small encoder tell a delayed transfer from a declined payment? The experiment used "
+                f"12 related Banking77 intents, {r['train_size']} training requests and {r['test_size']} requests "
+                "from the official test split. Each intent had equal representation. Sampling excluded duplicate "
+                "texts after normalising whitespace and case.")
     n = r["test_size"]
     p.table([.42, .30, .28], ["Same test set", "Correct / tested", "Top-1 accuracy"],
             [(name, f"{r[key]} / {n}", f"{r[key]/n:.1%}") for name, key in
              [("MiniLM base", "base_correct"), ("MiniLM + LoRA", "tuned_correct")]])
-    p.paragraph("Both classifiers picked the nearest intent description by cosine similarity. I kept the "
-                "description vectors fixed, so the change in accuracy came from adapting the request encoder.")
+    p.paragraph("Both classifiers picked the nearest intent description by cosine similarity. The description "
+                "vectors stayed fixed, so the change in accuracy came from adapting the request encoder.")
     p.heading("What changed during training")
     p.paragraph(f"The base had {r['base_parameters']:,} parameters. Rank 8 adapters on query and value "
                 f"added {r['adapter_parameters']:,} trainable weights. These two projections let attention "
                 "change which words it follows and what information it carries. A small rank kept CPU training "
-                "practical. Alpha 16 scaled the update by 16/8 = 2. I used AdamW at 0.0005 and four epochs "
-                "to give the new weights several passes over a small dataset. These were fixed choices.")
+                "practical. Alpha 16 scaled the update by 16/8 = 2. AdamW at 0.0005 gave the adapters small "
+                "updates over four passes through the training set. These settings were fixed before evaluation.")
     p.heading("Three held-out mistakes")
     p.table([.34, .30, .36], ["Request", "Gold / predicted", "Likely explanation"], [
         ("Why did I get a fee?", "ATM fee / card payment fee", "The request never says where the fee appeared. Either route is plausible."),
@@ -130,6 +130,8 @@ def classification(pdf):
         ("QLoRA", "7B × (0.5 + 2/64) bytes + adapter state + 4 GB", f"{totals['qlora']:.1f} GB")])
     p.paragraph("The QLoRA estimate assumes packed 4-bit weights and one 2-byte scale per 64 weights. "
                 "These are planning calculations. The measured training run used MiniLM on CPU.", 9.2)
+    p.paragraph("AI drafted the test questions and report prose. The measurements come from runs on the "
+                "local machine.", 9.2)
     p.end("Evidence in task1_lora/results.json, adapter.safetensors and memory.json")
 
 
@@ -137,38 +139,48 @@ def retrieval(pdf):
     r = load("task2_retrieval/results.json")
     q = load("task2_retrieval/questions.json")
     p = Page(pdf, 2, "Task 2  /  Retrieval and reading", "Finding evidence in HTTP Semantics")
-    p.paragraph(f"I indexed all {r['pages']} PDF pages of RFC 9110, including the contents and index. I removed "
-                "running headers and footers, kept page boundaries, and embedded overlapping WordPiece windows "
-                "with the original MiniLM. NumPy ranked their unit vectors by dot product.")
+    p.paragraph(f"The corpus covers all {r['pages']} pages of RFC 9110, including its contents and index. "
+                "MiniLM embeds overlapping windows of text from each page. NumPy ranks them by cosine "
+                "similarity. For the five highest-scoring windows, the revised system completes the text at "
+                "each boundary and includes one neighbouring span on each side when available.")
     p.heading("How often did a complete passage surface?")
     rows = []
     for size, run in r["runs"].items():
         pages = sum(any(h["page"] == g["page"] for h in row["retrieved"])
                     for row, g in zip(run["queries"], q, strict=True))
-        rows.append((size, f"{run['chunks']:,}", f"{pages}/{len(q)}", f"{run['correct']}/{len(q)}",
+        seeds = sum(row["seed_rank"] is not None for row in run["queries"])
+        rows.append((size, f"{pages}/{len(q)}", f"{seeds}/{len(q)}", f"{run['correct']}/{len(q)}",
                      f"{run['correct']/len(q):.1%}"))
-    p.table([.18, .16, .22, .24, .20], ["Tokens", "Chunks", "Page in top 5", "Gold span in top 5", "Recall@5"], rows)
-    p.paragraph("I counted one hit when a single returned chunk contained the whole labelled passage on its "
-                "annotated page. Both sizes shared 16 tokens of overlap. A nearby paragraph can give a useful "
-                "answer and still miss this exact-evidence test.")
-    p.paragraph("The larger windows won by one question. For Q09, the short windows split the overhead and "
-                "privacy explanation across two retrieved chunks. The longer window held both in its first hit. "
-                "The trade-off also ran the other way. On Q05, a short chunk isolated the lost-update example "
-                "on page 65, while the longer search returned other discussions of entity tags.")
-    p.heading("Two failures and what I would change")
-    p.paragraph("<b>Q09 · Incomplete evidence.</b> The small-window search reached page 97 at ranks one and "
-                "five. A sentence-aware boundary or expansion into the adjacent chunk would join the two "
-                "halves before passing evidence to the reader.")
+    p.table([.17, .19, .21, .22, .21], ["Seed tokens", "Page in top 5", "Gold in seed", "After expansion", "Final recall@5"], rows)
+    p.paragraph("A hit requires the full labelled passage on the annotated page in one of the first five "
+                "results. Both seed sizes use 16 tokens of overlap. The 192-token seeds had a one-question "
+                "edge before expansion. Afterwards the scores tied. For Q09 the smaller seed had cut the "
+                "privacy explanation in two. Expanding the text recovered it without changing its page rank.")
+    p.heading("Two failures after expansion")
+    p.paragraph("<b>Q05 · Specific use of an entity tag.</b> The 192-token search ranked a discussion on "
+                "page 69 first and omitted the lost-update example on page 65. The 64-token search did find "
+                "that example. Merging candidates from both sizes before ranking could recover it.")
     p.paragraph("<b>Q12 · Right topic, wrong section.</b> Both sizes ranked page 68 first for the question "
                 "about checking tags before dates. That page explains validator properties. The reason for "
                 "the evaluation order appears on page 115. Indexing section headings with each chunk and "
                 "re-ranking for the ordering relationship could bring the precedence section forward.")
-    p.heading("What the reader received")
-    p.paragraph("I embedded complete text spans inside the five hits and shortlisted up to four. Local "
-                "SmolLM2 then chose a span or abstained. A constrained numeric choice let the program return "
-                "the original wording and source page. On Q01 it selected the sentence on page 20 that "
-                "answers the question. On Q02 it chose the definition of bad whitespace on page 36 and missed "
-                "the required parser action. Passage recall and answer quality measure different steps.")
+    p.heading("Which evidence reached the final answer?")
+    answers = load("task2_retrieval/answers.json")
+    offered = sum(a["gold_offered"] for a in answers)
+    selected = sum(a["gold_selected"] for a in answers)
+    previous = load("task2_retrieval/reader_comparison.json")
+    readers = []
+    for key, label in [("original", "SmolLM2 · four numbered choices"),
+                       ("numbered_choices", "Qwen · choose by number"),
+                       ("answer_and_quote", "Qwen · generate answer and quote")]:
+        readers.append((label, f"{sum(a['offered'] for a in previous[key])}/{len(q)}",
+                        f"{sum(a['matched'] for a in previous[key])}/{len(q)}"))
+    readers.append(("Qwen draft + evidence ranking", f"{offered}/{len(q)}", f"{selected}/{len(q)}"))
+    p.table([.44, .28, .28], ["Reader on 192-token seeds", "Gold offered", "Gold selected"], readers)
+    p.paragraph("The final reader uses a Qwen2.5-1.5B-Instruct draft as a search hint. MiniLM compares each "
+                "span with the draft and question. Shared, uncommon draft terms add to its score. The reader "
+                "returns the highest-scoring original passage and page, or abstains on UNKNOWN. All Qwen "
+                "runs used the same spans. The questions had already been reviewed during development.")
     p.heading("Where lexical search and re-ranking help")
     p.paragraph("BM25 rewards exact query words, especially uncommon ones, and accounts for document length. "
                 "That gives an identifier such as If-Range a stronger vote when many passages have similar "
@@ -181,10 +193,12 @@ def retrieval(pdf):
 def questions(pdf):
     q = load("task2_retrieval/questions.json")
     r = load("task2_retrieval/results.json")
+    review = load("task2_retrieval/answer_review.json")
+    answers = load("task2_retrieval/answers.json")
     p = Page(pdf, 3, "Task 2  /  Test set", "The questions and their evidence")
-    p.paragraph("Each answer below paraphrases the labelled passage. The page number refers to the RFC PDF. "
-                "The final columns give the rank of the first complete gold passage for each window size. "
-                "A dash marks a miss in the top five.")
+    p.paragraph("Each reference answer paraphrases the labelled passage on the indicated PDF page. "
+                "The 64 and 192 columns rank the first expanded hit containing that passage. A dash marks "
+                "a miss. QA grades whether the final 192-token reader's returned quotation answers the question.")
     keys = ["Yes. A user agent can operate without direct human interaction.",
             "Parse and remove the bad whitespace before interpreting the element.",
             "Use the most recent past year with those same final digits.",
@@ -195,55 +209,63 @@ def questions(pdf):
             "It could overwrite the whole representation.", "307 Temporary Redirect.",
             "A Retry-After field indicates when to try again."]
     rows = []
-    for i, (g, key) in enumerate(zip(q, keys, strict=True)):
+    for i, (g, key, answer, assessment) in enumerate(zip(q, keys, answers, review["items"], strict=True)):
+        if (g["id"], answer["draft"], answer["answer"]) != (
+                assessment["id"], assessment["draft"], assessment["evidence"]):
+            raise ValueError("The answer review refers to a different reader response")
         ranks = [run["queries"][i]["rank"] or "-" for run in r["runs"].values()]
-        rows.append((g["id"], g["question"], key, g["page"], *ranks))
-    p.table([.075, .40, .325, .08, .06, .06], ["ID", "Question", "Reference answer", "Page", "64", "192"],
+        rows.append((g["id"], g["question"], key, g["page"], *ranks, assessment["grade"]))
+    p.table([.071, .391, .295, .067, .054, .059, .063], ["ID", "Question", "Reference answer", "Page", "64", "192", "QA"],
             rows, size=8.9, pad=4.2)
-    p.end("Exact source wording and page annotations in task2_retrieval/questions.json")
+    grades = [row["grade"] for row in review["items"]]
+    p.paragraph(f"Y = complete and supported ({grades.count('Y')}). P = partial or incompletely supported "
+                f"({grades.count('P')}). N = wrong or unsupported ({grades.count('N')}). "
+                f"A = abstained ({grades.count('A')}). Equivalent evidence from another page earns full credit "
+                "when it supports the whole answer.", 9.3)
+    p.paragraph(review["observation"], 9.3)
+    p.end("Source annotations in questions.json and per-answer judgements in answer_review.json")
 
 
 def inference(pdf):
     r = load("task3_local/results.json")
     c = load("task3_local/capacity.json")
+    review = load("task3_local/quality.json")
     p = Page(pdf, 4, "Task 3  /  Local inference", "What changed at lower precision?")
-    p.paragraph("I ran SmolLM2-135M-Instruct in llama.cpp on an i7-1165G7 CPU. Each setting used four threads, "
-                "one slot, a 1,024-token context and greedy decoding capped at 64 new tokens. I warmed a fresh "
-                "server for each pass and reversed the order on the second pass.", 9.8)
+    p.paragraph(f"{r['model']} ran in llama.cpp on an i7-1165G7 CPU. Each setting used four threads, "
+                "one slot, a 1,024-token context and greedy decoding capped at 64 new tokens. The benchmark "
+                "warmed a fresh server for each pass and reversed the order on the second pass.", 9.8)
     rows = []
     for k, s in r["summary"].items():
         run = next(x for x in r["runs"] if x["quant"] == k)
-        rows.append((k, f"{run['file_bytes']/2**20:.1f} MiB", f"{s['tokens_per_second']:.1f}",
-                     f"{s['peak_mib']:.1f} MiB", f"{s['first_passes']}/10"))
-    p.table([.18, .19, .22, .22, .19], ["Weights", "GGUF file", "Decode tok/s", "Peak RSS", "Strict pass"], rows)
-    p.paragraph("Speed is total generated tokens divided by summed server decode seconds across both passes. "
-                "It excludes prompt processing. Peak is the largest server working set sampled every 25 ms "
-                "during the warm workload, in host RAM. Each setting repeated all ten outputs exactly.", 9.5)
+        for item, pred in zip(review["items"], run["outputs"], strict=True):
+            if item["id"] != pred["id"] or item[k]["text"] != pred["text"]:
+                raise ValueError("The quality review refers to a different benchmark response")
+        content = sum(item[k]["content_correct"] for item in review["items"])
+        rows.append((k, f"{s['tokens_per_second']:.1f}", f"{s['control_tokens_per_second']:.1f}",
+                     f"{s['peak_mib']:.1f}", f"{s['first_passes']}/10", f"{content}/10"))
+    p.table([.16, .18, .19, .19, .14, .14], ["Weights", "Task tok/s", "Fixed tok/s", "Peak MiB", "Strict", "Content"], rows)
+    p.paragraph("Speed pools generated tokens over server decode time across two passes. Fixed tok/s uses "
+                "the same prompt and exactly 128 new tokens per pass. Peak RSS samples host RAM every 25 ms "
+                "during the ten questions. Strict scoring checks the requested format. Content scoring credits "
+                "an unambiguous correct answer despite extra formatting or prose.", 9.5)
     p.heading("What the ten answers actually said")
-    p.table([.22, .39, .39], ["Prompt", "Q4_K_M", "Q8_0"], [
-        ("Copy parcel code", "Correct code in quotation marks", "Correct code with trailing period"),
-        ("Add bead counts", "Repeated both counts without adding", "Same"),
-        ("Sort three integers", "Kept the original order", "Same"),
-        ("Extract arrival time", "Added Houston and both times", "Repeated the whole schedule"),
-        ("Label a review", "Correct negative label in a sentence", "Same"),
-        ("Produce JSON", "Wrote Python and hit the token cap", "Also wrote Python and hit the cap"),
-        ("Find youngest", "Said Mina was younger than Jo", "Named Mina as youngest"),
-        ("Missing time", "Invented 10:00 AM", "Repeated Friday, omitted UNKNOWN"),
-        ("Convert units", "Repeated the length in metres", "Same"),
-        ("Form initials", "Returned only the first initial", "Repeated the words in title case")], 8.7, 2.7)
-    p.paragraph("Both models missed every strict output contract. The code-copy and sentiment responses "
-                "retain the right content. The invented opening time is a more serious error than punctuation. "
-                "These ten prompts give little basis for a general quality ranking.", 9.6)
+    p.table([.23, .385, .385], ["Prompt", "Q4_K_M", "Q8_0"],
+            [(item["label"], item["Q4_K_M"]["observation"], item["Q8_0"]["observation"])
+             for item in review["items"]], 8.7, 2.7)
+    p.paragraph(review["interpretation"], 9.6)
     p.heading("Memory and a plan for 20 simultaneous users")
+    files = {run["quant"]: run["file_bytes"] / 1e9 for run in r["runs"]}
     p.paragraph("Quantisation packs approximate weight values into fewer bits and stores scales for groups. "
-                "Other tensors and runtime buffers still occupy memory. The KV cache holds the keys and "
+                f"The Q4 file used {files['Q4_K_M']:.2f} GB on disk and Q8 used {files['Q8_0']:.2f} GB. "
+                "RSS includes resident model pages and runtime buffers. The KV cache holds the keys and "
                 "values produced at each attention layer for earlier tokens, so decoding can reuse them. "
                 "It grows with the combined sequence lengths of active users.", 9.6)
     p.paragraph(f"For the tested Q4 model, the local runtime reported {c['layers']} layers, {c['kv_heads']} KV "
-                f"heads, width {c['key_width']} and FP16 cache entries. Keys + values cost 2 × 30 × 3 × 64 × 2 "
+                f"heads, width {c['key_width']} and FP16 cache entries. Keys + values cost "
+                f"2 × {c['layers']} × {c['kv_heads']} × {c['key_width']} × 2 "
                 f"= {c['bytes_per_token']:,} bytes/token, matching {c['observed_cache_mib']:.1f} MiB at 1,024 tokens. "
                 "Assume 20 active slots, each capped at 1,792 input and 256 output tokens. The cache needs "
-                f"20 × 2,048 × 23,040 = {c['cache_bytes']/1e9:.3f} GB. With {c['file_bytes']/1e9:.3f} GB for "
+                f"20 × 2,048 × {c['bytes_per_token']:,} = {c['cache_bytes']/1e9:.3f} GB. With {c['file_bytes']/1e9:.3f} GB for "
                 f"weights and an assumed 4 GB runtime reserve, the budget is {c['estimated_total_gb']:.2f} GB "
                 "on a 24 GB GPU.", 9.6)
     p.paragraph("Load one model on the GPU, use continuous batching, stream responses, and queue arrivals "

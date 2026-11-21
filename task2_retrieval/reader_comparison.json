@@ -1,0 +1,366 @@
+{
+  "original": [
+    {
+      "id": "Q01",
+      "offered": true,
+      "page": 20,
+      "answer": "Being a user agent does not imply that there is a human user directly interacting with the software agent at the time of a request.",
+      "matched": true
+    },
+    {
+      "id": "Q02",
+      "offered": true,
+      "page": 36,
+      "answer": "The BWS rule is used where the grammar allows optional whitespace only for historical reasons.",
+      "matched": false
+    },
+    {
+      "id": "Q03",
+      "offered": true,
+      "page": 46,
+      "answer": "Date The \"Date\" header field represents the date and time at which the message was originated, having the same semantics as the Origination Date Field (orig-date) defined in Section 3.6.1 of [RFC5322] .",
+      "matched": false
+    },
+    {
+      "id": "Q04",
+      "offered": true,
+      "page": 57,
+      "answer": "The indicated media type defines both the data format and how that data is intended to be processed by a recipient, within the scope of the received message semantics, after any content codings indicated by Content-Encoding are decoded.",
+      "matched": false
+    },
+    {
+      "id": "Q05",
+      "offered": false,
+      "page": 68,
+      "answer": "An entity tag consists of an opaque quoted string, possibly prefixed by a weakness indicator.",
+      "matched": false
+    },
+    {
+      "id": "Q06",
+      "offered": false,
+      "page": 146,
+      "answer": "Likewise, direct inspection of support might be possible through an OPTIONS request or by interacting with a defined well-known URI [RFC8615] if such inspection is defined along with the field being introduced.",
+      "matched": false
+    },
+    {
+      "id": "Q07",
+      "offered": true,
+      "page": 141,
+      "answer": "417 Expectation Failed The 417 (Expectation Failed) status code indicates that the expectation given in the request's Expect header field (Section 10.1.1) could not be met by at least one of the inbound servers.",
+      "matched": false
+    },
+    {
+      "id": "Q08",
+      "offered": true,
+      "page": 90,
+      "answer": "A delay-seconds value is a non-negative decimal integer, representing time in seconds. delay-seconds = 1*DIGIT Two examples of its use are Retry-After: Fri, 31 Dec 1999 23:59:59 GMT Retry-After: 120 In the latter example, the delay is 2 minutes.",
+      "matched": true
+    },
+    {
+      "id": "Q09",
+      "offered": false,
+      "page": 129,
+      "answer": "Since a 206 response is self-descriptive, the client can still understand a response that only partially satisfies its range request.",
+      "matched": false
+    },
+    {
+      "id": "Q10",
+      "offered": true,
+      "page": 100,
+      "answer": "Accept = #( media-range [ weight ] ) media-range = ( \"*/*\" / ( type \"/\" \"*\" ) / ( type \"/\" subtype ) ) parameters The asterisk \"*\" character is used to group media types into ranges, with \"*/*\" indicating all media types and \"type/*\" indicating all subtypes of that type.",
+      "matched": true
+    },
+    {
+      "id": "Q11",
+      "offered": false,
+      "page": 74,
+      "answer": "This specification defines caching semantics for GET, HEAD, and POST, although the overwhelming majority of cache implementations only support GET and HEAD.",
+      "matched": false
+    },
+    {
+      "id": "Q12",
+      "offered": false,
+      "page": 68,
+      "answer": "An entity tag can be more reliable for validation than a modification date in situations where it is inconvenient to store modification dates, where the one-second resolution of HTTP-date values is not sufficient, or where modification dates are not consistently maintained.",
+      "matched": false
+    },
+    {
+      "id": "Q13",
+      "offered": false,
+      "page": 123,
+      "answer": "Partial PUT is not backwards compatible with the original definition of PUT.",
+      "matched": false
+    },
+    {
+      "id": "Q14",
+      "offered": true,
+      "page": 132,
+      "answer": "307 (Temporary Redirect) and 308 (Permanent Redirect) [RFC7538] were later added to unambiguously indicate method-preserving redirects, and status codes 301 and 302 have been adjusted to allow a POST request to be redirected as GET.",
+      "matched": false
+    },
+    {
+      "id": "Q15",
+      "offered": false,
+      "page": 89,
+      "answer": "When sent with a 503 (Service Unavailable) response, Retry- After indicates how long the service is expected to be unavailable to the client.",
+      "matched": false
+    }
+  ],
+  "numbered_choices": [
+    {
+      "id": "Q01",
+      "offered": true,
+      "page": 20,
+      "answer": "The most familiar form of user agent is the general-purpose Web browser, but that's only a small percentage of implementations.",
+      "matched": false
+    },
+    {
+      "id": "Q02",
+      "offered": true,
+      "page": 36,
+      "answer": "OWS and RWS have the same semantics as a single SP.",
+      "matched": false
+    },
+    {
+      "id": "Q03",
+      "offered": true,
+      "page": null,
+      "answer": null,
+      "matched": false
+    },
+    {
+      "id": "Q04",
+      "offered": true,
+      "page": null,
+      "answer": null,
+      "matched": false
+    },
+    {
+      "id": "Q05",
+      "offered": false,
+      "page": 129,
+      "answer": "For example, if a 204 status code is received in response to a PUT request and the response contains an ETag field, then the PUT was successful and the ETag field value contains the entity tag for the new representation of that target resource.",
+      "matched": false
+    },
+    {
+      "id": "Q06",
+      "offered": false,
+      "page": null,
+      "answer": null,
+      "matched": false
+    },
+    {
+      "id": "Q07",
+      "offered": true,
+      "page": 9,
+      "answer": "416 Range Not Satisfiable 15.5.18.",
+      "matched": false
+    },
+    {
+      "id": "Q08",
+      "offered": true,
+      "page": 89,
+      "answer": "The Retry-After field value can be either an HTTP-date or a number of seconds to delay after receiving the response.",
+      "matched": false
+    },
+    {
+      "id": "Q09",
+      "offered": true,
+      "page": null,
+      "answer": null,
+      "matched": false
+    },
+    {
+      "id": "Q10",
+      "offered": true,
+      "page": 100,
+      "answer": "By sending Accept: */*;q=0, clients can explicitly request a 406 (Not Acceptable) response if a more preferred format is not available, but they still need to be able to handle a different response since the server is allowed to ignore their preference.",
+      "matched": false
+    },
+    {
+      "id": "Q11",
+      "offered": false,
+      "page": 74,
+      "answer": "Methods and Caching For a cache to store and use a response, the associated method needs to explicitly allow caching and to detail under what conditions a response can be used to satisfy subsequent requests; a method definition that does not do so cannot be cached.",
+      "matched": false
+    },
+    {
+      "id": "Q12",
+      "offered": false,
+      "page": 69,
+      "answer": "8.8.3.2.",
+      "matched": false
+    },
+    {
+      "id": "Q13",
+      "offered": true,
+      "page": null,
+      "answer": null,
+      "matched": false
+    },
+    {
+      "id": "Q14",
+      "offered": true,
+      "page": 136,
+      "answer": "15.4.9.",
+      "matched": false
+    },
+    {
+      "id": "Q15",
+      "offered": true,
+      "page": 74,
+      "answer": "A client SHOULD NOT automatically retry a failed automatic retry.",
+      "matched": false
+    }
+  ],
+  "methods": {
+    "original": {
+      "commit": "014c1fdd6c1a0306f569456e66f823f6ca02d5f5",
+      "size": 192,
+      "model": "SmolLM2-135M-Instruct-Q8_0"
+    },
+    "numbered_choices": {
+      "model": "Qwen2.5-1.5B-Instruct-Q4_K_M",
+      "size": 192,
+      "context": 8192,
+      "temperature": 0,
+      "seed": 41,
+      "max_tokens": 6,
+      "system": "You are an evidence editor. Read the numbered HTTP excerpts. Select the single excerpt that most directly answers the question. If none answers, select 0. Respond with the number alone.",
+      "user_template": "One [i] excerpt per line, in the order of choices in answers.json (starting at 1), then two newlines, Question: {question}",
+      "decoding": "Grammar admitting a single option number or zero for abstention."
+    },
+    "answer_and_quote": {
+      "model": "Qwen2.5-1.5B-Instruct",
+      "quant": "Q4_K_M",
+      "size": 192,
+      "context": 8192,
+      "temperature": 0,
+      "seed": 41,
+      "max_tokens": 384,
+      "description": "Respond in one short sentence and copy one complete evidence span, with grammar-constrained quotation. An UNKNOWN draft or unverified quote yields an abstention."
+    }
+  },
+  "answer_and_quote": [
+    {
+      "id": "Q01",
+      "offered": true,
+      "matched": false,
+      "page": null,
+      "answer": null,
+      "draft": null
+    },
+    {
+      "id": "Q02",
+      "offered": true,
+      "matched": false,
+      "page": 36,
+      "answer": "The BWS rule is used where the grammar allows optional whitespace only for historical reasons.",
+      "draft": "A parser should treat such whitespace as bad whitespace (BWS) and remove it before interpreting the protocol element."
+    },
+    {
+      "id": "Q03",
+      "offered": true,
+      "matched": true,
+      "page": 40,
+      "answer": "Recipients of a timestamp value in rfc850-date format, which uses a two-digit year, MUST interpret a timestamp that appears to be more than 50 years in the future as representing the most recent year in the past that had the same last two digits.",
+      "draft": "The reader should pick the most recent century."
+    },
+    {
+      "id": "Q04",
+      "offered": true,
+      "matched": false,
+      "page": 57,
+      "answer": "The indicated media type defines both the data format and how that data is intended to be processed by a recipient, within the scope of the received message semantics, after any content codings indicated by Content-Encoding are decoded.",
+      "draft": "The receiver can either assume a media type of \"application/octet-stream\" or examine the data to determine its type."
+    },
+    {
+      "id": "Q05",
+      "offered": false,
+      "matched": false,
+      "page": 69,
+      "answer": "8.8.3.1.",
+      "draft": "Avoid unnecessary transfers and improve service availability, scalability, and reliability."
+    },
+    {
+      "id": "Q06",
+      "offered": false,
+      "matched": false,
+      "page": 75,
+      "answer": "9.3.2.",
+      "draft": "POST"
+    },
+    {
+      "id": "Q07",
+      "offered": true,
+      "matched": false,
+      "page": 140,
+      "answer": "The server MAY terminate the request, if the protocol version in use allows it; otherwise, the server MAY close the connection.",
+      "draft": "The client should repeat the request without a 100-continue expectation, as indicated by the 417 (Expectation Failed) status code."
+    },
+    {
+      "id": "Q08",
+      "offered": true,
+      "matched": false,
+      "page": null,
+      "answer": null,
+      "draft": null
+    },
+    {
+      "id": "Q09",
+      "offered": true,
+      "matched": false,
+      "page": 98,
+      "answer": "The mechanism for reactive negotiation might be as simple as a list of references to alternative representations.",
+      "draft": "Having the user agent describe its capabilities in every request can be both very inefficient and a potential risk to the user's privacy."
+    },
+    {
+      "id": "Q10",
+      "offered": true,
+      "matched": false,
+      "page": 100,
+      "answer": "The media-range can include media type parameters that are applicable to that range.",
+      "draft": "\"*/*\""
+    },
+    {
+      "id": "Q11",
+      "offered": false,
+      "matched": false,
+      "page": 104,
+      "answer": "The most common use of Accept-Encoding is in responses with a 415 (Unsupported Media Type) status code, in response to optimistic use of a content coding by clients.",
+      "draft": "Accept-Language"
+    },
+    {
+      "id": "Q12",
+      "offered": false,
+      "matched": false,
+      "page": 69,
+      "answer": "8.8.3.2.",
+      "draft": "To evaluate a received If-Range header field containing an entity-tag: 1. If the entity-tag validator provided exactly matches the ETag field value for the selected representation using the strong comparison function (8."
+    },
+    {
+      "id": "Q13",
+      "offered": true,
+      "matched": false,
+      "page": 78,
+      "answer": "The new validator(s) received in the response can be used for future conditional requests in order to prevent accidental overwrites (Section 13.1).",
+      "draft": "An older implementation could replace just a slice using PUT by targeting a separately identified resource with state that overlaps or extends a portion of the larger resource, or by using a different method that has not"
+    },
+    {
+      "id": "Q14",
+      "offered": true,
+      "matched": false,
+      "page": 136,
+      "answer": "The server's response content usually contains a short hypertext note with a hyperlink to the different URI(s).",
+      "draft": "307 (Temporary Redirect)"
+    },
+    {
+      "id": "Q15",
+      "offered": true,
+      "matched": false,
+      "page": 140,
+      "answer": "The server MAY terminate the request, if the protocol version in use allows it; otherwise, the server MAY close the connection.",
+      "draft": "The server tells you when to retry by sending a 413 (Content Too Large) status code with a Retry-After header field indicating the minimum time to wait before retrying the request."
+    }
+  ]
+}

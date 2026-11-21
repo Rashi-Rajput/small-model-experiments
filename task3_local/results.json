@@ -1,4 +1,5 @@
 {
+  "model": "Qwen2.5-1.5B-Instruct",
   "platform": "Windows-11-10.0.26200-SP0",
   "cpu": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
   "physical_cores": 4,
@@ -9,419 +10,466 @@
   "temperature": 0,
   "seed": 41,
   "rss_interval_ms": 25,
+  "control_prompt": "Write a travel diary about a walk along the coast.",
   "runs": [
     {
       "quant": "Q4_K_M",
-      "file_bytes": 105454432,
-      "warm_rss": 175558656,
-      "peak_rss": 193556480,
-      "samples": 84,
+      "file_bytes": 1117320736,
+      "warm_rss": 1714806784,
+      "peak_rss": 1734328320,
+      "samples": 331,
+      "control": {
+        "cache_n": 0,
+        "prompt_n": 11,
+        "prompt_ms": 194.8,
+        "prompt_per_token_ms": 17.70909090909091,
+        "prompt_per_second": 56.468172484599584,
+        "predicted_n": 128,
+        "predicted_ms": 9293.054,
+        "predicted_per_token_ms": 73.17365354330708,
+        "predicted_per_second": 13.66612095442467
+      },
       "outputs": [
         {
           "id": "copy",
-          "text": "\"LT-408\"",
-          "passed": false,
+          "text": "LT-408",
+          "passed": true,
           "finish": "stop",
-          "tokens": 8,
-          "decode_ms": 53.839,
-          "prompt_ms": 89.252
+          "tokens": 6,
+          "decode_ms": 475.782,
+          "prompt_ms": 631.734
         },
         {
           "id": "sum",
-          "text": "A tray has 17 red beads and 8 blue beads.",
-          "passed": false,
+          "text": "25",
+          "passed": true,
           "finish": "stop",
-          "tokens": 15,
-          "decode_ms": 133.665,
-          "prompt_ms": 117.414
+          "tokens": 3,
+          "decode_ms": 160.262,
+          "prompt_ms": 638.256
         },
         {
           "id": "sort",
-          "text": "Here are the numbers in order from smallest to largest: 9, 12, 2.",
-          "passed": false,
+          "text": "2, 9, 12",
+          "passed": true,
           "finish": "stop",
-          "tokens": 22,
-          "decode_ms": 159.121,
-          "prompt_ms": 191.215
+          "tokens": 9,
+          "decode_ms": 608.025,
+          "prompt_ms": 618.552
         },
         {
           "id": "extract",
-          "text": "\"Houston, Texas, 08:15. Houston, Texas, 09:40.\"",
-          "passed": false,
+          "text": "09:40",
+          "passed": true,
           "finish": "stop",
-          "tokens": 26,
-          "decode_ms": 192.519,
-          "prompt_ms": 111.681
+          "tokens": 6,
+          "decode_ms": 374.903,
+          "prompt_ms": 728.993
         },
         {
           "id": "sentiment",
-          "text": "The review is negative.",
+          "text": "Negative",
           "passed": false,
           "finish": "stop",
-          "tokens": 6,
-          "decode_ms": 43.671,
-          "prompt_ms": 105.088
+          "tokens": 2,
+          "decode_ms": 66.282,
+          "prompt_ms": 610.822
         },
         {
           "id": "json",
-          "text": "Here is a Python function that returns a JSON object with exactly two keys:\n\n```python\nimport json\n\ndef return_json_with_two_keys(json_data):\n    return json.loads(json_data)\n```\n\nThis function uses the `json.loads()` function to",
+          "text": "```json\n{\n  \"city\": \"Pune\",\n  \"seats\": 4\n}\n```",
           "passed": false,
-          "finish": "length",
-          "tokens": 64,
-          "decode_ms": 525.266,
-          "prompt_ms": 121.358
+          "finish": "stop",
+          "tokens": 23,
+          "decode_ms": 1993.762,
+          "prompt_ms": 942.034
         },
         {
           "id": "deduction",
-          "text": "Mina is younger than Jo.",
-          "passed": false,
+          "text": "Jo",
+          "passed": true,
           "finish": "stop",
-          "tokens": 8,
-          "decode_ms": 57.361,
-          "prompt_ms": 99.883
+          "tokens": 2,
+          "decode_ms": 69.288,
+          "prompt_ms": 593.834
         },
         {
           "id": "missing",
-          "text": "The hall opens on Friday at 10:00 AM.",
-          "passed": false,
+          "text": "UNKNOWN",
+          "passed": true,
           "finish": "stop",
-          "tokens": 15,
-          "decode_ms": 116.296,
-          "prompt_ms": 121.094
+          "tokens": 2,
+          "decode_ms": 71.936,
+          "prompt_ms": 663.93
         },
         {
           "id": "units",
-          "text": "A ribbon is 2.5 metres long.",
-          "passed": false,
+          "text": "250",
+          "passed": true,
           "finish": "stop",
-          "tokens": 11,
-          "decode_ms": 87.931,
-          "prompt_ms": 97.25
+          "tokens": 4,
+          "decode_ms": 227.488,
+          "prompt_ms": 552.96
         },
         {
           "id": "initials",
-          "text": "The first letter of each word in 'bright amber yarn' is 'B'.",
+          "text": "baa",
           "passed": false,
           "finish": "stop",
-          "tokens": 17,
-          "decode_ms": 124.243,
-          "prompt_ms": 122.258
+          "tokens": 3,
+          "decode_ms": 135.813,
+          "prompt_ms": 543.379
         }
       ]
     },
     {
       "quant": "Q8_0",
-      "file_bytes": 144811360,
-      "warm_rss": 205414400,
-      "peak_rss": 223039488,
-      "samples": 80,
+      "file_bytes": 1894532128,
+      "warm_rss": 1748090880,
+      "peak_rss": 1767780352,
+      "samples": 518,
+      "control": {
+        "cache_n": 0,
+        "prompt_n": 11,
+        "prompt_ms": 265.129,
+        "prompt_per_token_ms": 24.102636363636364,
+        "prompt_per_second": 41.48923731466569,
+        "predicted_n": 128,
+        "predicted_ms": 13666.254,
+        "predicted_per_token_ms": 107.60829921259842,
+        "predicted_per_second": 9.292963528996314
+      },
       "outputs": [
         {
           "id": "copy",
-          "text": "LT-408.",
-          "passed": false,
+          "text": "LT-408",
+          "passed": true,
           "finish": "stop",
-          "tokens": 7,
-          "decode_ms": 58.703,
-          "prompt_ms": 92.701
+          "tokens": 6,
+          "decode_ms": 538.059,
+          "prompt_ms": 1375.806
         },
         {
           "id": "sum",
-          "text": "A tray has 17 red beads and 8 blue beads.",
-          "passed": false,
+          "text": "25",
+          "passed": true,
           "finish": "stop",
-          "tokens": 15,
-          "decode_ms": 131.113,
-          "prompt_ms": 97.13
+          "tokens": 3,
+          "decode_ms": 210.057,
+          "prompt_ms": 1110.123
         },
         {
           "id": "sort",
-          "text": "Here are the numbers in order from smallest to largest: 9, 12, 2.",
-          "passed": false,
+          "text": "2, 9, 12",
+          "passed": true,
           "finish": "stop",
-          "tokens": 22,
-          "decode_ms": 194.884,
-          "prompt_ms": 95.378
+          "tokens": 9,
+          "decode_ms": 776.053,
+          "prompt_ms": 1008.539
         },
         {
           "id": "extract",
-          "text": "The ferry leaves at 08:15 and arrives at 09:40.",
-          "passed": false,
+          "text": "09:40",
+          "passed": true,
           "finish": "stop",
-          "tokens": 21,
-          "decode_ms": 194.875,
-          "prompt_ms": 102.336
+          "tokens": 6,
+          "decode_ms": 495.776,
+          "prompt_ms": 1099.109
         },
         {
           "id": "sentiment",
-          "text": "The review is negative.",
+          "text": "Negative",
           "passed": false,
           "finish": "stop",
-          "tokens": 6,
-          "decode_ms": 48.334,
-          "prompt_ms": 96.032
+          "tokens": 2,
+          "decode_ms": 102.939,
+          "prompt_ms": 1058.519
         },
         {
           "id": "json",
-          "text": "Here is a simple Python function that converts a JSON string to a JSON object with exactly two keys:\n\n```python\nimport json\n\ndef convert_json_to_json_object(json_string):\n    json_object = json.loads(json_string)\n    return json_object\n\n",
+          "text": "```json\n{\n  \"city\": \"Pune\",\n  \"seats\": 4\n}\n```",
           "passed": false,
-          "finish": "length",
-          "tokens": 64,
-          "decode_ms": 633.914,
-          "prompt_ms": 117.39
+          "finish": "stop",
+          "tokens": 23,
+          "decode_ms": 2201.211,
+          "prompt_ms": 1251.07
         },
         {
           "id": "deduction",
-          "text": "Mina is the youngest.",
-          "passed": false,
+          "text": "Jo",
+          "passed": true,
           "finish": "stop",
-          "tokens": 7,
-          "decode_ms": 57.182,
-          "prompt_ms": 102.736
+          "tokens": 2,
+          "decode_ms": 110.623,
+          "prompt_ms": 1251.657
         },
         {
           "id": "missing",
-          "text": "The hall opens on Friday.",
-          "passed": false,
+          "text": "UNKNOWN",
+          "passed": true,
           "finish": "stop",
-          "tokens": 7,
-          "decode_ms": 55.309,
-          "prompt_ms": 112.994
+          "tokens": 2,
+          "decode_ms": 101.595,
+          "prompt_ms": 1130.958
         },
         {
           "id": "units",
-          "text": "A ribbon is 2.5 metres long.",
-          "passed": false,
+          "text": "250",
+          "passed": true,
           "finish": "stop",
-          "tokens": 11,
-          "decode_ms": 100.974,
-          "prompt_ms": 87.891
+          "tokens": 4,
+          "decode_ms": 287.434,
+          "prompt_ms": 1015.638
         },
         {
           "id": "initials",
-          "text": "Bright Amber Yarn",
+          "text": "baa",
           "passed": false,
           "finish": "stop",
-          "tokens": 7,
-          "decode_ms": 65.939,
-          "prompt_ms": 97.908
+          "tokens": 3,
+          "decode_ms": 202.733,
+          "prompt_ms": 1015.083
         }
       ]
     },
     {
       "quant": "Q8_0",
-      "file_bytes": 144811360,
-      "warm_rss": 205283328,
-      "peak_rss": 223199232,
-      "samples": 82,
+      "file_bytes": 1894532128,
+      "warm_rss": 1748004864,
+      "peak_rss": 1767645184,
+      "samples": 503,
+      "control": {
+        "cache_n": 0,
+        "prompt_n": 11,
+        "prompt_ms": 276.746,
+        "prompt_per_token_ms": 25.158727272727273,
+        "prompt_per_second": 39.747638628923276,
+        "predicted_n": 128,
+        "predicted_ms": 12861.019,
+        "predicted_per_token_ms": 101.26786614173228,
+        "predicted_per_second": 9.874800744793239
+      },
       "outputs": [
         {
           "id": "copy",
-          "text": "LT-408.",
-          "passed": false,
+          "text": "LT-408",
+          "passed": true,
           "finish": "stop",
-          "tokens": 7,
-          "decode_ms": 56.803,
-          "prompt_ms": 86.161
+          "tokens": 6,
+          "decode_ms": 485.927,
+          "prompt_ms": 1020.967
         },
         {
           "id": "sum",
-          "text": "A tray has 17 red beads and 8 blue beads.",
-          "passed": false,
+          "text": "25",
+          "passed": true,
           "finish": "stop",
-          "tokens": 15,
-          "decode_ms": 129.981,
-          "prompt_ms": 94.952
+          "tokens": 3,
+          "decode_ms": 191.728,
+          "prompt_ms": 1021.12
         },
         {
           "id": "sort",
-          "text": "Here are the numbers in order from smallest to largest: 9, 12, 2.",
-          "passed": false,
+          "text": "2, 9, 12",
+          "passed": true,
           "finish": "stop",
-          "tokens": 22,
-          "decode_ms": 212.391,
-          "prompt_ms": 93.866
+          "tokens": 9,
+          "decode_ms": 804.45,
+          "prompt_ms": 1033.925
         },
         {
           "id": "extract",
-          "text": "The ferry leaves at 08:15 and arrives at 09:40.",
-          "passed": false,
+          "text": "09:40",
+          "passed": true,
           "finish": "stop",
-          "tokens": 21,
-          "decode_ms": 189.059,
-          "prompt_ms": 114.181
+          "tokens": 6,
+          "decode_ms": 497.65,
+          "prompt_ms": 1205.236
         },
         {
           "id": "sentiment",
-          "text": "The review is negative.",
+          "text": "Negative",
           "passed": false,
           "finish": "stop",
-          "tokens": 6,
-          "decode_ms": 48.577,
-          "prompt_ms": 97.494
+          "tokens": 2,
+          "decode_ms": 96.814,
+          "prompt_ms": 993.794
         },
         {
           "id": "json",
-          "text": "Here is a simple Python function that converts a JSON string to a JSON object with exactly two keys:\n\n```python\nimport json\n\ndef convert_json_to_json_object(json_string):\n    json_object = json.loads(json_string)\n    return json_object\n\n",
+          "text": "```json\n{\n  \"city\": \"Pune\",\n  \"seats\": 4\n}\n```",
           "passed": false,
-          "finish": "length",
-          "tokens": 64,
-          "decode_ms": 704.216,
-          "prompt_ms": 113.652
+          "finish": "stop",
+          "tokens": 23,
+          "decode_ms": 2219.874,
+          "prompt_ms": 1242.756
         },
         {
           "id": "deduction",
-          "text": "Mina is the youngest.",
-          "passed": false,
+          "text": "Jo",
+          "passed": true,
           "finish": "stop",
-          "tokens": 7,
-          "decode_ms": 57.973,
-          "prompt_ms": 96.466
+          "tokens": 2,
+          "decode_ms": 99.919,
+          "prompt_ms": 1100.951
         },
         {
           "id": "missing",
-          "text": "The hall opens on Friday.",
-          "passed": false,
+          "text": "UNKNOWN",
+          "passed": true,
           "finish": "stop",
-          "tokens": 7,
-          "decode_ms": 74.863,
-          "prompt_ms": 115.573
+          "tokens": 2,
+          "decode_ms": 96.204,
+          "prompt_ms": 1187.504
         },
         {
           "id": "units",
-          "text": "A ribbon is 2.5 metres long.",
-          "passed": false,
+          "text": "250",
+          "passed": true,
           "finish": "stop",
-          "tokens": 11,
-          "decode_ms": 92.915,
-          "prompt_ms": 94.256
+          "tokens": 4,
+          "decode_ms": 288.38,
+          "prompt_ms": 1001.368
         },
         {
           "id": "initials",
-          "text": "Bright Amber Yarn",
+          "text": "baa",
           "passed": false,
           "finish": "stop",
-          "tokens": 7,
-          "decode_ms": 57.821,
-          "prompt_ms": 98.423
+          "tokens": 3,
+          "decode_ms": 197.616,
+          "prompt_ms": 1039.01
         }
       ]
     },
     {
       "quant": "Q4_K_M",
-      "file_bytes": 105454432,
-      "warm_rss": 175611904,
-      "peak_rss": 193859584,
-      "samples": 79,
+      "file_bytes": 1117320736,
+      "warm_rss": 1715056640,
+      "peak_rss": 1734635520,
+      "samples": 270,
+      "control": {
+        "cache_n": 0,
+        "prompt_n": 11,
+        "prompt_ms": 182.735,
+        "prompt_per_token_ms": 16.612272727272728,
+        "prompt_per_second": 60.19645935370892,
+        "predicted_n": 128,
+        "predicted_ms": 8544.466,
+        "predicted_per_token_ms": 67.27925984251969,
+        "predicted_per_second": 14.863421540913148
+      },
       "outputs": [
         {
           "id": "copy",
-          "text": "\"LT-408\"",
-          "passed": false,
+          "text": "LT-408",
+          "passed": true,
           "finish": "stop",
-          "tokens": 8,
-          "decode_ms": 55.828,
-          "prompt_ms": 95.328
+          "tokens": 6,
+          "decode_ms": 341.478,
+          "prompt_ms": 469.27
         },
         {
           "id": "sum",
-          "text": "A tray has 17 red beads and 8 blue beads.",
-          "passed": false,
+          "text": "25",
+          "passed": true,
           "finish": "stop",
-          "tokens": 15,
-          "decode_ms": 119.293,
-          "prompt_ms": 104.247
+          "tokens": 3,
+          "decode_ms": 123.14,
+          "prompt_ms": 530.422
         },
         {
           "id": "sort",
-          "text": "Here are the numbers in order from smallest to largest: 9, 12, 2.",
-          "passed": false,
+          "text": "2, 9, 12",
+          "passed": true,
           "finish": "stop",
-          "tokens": 22,
-          "decode_ms": 177.238,
-          "prompt_ms": 102.517
+          "tokens": 9,
+          "decode_ms": 486.426,
+          "prompt_ms": 498.121
         },
         {
           "id": "extract",
-          "text": "\"Houston, Texas, 08:15. Houston, Texas, 09:40.\"",
-          "passed": false,
+          "text": "09:40",
+          "passed": true,
           "finish": "stop",
-          "tokens": 26,
-          "decode_ms": 203.675,
-          "prompt_ms": 117.893
+          "tokens": 6,
+          "decode_ms": 303.157,
+          "prompt_ms": 537.027
         },
         {
           "id": "sentiment",
-          "text": "The review is negative.",
+          "text": "Negative",
           "passed": false,
           "finish": "stop",
-          "tokens": 6,
-          "decode_ms": 38.617,
-          "prompt_ms": 103.114
+          "tokens": 2,
+          "decode_ms": 60.344,
+          "prompt_ms": 514.92
         },
         {
           "id": "json",
-          "text": "Here is a Python function that returns a JSON object with exactly two keys:\n\n```python\nimport json\n\ndef return_json_with_two_keys(json_data):\n    return json.loads(json_data)\n```\n\nThis function uses the `json.loads()` function to",
+          "text": "```json\n{\n  \"city\": \"Pune\",\n  \"seats\": 4\n}\n```",
           "passed": false,
-          "finish": "length",
-          "tokens": 64,
-          "decode_ms": 507.288,
-          "prompt_ms": 122.186
+          "finish": "stop",
+          "tokens": 23,
+          "decode_ms": 1396.492,
+          "prompt_ms": 605.669
         },
         {
           "id": "deduction",
-          "text": "Mina is younger than Jo.",
-          "passed": false,
+          "text": "Jo",
+          "passed": true,
           "finish": "stop",
-          "tokens": 8,
-          "decode_ms": 53.744,
-          "prompt_ms": 96.863
+          "tokens": 2,
+          "decode_ms": 69.476,
+          "prompt_ms": 547.046
         },
         {
           "id": "missing",
-          "text": "The hall opens on Friday at 10:00 AM.",
-          "passed": false,
+          "text": "UNKNOWN",
+          "passed": true,
           "finish": "stop",
-          "tokens": 15,
-          "decode_ms": 109.787,
-          "prompt_ms": 118.217
+          "tokens": 2,
+          "decode_ms": 62.211,
+          "prompt_ms": 582.607
         },
         {
           "id": "units",
-          "text": "A ribbon is 2.5 metres long.",
-          "passed": false,
+          "text": "250",
+          "passed": true,
           "finish": "stop",
-          "tokens": 11,
-          "decode_ms": 78.852,
-          "prompt_ms": 89.469
+          "tokens": 4,
+          "decode_ms": 182.214,
+          "prompt_ms": 488.933
         },
         {
           "id": "initials",
-          "text": "The first letter of each word in 'bright amber yarn' is 'B'.",
+          "text": "baa",
           "passed": false,
           "finish": "stop",
-          "tokens": 17,
-          "decode_ms": 121.25,
-          "prompt_ms": 94.561
+          "tokens": 3,
+          "decode_ms": 127.163,
+          "prompt_ms": 483.773
         }
       ]
     }
   ],
   "summary": {
     "Q4_K_M": {
-      "tokens": 384,
-      "decode_seconds": 2.959484,
-      "tokens_per_second": 129.7523487202499,
-      "peak_mib": 184.87890625,
-      "first_passes": 0,
+      "tokens": 120,
+      "decode_seconds": 7.335642,
+      "tokens_per_second": 16.358486414685995,
+      "control_tokens_per_second": 14.351770873977996,
+      "peak_mib": 1654.27734375,
+      "first_passes": 7,
       "repeated_outputs": 10
     },
     "Q8_0": {
-      "tokens": 334,
-      "decode_seconds": 3.165826,
-      "tokens_per_second": 105.50169213342743,
-      "peak_mib": 212.859375,
-      "first_passes": 0,
+      "tokens": 120,
+      "decode_seconds": 10.005042,
+      "tokens_per_second": 11.993952649074338,
+      "control_tokens_per_second": 9.650445411407347,
+      "peak_mib": 1685.88671875,
+      "first_passes": 7,
       "repeated_outputs": 10
     }
   }

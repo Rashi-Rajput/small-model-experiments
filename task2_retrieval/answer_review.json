@@ -1,0 +1,126 @@
+{
+  "rubric": "Grade the actual passage returned to the user. Y answers the whole question, including equivalent sources. P answers part of it. N is wrong, unrelated or unsupported. A means the system abstained. The hidden draft has no bearing on credit.",
+  "items": [
+    {
+      "id": "Q01",
+      "draft": "UNKNOWN",
+      "evidence": null,
+      "page": null,
+      "grade": "A",
+      "reason": "Returned no passage despite the annotated evidence being offered."
+    },
+    {
+      "id": "Q02",
+      "draft": "A parser should remove such bad whitespace before interpreting the protocol element.",
+      "evidence": "A recipient MUST parse for such bad whitespace and remove it before interpreting the protocol element.",
+      "page": 36,
+      "grade": "Y",
+      "reason": "The passage explicitly instructs the recipient to parse and remove the bad whitespace."
+    },
+    {
+      "id": "Q03",
+      "draft": "1990s",
+      "evidence": "Recipients of a timestamp value in rfc850-date format, which uses a two-digit year, MUST interpret a timestamp that appears to be more than 50 years in the future as representing the most recent year in the past that had the same last two digits.",
+      "page": 40,
+      "grade": "Y",
+      "reason": "The passage gives the most recent matching year in the past. The internal draft guessed a decade, but the user receives the correct source text."
+    },
+    {
+      "id": "Q04",
+      "draft": "UNKNOWN",
+      "evidence": null,
+      "page": null,
+      "grade": "A",
+      "reason": "Returned no passage despite the annotated evidence being offered."
+    },
+    {
+      "id": "Q05",
+      "draft": "unnecessary transfers and significantly improve service availability, scalability, and reliability.",
+      "evidence": "An origin server SHOULD send an ETag for any selected representation for which detection of changes can be reasonably and consistently determined, since the entity tag's use in conditional requests and evaluating cache freshness ( [CACHING] ) can substantially reduce unnecessary transfers and significantly improve service availability, scalability, and reliability.",
+      "page": 69,
+      "grade": "N",
+      "reason": "The cited benefit concerns transfer efficiency and cache freshness. It omits the lost-update problem relevant to a later editor."
+    },
+    {
+      "id": "Q06",
+      "draft": "POST",
+      "evidence": "POST is often preferred in such cases because it usually doesn't construct a URI; instead, POST of a form transmits the potentially sensitive data in the request content.",
+      "page": 156,
+      "grade": "N",
+      "reason": "The passage recommends POST for privacy in form submission. HEAD answers the metadata question."
+    },
+    {
+      "id": "Q07",
+      "draft": "The server rejected your upload expectation with 417. You should repeat the request without a 100-continue expectation.",
+      "evidence": "\u2022 A client that receives a 417 (Expectation Failed) status code in response to a request containing a 100-continue expectation SHOULD repeat that request without a 100-continue expectation, since the 417 response merely indicates that the response chain does not support expectations (e.g., it passes through an HTTP/1.0 server).",
+      "page": 83,
+      "grade": "Y",
+      "reason": "The passage says to repeat the request without its 100-continue expectation."
+    },
+    {
+      "id": "Q08",
+      "draft": "seconds",
+      "evidence": "A delay-seconds value is a non-negative decimal integer, representing time in seconds. delay-seconds = 1*DIGIT Two examples of its use are Retry-After: Fri, 31 Dec 1999 23:59:59 GMT Retry-After: 120 In the latter example, the delay is 2 minutes.",
+      "page": 90,
+      "grade": "Y",
+      "reason": "The quoted definition explicitly gives seconds as the unit."
+    },
+    {
+      "id": "Q09",
+      "draft": "Having the user agent describe its capabilities in every request can be both very inefficient (given that only a small percentage of responses have multiple representations) and a potential risk to the user's privacy.",
+      "evidence": "\u2022 Having the user agent describe its capabilities in every request can be both very inefficient (given that only a small percentage of responses have multiple representations) and a potential risk to the user's privacy;",
+      "page": 97,
+      "grade": "Y",
+      "reason": "The passage gives both costs: inefficient repetition and privacy risk."
+    },
+    {
+      "id": "Q10",
+      "draft": "*/*",
+      "evidence": "Accept = #( media-range [ weight ] ) media-range = ( \"*/*\" / ( type \"/\" \"*\" ) / ( type \"/\" subtype ) ) parameters The asterisk \"*\" character is used to group media types into ranges, with \"*/*\" indicating all media types and \"type/*\" indicating all subtypes of that type.",
+      "page": 100,
+      "grade": "Y",
+      "reason": "The quotation identifies */* as the wildcard for all media types."
+    },
+    {
+      "id": "Q11",
+      "draft": "Accept-Language",
+      "evidence": "Accept-Language The \"Accept-Language\" header field can be used by user agents to indicate the set of natural languages that are preferred in the response.",
+      "page": 104,
+      "grade": "N",
+      "reason": "Accept-Language describes a preference. The question asks which response header controls cache matching, which is Vary."
+    },
+    {
+      "id": "Q12",
+      "draft": "To evaluate a received If-Range header field containing an entity-tag: 1. If the entity-tag validator provided exactly matches the ETag field value for the selected representation using the strong comparison function (Section 8.8.3.2), the condition is true.",
+      "evidence": "If the entity-tag validator provided exactly matches the ETag field value for the selected representation using the strong comparison function (Section 8.8.3.2), the condition is true.",
+      "page": 114,
+      "grade": "N",
+      "reason": "The passage explains one validator comparison but omits why tags take precedence over dates."
+    },
+    {
+      "id": "Q13",
+      "draft": "UNKNOWN",
+      "evidence": null,
+      "page": null,
+      "grade": "A",
+      "reason": "Returned no passage despite the annotated evidence being offered."
+    },
+    {
+      "id": "Q14",
+      "draft": "307 (Temporary Redirect)",
+      "evidence": "307 Temporary Redirect The 307 (Temporary Redirect) status code indicates that the target resource resides temporarily under a different URI and the user agent MUST NOT change the request method if it performs an automatic redirection to that URI.",
+      "page": 136,
+      "grade": "Y",
+      "reason": "Page 136 directly requires method preservation for 307 Temporary Redirect. It answers the question using a different page from the gold annotation."
+    },
+    {
+      "id": "Q15",
+      "draft": "413 Content Too Large",
+      "evidence": "413 Content Too Large 15.5.15.",
+      "page": 9,
+      "grade": "N",
+      "reason": "The contents entry names 413 but gives no retry timing or Retry-After header."
+    }
+  ],
+  "observation": "Q14 earned full credit from page 136, which explicitly preserves the method on a 307 redirect. Strict matching expected page 135. On Q11 the reader returned Accept-Language, which expresses a preference. The requested cache-matching header is Vary."
+}

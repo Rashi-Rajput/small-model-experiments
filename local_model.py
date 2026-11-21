@@ -10,6 +10,14 @@ from urllib.request import Request, urlopen
 
 
 CACHE = Path(__file__).resolve().parent / ".cache"
+MODEL = "Qwen2.5-1.5B-Instruct"
+
+
+def post(url, payload):
+    request = Request(url, data=json.dumps(payload).encode(),
+                      headers={"Content-Type": "application/json"})
+    with urlopen(request, timeout=120) as response:
+        return json.load(response)
 
 
 def chat(url, messages, limit, grammar=None):
@@ -17,10 +25,7 @@ def chat(url, messages, limit, grammar=None):
                    cache_prompt=False, timings_per_token=False)
     if grammar is not None:
         payload["grammar"] = grammar
-    request = Request(url + "/v1/chat/completions", data=json.dumps(payload).encode(),
-                      headers={"Content-Type": "application/json"})
-    with urlopen(request, timeout=120) as response:
-        return json.load(response)
+    return post(url + "/v1/chat/completions", payload)
 
 
 @contextmanager
@@ -64,4 +69,4 @@ def server_binary():
 
 
 def model_file(quant):
-    return CACHE / f"SmolLM2-135M-Instruct-{quant}.gguf"
+    return CACHE / f"{MODEL.lower()}-{quant.lower()}.gguf"
