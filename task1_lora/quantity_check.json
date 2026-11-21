@@ -1,0 +1,186 @@
+{
+  "pairs": 6,
+  "both_correct": 1,
+  "predictions": [
+    {
+      "request": "The delivery note said 14 of FP-39. We received 3.",
+      "target": {
+        "action": "receive",
+        "sku": "FP-39",
+        "quantity": 3
+      },
+      "other": 14,
+      "tuned": {
+        "text": "{\"action\":\"receive\",\"sku\":\"FP-39\",\"quantity\":3}",
+        "ended": true,
+        "schema": true,
+        "correct": true
+      }
+    },
+    {
+      "request": "The delivery note said 3 of FP-39. We received 14.",
+      "target": {
+        "action": "receive",
+        "sku": "FP-39",
+        "quantity": 14
+      },
+      "other": 3,
+      "tuned": {
+        "text": "{\"action\":\"receive\",\"sku\":\"FP-39\",\"quantity\":14}",
+        "ended": true,
+        "schema": true,
+        "correct": true
+      }
+    },
+    {
+      "request": "Log the 9 units of DV-61 that arrived. The forecast was 23.",
+      "target": {
+        "action": "receive",
+        "sku": "DV-61",
+        "quantity": 9
+      },
+      "other": 23,
+      "tuned": {
+        "text": "{\"action\":\"receive\",\"sku\":\" DV-61\",\"quantity\":23}",
+        "ended": true,
+        "schema": true,
+        "correct": false
+      }
+    },
+    {
+      "request": "Log the 23 units of DV-61 that arrived. The forecast was 9.",
+      "target": {
+        "action": "receive",
+        "sku": "DV-61",
+        "quantity": 23
+      },
+      "other": 9,
+      "tuned": {
+        "text": "{\"action\":\"receive\",\"sku\":\" DV-61\",\"quantity\":9}",
+        "ended": true,
+        "schema": true,
+        "correct": false
+      }
+    },
+    {
+      "request": "The plan was to ship 19 of LN-50. The customer took 4.",
+      "target": {
+        "action": "issue",
+        "sku": "LN-50",
+        "quantity": 4
+      },
+      "other": 19,
+      "tuned": {
+        "text": "{\"action\":\"receive\",\"sku\":\"LN-50\",\"quantity\":19}",
+        "ended": true,
+        "schema": true,
+        "correct": false
+      }
+    },
+    {
+      "request": "The plan was to ship 4 of LN-50. The customer took 19.",
+      "target": {
+        "action": "issue",
+        "sku": "LN-50",
+        "quantity": 19
+      },
+      "other": 4,
+      "tuned": {
+        "text": "{\"action\":\"receive\",\"sku\":\"LN-50\",\"quantity\":19}",
+        "ended": true,
+        "schema": true,
+        "correct": false
+      }
+    },
+    {
+      "request": "We issued 7 units of MG-88. The request was for 12.",
+      "target": {
+        "action": "issue",
+        "sku": "MG-88",
+        "quantity": 7
+      },
+      "other": 12,
+      "tuned": {
+        "text": "{\"action\":\"issue\",\"sku\":\" MG-88\",\"quantity\":12}",
+        "ended": true,
+        "schema": true,
+        "correct": false
+      }
+    },
+    {
+      "request": "We issued 12 units of MG-88. The request was for 7.",
+      "target": {
+        "action": "issue",
+        "sku": "MG-88",
+        "quantity": 12
+      },
+      "other": 7,
+      "tuned": {
+        "text": "{\"action\":\"issue\",\"sku\":\" MG-88\",\"quantity\":12}",
+        "ended": true,
+        "schema": true,
+        "correct": false
+      }
+    },
+    {
+      "request": "Our ledger lists 17 of AZ-41. The physical count is 2.",
+      "target": {
+        "action": "count",
+        "sku": "AZ-41",
+        "quantity": 2
+      },
+      "other": 17,
+      "tuned": {
+        "text": "{\"action\":\"count\",\"sku\":\" AZ-41\",\"quantity\":2}",
+        "ended": true,
+        "schema": true,
+        "correct": false
+      }
+    },
+    {
+      "request": "Our ledger lists 2 of AZ-41. The physical count is 17.",
+      "target": {
+        "action": "count",
+        "sku": "AZ-41",
+        "quantity": 17
+      },
+      "other": 2,
+      "tuned": {
+        "text": "{\"action\":\"count\",\"sku\":\" AZ-41\",\"quantity\":17}",
+        "ended": true,
+        "schema": true,
+        "correct": false
+      }
+    },
+    {
+      "request": "There are 5 units of JC-76 in the bin. The system still shows 21.",
+      "target": {
+        "action": "count",
+        "sku": "JC-76",
+        "quantity": 5
+      },
+      "other": 21,
+      "tuned": {
+        "text": "{\"action\":\"count\",\"sku\":\"JC-76\",\"quantity\":21}",
+        "ended": true,
+        "schema": true,
+        "correct": false
+      }
+    },
+    {
+      "request": "There are 21 units of JC-76 in the bin. The system still shows 5.",
+      "target": {
+        "action": "count",
+        "sku": "JC-76",
+        "quantity": 21
+      },
+      "other": 5,
+      "tuned": {
+        "text": "{\"action\":\"count\",\"sku\":\"JC-76\",\"quantity\":21}",
+        "ended": true,
+        "schema": true,
+        "correct": true
+      }
+    }
+  ]
+}

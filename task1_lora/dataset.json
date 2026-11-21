@@ -1,0 +1,2382 @@
+{
+  "train": [
+    {
+      "template": "train-count-1",
+      "request": "The shelf count for BX-25 is 9.",
+      "target": {
+        "action": "count",
+        "sku": "BX-25",
+        "quantity": 9
+      }
+    },
+    {
+      "template": "train-count-4",
+      "request": "Set the on-hand total for GL-08 to 21.",
+      "target": {
+        "action": "count",
+        "sku": "GL-08",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "train-issue-3",
+      "request": "We shipped ten units of CL-24.",
+      "target": {
+        "action": "issue",
+        "sku": "CL-24",
+        "quantity": 10
+      }
+    },
+    {
+      "template": "train-count-5",
+      "request": "An audit found four of CL-24 on hand.",
+      "target": {
+        "action": "count",
+        "sku": "CL-24",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "train-count-7",
+      "request": "The ledger says 32 for BX-25, but the shelf holds 23.",
+      "target": {
+        "action": "count",
+        "sku": "BX-25",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "train-count-2",
+      "request": "We counted 5 units of SP-19.",
+      "target": {
+        "action": "count",
+        "sku": "SP-19",
+        "quantity": 5
+      }
+    },
+    {
+      "template": "train-count-3",
+      "request": "Stocktake: WT-20, quantity eleven.",
+      "target": {
+        "action": "count",
+        "sku": "WT-20",
+        "quantity": 11
+      }
+    },
+    {
+      "template": "train-receive-2",
+      "request": "Put 22 of RB-16 into stock.",
+      "target": {
+        "action": "receive",
+        "sku": "RB-16",
+        "quantity": 22
+      }
+    },
+    {
+      "template": "train-receive-5",
+      "request": "Add the 19 new HD-32 units to the shelf.",
+      "target": {
+        "action": "receive",
+        "sku": "HD-32",
+        "quantity": 19
+      }
+    },
+    {
+      "template": "train-receive-3",
+      "request": "We took delivery of 17 units of HD-32.",
+      "target": {
+        "action": "receive",
+        "sku": "HD-32",
+        "quantity": 17
+      }
+    },
+    {
+      "template": "train-count-3",
+      "request": "Stocktake: SP-19, quantity 3.",
+      "target": {
+        "action": "count",
+        "sku": "SP-19",
+        "quantity": 3
+      }
+    },
+    {
+      "template": "train-issue-5",
+      "request": "Take 8 of PN-07 out of stock.",
+      "target": {
+        "action": "issue",
+        "sku": "PN-07",
+        "quantity": 8
+      }
+    },
+    {
+      "template": "train-issue-7",
+      "request": "The customer ordered 9 of PN-07. We dispatched 2.",
+      "target": {
+        "action": "issue",
+        "sku": "PN-07",
+        "quantity": 2
+      }
+    },
+    {
+      "template": "train-receive-2",
+      "request": "Put four of SP-19 into stock.",
+      "target": {
+        "action": "receive",
+        "sku": "SP-19",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "train-receive-8",
+      "request": "We expected 31 units of PN-07, but only 22 arrived.",
+      "target": {
+        "action": "receive",
+        "sku": "PN-07",
+        "quantity": 22
+      }
+    },
+    {
+      "template": "train-receive-6",
+      "request": "CL-24 arrived today. Book 20.",
+      "target": {
+        "action": "receive",
+        "sku": "CL-24",
+        "quantity": 20
+      }
+    },
+    {
+      "template": "train-count-7",
+      "request": "The ledger says 6 for BK-14, but the shelf holds five.",
+      "target": {
+        "action": "count",
+        "sku": "BK-14",
+        "quantity": 5
+      }
+    },
+    {
+      "template": "train-issue-4",
+      "request": "Outgoing order: BX-25, quantity 3.",
+      "target": {
+        "action": "issue",
+        "sku": "BX-25",
+        "quantity": 3
+      }
+    },
+    {
+      "template": "train-receive-7",
+      "request": "The supplier delivered four of PL-03, although we ordered 10.",
+      "target": {
+        "action": "receive",
+        "sku": "PL-03",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "train-issue-3",
+      "request": "We shipped 8 units of CL-24.",
+      "target": {
+        "action": "issue",
+        "sku": "CL-24",
+        "quantity": 8
+      }
+    },
+    {
+      "template": "train-count-8",
+      "request": "Our actual count of PN-07 is five; the old figure was 8.",
+      "target": {
+        "action": "count",
+        "sku": "PN-07",
+        "quantity": 5
+      }
+    },
+    {
+      "template": "train-issue-2",
+      "request": "Send 22 of RB-16 to the workshop.",
+      "target": {
+        "action": "issue",
+        "sku": "RB-16",
+        "quantity": 22
+      }
+    },
+    {
+      "template": "train-issue-2",
+      "request": "Send fifteen of MT-15 to the workshop.",
+      "target": {
+        "action": "issue",
+        "sku": "MT-15",
+        "quantity": 15
+      }
+    },
+    {
+      "template": "train-receive-8",
+      "request": "We expected 28 units of MT-15, but only 23 arrived.",
+      "target": {
+        "action": "receive",
+        "sku": "MT-15",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "train-issue-7",
+      "request": "The customer ordered 22 of PL-03. We dispatched twelve.",
+      "target": {
+        "action": "issue",
+        "sku": "PL-03",
+        "quantity": 12
+      }
+    },
+    {
+      "template": "train-receive-1",
+      "request": "Receive eight units of PL-03.",
+      "target": {
+        "action": "receive",
+        "sku": "PL-03",
+        "quantity": 8
+      }
+    },
+    {
+      "template": "train-count-4",
+      "request": "Set the on-hand total for PN-07 to 15.",
+      "target": {
+        "action": "count",
+        "sku": "PN-07",
+        "quantity": 15
+      }
+    },
+    {
+      "template": "train-count-3",
+      "request": "Stocktake: RB-16, quantity 14.",
+      "target": {
+        "action": "count",
+        "sku": "RB-16",
+        "quantity": 14
+      }
+    },
+    {
+      "template": "train-count-6",
+      "request": "NT-12 has a verified balance of 16.",
+      "target": {
+        "action": "count",
+        "sku": "NT-12",
+        "quantity": 16
+      }
+    },
+    {
+      "template": "train-count-6",
+      "request": "NT-12 has a verified balance of 21.",
+      "target": {
+        "action": "count",
+        "sku": "NT-12",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "train-receive-3",
+      "request": "We took delivery of 9 units of SP-19.",
+      "target": {
+        "action": "receive",
+        "sku": "SP-19",
+        "quantity": 9
+      }
+    },
+    {
+      "template": "train-issue-5",
+      "request": "Take 19 of BX-25 out of stock.",
+      "target": {
+        "action": "issue",
+        "sku": "BX-25",
+        "quantity": 19
+      }
+    },
+    {
+      "template": "train-issue-4",
+      "request": "Outgoing order: BK-14, quantity ten.",
+      "target": {
+        "action": "issue",
+        "sku": "BK-14",
+        "quantity": 10
+      }
+    },
+    {
+      "template": "train-count-1",
+      "request": "The shelf count for SP-19 is four.",
+      "target": {
+        "action": "count",
+        "sku": "SP-19",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "train-receive-6",
+      "request": "CL-24 arrived today. Book 19.",
+      "target": {
+        "action": "receive",
+        "sku": "CL-24",
+        "quantity": 19
+      }
+    },
+    {
+      "template": "train-count-1",
+      "request": "The shelf count for CL-24 is one.",
+      "target": {
+        "action": "count",
+        "sku": "CL-24",
+        "quantity": 1
+      }
+    },
+    {
+      "template": "train-receive-1",
+      "request": "Receive 5 units of PN-07.",
+      "target": {
+        "action": "receive",
+        "sku": "PN-07",
+        "quantity": 5
+      }
+    },
+    {
+      "template": "train-issue-8",
+      "request": "Record the one units of NT-12 that left, not the 6 requested.",
+      "target": {
+        "action": "issue",
+        "sku": "NT-12",
+        "quantity": 1
+      }
+    },
+    {
+      "template": "train-count-5",
+      "request": "An audit found 11 of RB-16 on hand.",
+      "target": {
+        "action": "count",
+        "sku": "RB-16",
+        "quantity": 11
+      }
+    },
+    {
+      "template": "train-receive-2",
+      "request": "Put 2 of PN-07 into stock.",
+      "target": {
+        "action": "receive",
+        "sku": "PN-07",
+        "quantity": 2
+      }
+    },
+    {
+      "template": "train-count-7",
+      "request": "The ledger says 15 for PN-07, but the shelf holds seven.",
+      "target": {
+        "action": "count",
+        "sku": "PN-07",
+        "quantity": 7
+      }
+    },
+    {
+      "template": "train-receive-1",
+      "request": "Receive four units of CL-24.",
+      "target": {
+        "action": "receive",
+        "sku": "CL-24",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "train-count-3",
+      "request": "Stocktake: PN-07, quantity 20.",
+      "target": {
+        "action": "count",
+        "sku": "PN-07",
+        "quantity": 20
+      }
+    },
+    {
+      "template": "train-receive-8",
+      "request": "We expected 24 units of MT-15, but only 21 arrived.",
+      "target": {
+        "action": "receive",
+        "sku": "MT-15",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "train-receive-1",
+      "request": "Receive 10 units of NT-12.",
+      "target": {
+        "action": "receive",
+        "sku": "NT-12",
+        "quantity": 10
+      }
+    },
+    {
+      "template": "train-issue-6",
+      "request": "The technician picked up twenty-four of NT-12.",
+      "target": {
+        "action": "issue",
+        "sku": "NT-12",
+        "quantity": 24
+      }
+    },
+    {
+      "template": "train-issue-6",
+      "request": "The technician picked up seventeen of PN-07.",
+      "target": {
+        "action": "issue",
+        "sku": "PN-07",
+        "quantity": 17
+      }
+    },
+    {
+      "template": "train-receive-8",
+      "request": "We expected 22 units of BX-25, but only 17 arrived.",
+      "target": {
+        "action": "receive",
+        "sku": "BX-25",
+        "quantity": 17
+      }
+    },
+    {
+      "template": "train-receive-6",
+      "request": "GL-08 arrived today. Book 9.",
+      "target": {
+        "action": "receive",
+        "sku": "GL-08",
+        "quantity": 9
+      }
+    },
+    {
+      "template": "train-count-4",
+      "request": "Set the on-hand total for PL-03 to three.",
+      "target": {
+        "action": "count",
+        "sku": "PL-03",
+        "quantity": 3
+      }
+    },
+    {
+      "template": "train-receive-2",
+      "request": "Put fourteen of GL-08 into stock.",
+      "target": {
+        "action": "receive",
+        "sku": "GL-08",
+        "quantity": 14
+      }
+    },
+    {
+      "template": "train-issue-7",
+      "request": "The customer ordered 7 of RB-16. We dispatched five.",
+      "target": {
+        "action": "issue",
+        "sku": "RB-16",
+        "quantity": 5
+      }
+    },
+    {
+      "template": "train-count-2",
+      "request": "We counted 6 units of NT-12.",
+      "target": {
+        "action": "count",
+        "sku": "NT-12",
+        "quantity": 6
+      }
+    },
+    {
+      "template": "train-issue-4",
+      "request": "Outgoing order: MT-15, quantity 22.",
+      "target": {
+        "action": "issue",
+        "sku": "MT-15",
+        "quantity": 22
+      }
+    },
+    {
+      "template": "train-count-4",
+      "request": "Set the on-hand total for PL-03 to 14.",
+      "target": {
+        "action": "count",
+        "sku": "PL-03",
+        "quantity": 14
+      }
+    },
+    {
+      "template": "train-receive-6",
+      "request": "HD-32 arrived today. Book 21.",
+      "target": {
+        "action": "receive",
+        "sku": "HD-32",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "train-count-5",
+      "request": "An audit found 3 of BK-14 on hand.",
+      "target": {
+        "action": "count",
+        "sku": "BK-14",
+        "quantity": 3
+      }
+    },
+    {
+      "template": "train-count-7",
+      "request": "The ledger says 8 for HD-32, but the shelf holds 3.",
+      "target": {
+        "action": "count",
+        "sku": "HD-32",
+        "quantity": 3
+      }
+    },
+    {
+      "template": "train-issue-8",
+      "request": "Record the 18 units of WT-20 that left, not the 25 requested.",
+      "target": {
+        "action": "issue",
+        "sku": "WT-20",
+        "quantity": 18
+      }
+    },
+    {
+      "template": "train-receive-2",
+      "request": "Put 2 of GL-08 into stock.",
+      "target": {
+        "action": "receive",
+        "sku": "GL-08",
+        "quantity": 2
+      }
+    },
+    {
+      "template": "train-count-1",
+      "request": "The shelf count for BK-14 is 9.",
+      "target": {
+        "action": "count",
+        "sku": "BK-14",
+        "quantity": 9
+      }
+    },
+    {
+      "template": "train-count-6",
+      "request": "BX-25 has a verified balance of seventeen.",
+      "target": {
+        "action": "count",
+        "sku": "BX-25",
+        "quantity": 17
+      }
+    },
+    {
+      "template": "train-issue-4",
+      "request": "Outgoing order: PL-03, quantity 23.",
+      "target": {
+        "action": "issue",
+        "sku": "PL-03",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "train-issue-4",
+      "request": "Outgoing order: GL-08, quantity thirteen.",
+      "target": {
+        "action": "issue",
+        "sku": "GL-08",
+        "quantity": 13
+      }
+    },
+    {
+      "template": "train-count-2",
+      "request": "We counted 6 units of RB-16.",
+      "target": {
+        "action": "count",
+        "sku": "RB-16",
+        "quantity": 6
+      }
+    },
+    {
+      "template": "train-count-5",
+      "request": "An audit found 19 of CL-24 on hand.",
+      "target": {
+        "action": "count",
+        "sku": "CL-24",
+        "quantity": 19
+      }
+    },
+    {
+      "template": "train-count-2",
+      "request": "We counted 4 units of HD-32.",
+      "target": {
+        "action": "count",
+        "sku": "HD-32",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "train-receive-7",
+      "request": "The supplier delivered twenty-four of BK-14, although we ordered 36.",
+      "target": {
+        "action": "receive",
+        "sku": "BK-14",
+        "quantity": 24
+      }
+    },
+    {
+      "template": "train-receive-8",
+      "request": "We expected 30 units of BX-25, but only twenty arrived.",
+      "target": {
+        "action": "receive",
+        "sku": "BX-25",
+        "quantity": 20
+      }
+    },
+    {
+      "template": "train-issue-5",
+      "request": "Take 3 of GL-08 out of stock.",
+      "target": {
+        "action": "issue",
+        "sku": "GL-08",
+        "quantity": 3
+      }
+    },
+    {
+      "template": "train-receive-7",
+      "request": "The supplier delivered 15 of GL-08, although we ordered 25.",
+      "target": {
+        "action": "receive",
+        "sku": "GL-08",
+        "quantity": 15
+      }
+    },
+    {
+      "template": "train-count-8",
+      "request": "Our actual count of PL-03 is 19; the old figure was 30.",
+      "target": {
+        "action": "count",
+        "sku": "PL-03",
+        "quantity": 19
+      }
+    },
+    {
+      "template": "train-issue-8",
+      "request": "Record the 20 units of GL-08 that left, not the 30 requested.",
+      "target": {
+        "action": "issue",
+        "sku": "GL-08",
+        "quantity": 20
+      }
+    },
+    {
+      "template": "train-issue-4",
+      "request": "Outgoing order: SP-19, quantity 21.",
+      "target": {
+        "action": "issue",
+        "sku": "SP-19",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "train-issue-6",
+      "request": "The technician picked up 1 of BX-25.",
+      "target": {
+        "action": "issue",
+        "sku": "BX-25",
+        "quantity": 1
+      }
+    },
+    {
+      "template": "train-receive-6",
+      "request": "NT-12 arrived today. Book 9.",
+      "target": {
+        "action": "receive",
+        "sku": "NT-12",
+        "quantity": 9
+      }
+    },
+    {
+      "template": "train-issue-7",
+      "request": "The customer ordered 22 of WT-20. We dispatched 14.",
+      "target": {
+        "action": "issue",
+        "sku": "WT-20",
+        "quantity": 14
+      }
+    },
+    {
+      "template": "train-receive-4",
+      "request": "Incoming shipment: CL-24, quantity 7.",
+      "target": {
+        "action": "receive",
+        "sku": "CL-24",
+        "quantity": 7
+      }
+    },
+    {
+      "template": "train-count-1",
+      "request": "The shelf count for WT-20 is 4.",
+      "target": {
+        "action": "count",
+        "sku": "WT-20",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "train-receive-2",
+      "request": "Put sixteen of BK-14 into stock.",
+      "target": {
+        "action": "receive",
+        "sku": "BK-14",
+        "quantity": 16
+      }
+    },
+    {
+      "template": "train-receive-7",
+      "request": "The supplier delivered 14 of MT-15, although we ordered 17.",
+      "target": {
+        "action": "receive",
+        "sku": "MT-15",
+        "quantity": 14
+      }
+    },
+    {
+      "template": "train-issue-8",
+      "request": "Record the 9 units of BX-25 that left, not the 20 requested.",
+      "target": {
+        "action": "issue",
+        "sku": "BX-25",
+        "quantity": 9
+      }
+    },
+    {
+      "template": "train-count-7",
+      "request": "The ledger says 20 for GL-08, but the shelf holds 12.",
+      "target": {
+        "action": "count",
+        "sku": "GL-08",
+        "quantity": 12
+      }
+    },
+    {
+      "template": "train-receive-6",
+      "request": "BX-25 arrived today. Book nineteen.",
+      "target": {
+        "action": "receive",
+        "sku": "BX-25",
+        "quantity": 19
+      }
+    },
+    {
+      "template": "train-count-8",
+      "request": "Our actual count of PL-03 is fifteen; the old figure was 26.",
+      "target": {
+        "action": "count",
+        "sku": "PL-03",
+        "quantity": 15
+      }
+    },
+    {
+      "template": "train-receive-5",
+      "request": "Add the twenty-one new PN-07 units to the shelf.",
+      "target": {
+        "action": "receive",
+        "sku": "PN-07",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "train-receive-4",
+      "request": "Incoming shipment: NT-12, quantity 12.",
+      "target": {
+        "action": "receive",
+        "sku": "NT-12",
+        "quantity": 12
+      }
+    },
+    {
+      "template": "train-receive-1",
+      "request": "Receive 11 units of BK-14.",
+      "target": {
+        "action": "receive",
+        "sku": "BK-14",
+        "quantity": 11
+      }
+    },
+    {
+      "template": "train-issue-3",
+      "request": "We shipped 7 units of GL-08.",
+      "target": {
+        "action": "issue",
+        "sku": "GL-08",
+        "quantity": 7
+      }
+    },
+    {
+      "template": "train-receive-1",
+      "request": "Receive one units of HD-32.",
+      "target": {
+        "action": "receive",
+        "sku": "HD-32",
+        "quantity": 1
+      }
+    },
+    {
+      "template": "train-issue-6",
+      "request": "The technician picked up twenty-three of GL-08.",
+      "target": {
+        "action": "issue",
+        "sku": "GL-08",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "train-receive-7",
+      "request": "The supplier delivered 6 of HD-32, although we ordered 10.",
+      "target": {
+        "action": "receive",
+        "sku": "HD-32",
+        "quantity": 6
+      }
+    },
+    {
+      "template": "train-count-8",
+      "request": "Our actual count of BK-14 is twenty; the old figure was 27.",
+      "target": {
+        "action": "count",
+        "sku": "BK-14",
+        "quantity": 20
+      }
+    },
+    {
+      "template": "train-issue-8",
+      "request": "Record the ten units of GL-08 that left, not the 21 requested.",
+      "target": {
+        "action": "issue",
+        "sku": "GL-08",
+        "quantity": 10
+      }
+    },
+    {
+      "template": "train-count-2",
+      "request": "We counted five units of WT-20.",
+      "target": {
+        "action": "count",
+        "sku": "WT-20",
+        "quantity": 5
+      }
+    },
+    {
+      "template": "train-count-1",
+      "request": "The shelf count for WT-20 is 12.",
+      "target": {
+        "action": "count",
+        "sku": "WT-20",
+        "quantity": 12
+      }
+    },
+    {
+      "template": "train-issue-1",
+      "request": "Issue two units of HD-32.",
+      "target": {
+        "action": "issue",
+        "sku": "HD-32",
+        "quantity": 2
+      }
+    },
+    {
+      "template": "train-issue-2",
+      "request": "Send 11 of GL-08 to the workshop.",
+      "target": {
+        "action": "issue",
+        "sku": "GL-08",
+        "quantity": 11
+      }
+    },
+    {
+      "template": "train-count-1",
+      "request": "The shelf count for SP-19 is twenty-four.",
+      "target": {
+        "action": "count",
+        "sku": "SP-19",
+        "quantity": 24
+      }
+    },
+    {
+      "template": "train-count-2",
+      "request": "We counted 11 units of NT-12.",
+      "target": {
+        "action": "count",
+        "sku": "NT-12",
+        "quantity": 11
+      }
+    },
+    {
+      "template": "train-receive-2",
+      "request": "Put 1 of PL-03 into stock.",
+      "target": {
+        "action": "receive",
+        "sku": "PL-03",
+        "quantity": 1
+      }
+    },
+    {
+      "template": "train-issue-2",
+      "request": "Send 2 of SP-19 to the workshop.",
+      "target": {
+        "action": "issue",
+        "sku": "SP-19",
+        "quantity": 2
+      }
+    },
+    {
+      "template": "train-issue-1",
+      "request": "Issue 7 units of SP-19.",
+      "target": {
+        "action": "issue",
+        "sku": "SP-19",
+        "quantity": 7
+      }
+    },
+    {
+      "template": "train-receive-3",
+      "request": "We took delivery of twelve units of PN-07.",
+      "target": {
+        "action": "receive",
+        "sku": "PN-07",
+        "quantity": 12
+      }
+    },
+    {
+      "template": "train-count-6",
+      "request": "BX-25 has a verified balance of 4.",
+      "target": {
+        "action": "count",
+        "sku": "BX-25",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "train-issue-5",
+      "request": "Take 22 of BK-14 out of stock.",
+      "target": {
+        "action": "issue",
+        "sku": "BK-14",
+        "quantity": 22
+      }
+    },
+    {
+      "template": "train-receive-8",
+      "request": "We expected 11 units of NT-12, but only four arrived.",
+      "target": {
+        "action": "receive",
+        "sku": "NT-12",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "train-receive-3",
+      "request": "We took delivery of five units of MT-15.",
+      "target": {
+        "action": "receive",
+        "sku": "MT-15",
+        "quantity": 5
+      }
+    },
+    {
+      "template": "train-issue-3",
+      "request": "We shipped 4 units of GL-08.",
+      "target": {
+        "action": "issue",
+        "sku": "GL-08",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "train-issue-6",
+      "request": "The technician picked up 8 of PL-03.",
+      "target": {
+        "action": "issue",
+        "sku": "PL-03",
+        "quantity": 8
+      }
+    },
+    {
+      "template": "train-issue-7",
+      "request": "The customer ordered 10 of WT-20. We dispatched 4.",
+      "target": {
+        "action": "issue",
+        "sku": "WT-20",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "train-count-1",
+      "request": "The shelf count for SP-19 is 14.",
+      "target": {
+        "action": "count",
+        "sku": "SP-19",
+        "quantity": 14
+      }
+    },
+    {
+      "template": "train-count-4",
+      "request": "Set the on-hand total for WT-20 to 7.",
+      "target": {
+        "action": "count",
+        "sku": "WT-20",
+        "quantity": 7
+      }
+    },
+    {
+      "template": "train-count-7",
+      "request": "The ledger says 36 for NT-12, but the shelf holds twenty-four.",
+      "target": {
+        "action": "count",
+        "sku": "NT-12",
+        "quantity": 24
+      }
+    },
+    {
+      "template": "train-issue-4",
+      "request": "Outgoing order: MT-15, quantity 23.",
+      "target": {
+        "action": "issue",
+        "sku": "MT-15",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "train-receive-2",
+      "request": "Put 3 of MT-15 into stock.",
+      "target": {
+        "action": "receive",
+        "sku": "MT-15",
+        "quantity": 3
+      }
+    },
+    {
+      "template": "train-count-7",
+      "request": "The ledger says 24 for RB-16, but the shelf holds 12.",
+      "target": {
+        "action": "count",
+        "sku": "RB-16",
+        "quantity": 12
+      }
+    },
+    {
+      "template": "train-issue-1",
+      "request": "Issue 17 units of GL-08.",
+      "target": {
+        "action": "issue",
+        "sku": "GL-08",
+        "quantity": 17
+      }
+    },
+    {
+      "template": "train-issue-7",
+      "request": "The customer ordered 20 of BX-25. We dispatched 10.",
+      "target": {
+        "action": "issue",
+        "sku": "BX-25",
+        "quantity": 10
+      }
+    },
+    {
+      "template": "train-issue-3",
+      "request": "We shipped four units of HD-32.",
+      "target": {
+        "action": "issue",
+        "sku": "HD-32",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "train-issue-7",
+      "request": "The customer ordered 8 of HD-32. We dispatched 7.",
+      "target": {
+        "action": "issue",
+        "sku": "HD-32",
+        "quantity": 7
+      }
+    },
+    {
+      "template": "train-count-3",
+      "request": "Stocktake: WT-20, quantity twenty-four.",
+      "target": {
+        "action": "count",
+        "sku": "WT-20",
+        "quantity": 24
+      }
+    },
+    {
+      "template": "train-receive-3",
+      "request": "We took delivery of 11 units of GL-08.",
+      "target": {
+        "action": "receive",
+        "sku": "GL-08",
+        "quantity": 11
+      }
+    },
+    {
+      "template": "train-issue-3",
+      "request": "We shipped nineteen units of RB-16.",
+      "target": {
+        "action": "issue",
+        "sku": "RB-16",
+        "quantity": 19
+      }
+    },
+    {
+      "template": "train-count-8",
+      "request": "Our actual count of WT-20 is 21; the old figure was 30.",
+      "target": {
+        "action": "count",
+        "sku": "WT-20",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "train-count-6",
+      "request": "MT-15 has a verified balance of three.",
+      "target": {
+        "action": "count",
+        "sku": "MT-15",
+        "quantity": 3
+      }
+    },
+    {
+      "template": "train-issue-2",
+      "request": "Send 24 of GL-08 to the workshop.",
+      "target": {
+        "action": "issue",
+        "sku": "GL-08",
+        "quantity": 24
+      }
+    },
+    {
+      "template": "train-issue-5",
+      "request": "Take nineteen of BK-14 out of stock.",
+      "target": {
+        "action": "issue",
+        "sku": "BK-14",
+        "quantity": 19
+      }
+    },
+    {
+      "template": "train-receive-3",
+      "request": "We took delivery of thirteen units of PN-07.",
+      "target": {
+        "action": "receive",
+        "sku": "PN-07",
+        "quantity": 13
+      }
+    },
+    {
+      "template": "train-issue-8",
+      "request": "Record the nineteen units of PL-03 that left, not the 21 requested.",
+      "target": {
+        "action": "issue",
+        "sku": "PL-03",
+        "quantity": 19
+      }
+    },
+    {
+      "template": "train-count-7",
+      "request": "The ledger says 29 for BK-14, but the shelf holds 19.",
+      "target": {
+        "action": "count",
+        "sku": "BK-14",
+        "quantity": 19
+      }
+    },
+    {
+      "template": "train-count-6",
+      "request": "GL-08 has a verified balance of 11.",
+      "target": {
+        "action": "count",
+        "sku": "GL-08",
+        "quantity": 11
+      }
+    },
+    {
+      "template": "train-count-6",
+      "request": "GL-08 has a verified balance of 14.",
+      "target": {
+        "action": "count",
+        "sku": "GL-08",
+        "quantity": 14
+      }
+    },
+    {
+      "template": "train-issue-2",
+      "request": "Send two of WT-20 to the workshop.",
+      "target": {
+        "action": "issue",
+        "sku": "WT-20",
+        "quantity": 2
+      }
+    },
+    {
+      "template": "train-count-4",
+      "request": "Set the on-hand total for SP-19 to 21.",
+      "target": {
+        "action": "count",
+        "sku": "SP-19",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "train-receive-4",
+      "request": "Incoming shipment: PN-07, quantity 6.",
+      "target": {
+        "action": "receive",
+        "sku": "PN-07",
+        "quantity": 6
+      }
+    },
+    {
+      "template": "train-receive-3",
+      "request": "We took delivery of 23 units of PN-07.",
+      "target": {
+        "action": "receive",
+        "sku": "PN-07",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "train-receive-5",
+      "request": "Add the 11 new SP-19 units to the shelf.",
+      "target": {
+        "action": "receive",
+        "sku": "SP-19",
+        "quantity": 11
+      }
+    },
+    {
+      "template": "train-count-5",
+      "request": "An audit found 8 of BK-14 on hand.",
+      "target": {
+        "action": "count",
+        "sku": "BK-14",
+        "quantity": 8
+      }
+    },
+    {
+      "template": "train-receive-5",
+      "request": "Add the 10 new SP-19 units to the shelf.",
+      "target": {
+        "action": "receive",
+        "sku": "SP-19",
+        "quantity": 10
+      }
+    },
+    {
+      "template": "train-receive-4",
+      "request": "Incoming shipment: HD-32, quantity 10.",
+      "target": {
+        "action": "receive",
+        "sku": "HD-32",
+        "quantity": 10
+      }
+    },
+    {
+      "template": "train-count-2",
+      "request": "We counted twenty units of HD-32.",
+      "target": {
+        "action": "count",
+        "sku": "HD-32",
+        "quantity": 20
+      }
+    },
+    {
+      "template": "train-receive-1",
+      "request": "Receive 7 units of MT-15.",
+      "target": {
+        "action": "receive",
+        "sku": "MT-15",
+        "quantity": 7
+      }
+    },
+    {
+      "template": "train-count-6",
+      "request": "HD-32 has a verified balance of twenty-one.",
+      "target": {
+        "action": "count",
+        "sku": "HD-32",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "train-issue-2",
+      "request": "Send six of PN-07 to the workshop.",
+      "target": {
+        "action": "issue",
+        "sku": "PN-07",
+        "quantity": 6
+      }
+    },
+    {
+      "template": "train-receive-4",
+      "request": "Incoming shipment: WT-20, quantity twenty-three.",
+      "target": {
+        "action": "receive",
+        "sku": "WT-20",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "train-count-5",
+      "request": "An audit found seventeen of MT-15 on hand.",
+      "target": {
+        "action": "count",
+        "sku": "MT-15",
+        "quantity": 17
+      }
+    },
+    {
+      "template": "train-issue-1",
+      "request": "Issue 23 units of PN-07.",
+      "target": {
+        "action": "issue",
+        "sku": "PN-07",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "train-receive-7",
+      "request": "The supplier delivered two of BX-25, although we ordered 9.",
+      "target": {
+        "action": "receive",
+        "sku": "BX-25",
+        "quantity": 2
+      }
+    },
+    {
+      "template": "train-count-3",
+      "request": "Stocktake: GL-08, quantity twenty-two.",
+      "target": {
+        "action": "count",
+        "sku": "GL-08",
+        "quantity": 22
+      }
+    },
+    {
+      "template": "train-receive-5",
+      "request": "Add the 1 new CL-24 units to the shelf.",
+      "target": {
+        "action": "receive",
+        "sku": "CL-24",
+        "quantity": 1
+      }
+    },
+    {
+      "template": "train-receive-6",
+      "request": "CL-24 arrived today. Book five.",
+      "target": {
+        "action": "receive",
+        "sku": "CL-24",
+        "quantity": 5
+      }
+    },
+    {
+      "template": "train-receive-8",
+      "request": "We expected 23 units of RB-16, but only sixteen arrived.",
+      "target": {
+        "action": "receive",
+        "sku": "RB-16",
+        "quantity": 16
+      }
+    },
+    {
+      "template": "train-issue-3",
+      "request": "We shipped 16 units of MT-15.",
+      "target": {
+        "action": "issue",
+        "sku": "MT-15",
+        "quantity": 16
+      }
+    },
+    {
+      "template": "train-issue-5",
+      "request": "Take 16 of PN-07 out of stock.",
+      "target": {
+        "action": "issue",
+        "sku": "PN-07",
+        "quantity": 16
+      }
+    },
+    {
+      "template": "train-issue-6",
+      "request": "The technician picked up 4 of SP-19.",
+      "target": {
+        "action": "issue",
+        "sku": "SP-19",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "train-receive-5",
+      "request": "Add the seventeen new SP-19 units to the shelf.",
+      "target": {
+        "action": "receive",
+        "sku": "SP-19",
+        "quantity": 17
+      }
+    },
+    {
+      "template": "train-issue-1",
+      "request": "Issue 16 units of BX-25.",
+      "target": {
+        "action": "issue",
+        "sku": "BX-25",
+        "quantity": 16
+      }
+    },
+    {
+      "template": "train-receive-8",
+      "request": "We expected 22 units of RB-16, but only 10 arrived.",
+      "target": {
+        "action": "receive",
+        "sku": "RB-16",
+        "quantity": 10
+      }
+    },
+    {
+      "template": "train-issue-1",
+      "request": "Issue 12 units of HD-32.",
+      "target": {
+        "action": "issue",
+        "sku": "HD-32",
+        "quantity": 12
+      }
+    },
+    {
+      "template": "train-issue-1",
+      "request": "Issue seven units of RB-16.",
+      "target": {
+        "action": "issue",
+        "sku": "RB-16",
+        "quantity": 7
+      }
+    },
+    {
+      "template": "train-count-5",
+      "request": "An audit found 6 of MT-15 on hand.",
+      "target": {
+        "action": "count",
+        "sku": "MT-15",
+        "quantity": 6
+      }
+    },
+    {
+      "template": "train-issue-8",
+      "request": "Record the 21 units of BX-25 that left, not the 28 requested.",
+      "target": {
+        "action": "issue",
+        "sku": "BX-25",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "train-issue-1",
+      "request": "Issue twenty-four units of BX-25.",
+      "target": {
+        "action": "issue",
+        "sku": "BX-25",
+        "quantity": 24
+      }
+    },
+    {
+      "template": "train-count-3",
+      "request": "Stocktake: CL-24, quantity 14.",
+      "target": {
+        "action": "count",
+        "sku": "CL-24",
+        "quantity": 14
+      }
+    },
+    {
+      "template": "train-receive-4",
+      "request": "Incoming shipment: SP-19, quantity 22.",
+      "target": {
+        "action": "receive",
+        "sku": "SP-19",
+        "quantity": 22
+      }
+    },
+    {
+      "template": "train-receive-7",
+      "request": "The supplier delivered 10 of GL-08, although we ordered 19.",
+      "target": {
+        "action": "receive",
+        "sku": "GL-08",
+        "quantity": 10
+      }
+    },
+    {
+      "template": "train-count-8",
+      "request": "Our actual count of GL-08 is 18; the old figure was 23.",
+      "target": {
+        "action": "count",
+        "sku": "GL-08",
+        "quantity": 18
+      }
+    },
+    {
+      "template": "train-issue-6",
+      "request": "The technician picked up 1 of HD-32.",
+      "target": {
+        "action": "issue",
+        "sku": "HD-32",
+        "quantity": 1
+      }
+    },
+    {
+      "template": "train-issue-4",
+      "request": "Outgoing order: GL-08, quantity twelve.",
+      "target": {
+        "action": "issue",
+        "sku": "GL-08",
+        "quantity": 12
+      }
+    },
+    {
+      "template": "train-receive-4",
+      "request": "Incoming shipment: BK-14, quantity thirteen.",
+      "target": {
+        "action": "receive",
+        "sku": "BK-14",
+        "quantity": 13
+      }
+    },
+    {
+      "template": "train-issue-5",
+      "request": "Take fourteen of CL-24 out of stock.",
+      "target": {
+        "action": "issue",
+        "sku": "CL-24",
+        "quantity": 14
+      }
+    },
+    {
+      "template": "train-receive-4",
+      "request": "Incoming shipment: CL-24, quantity eleven.",
+      "target": {
+        "action": "receive",
+        "sku": "CL-24",
+        "quantity": 11
+      }
+    },
+    {
+      "template": "train-issue-2",
+      "request": "Send 14 of HD-32 to the workshop.",
+      "target": {
+        "action": "issue",
+        "sku": "HD-32",
+        "quantity": 14
+      }
+    },
+    {
+      "template": "train-issue-5",
+      "request": "Take fourteen of PL-03 out of stock.",
+      "target": {
+        "action": "issue",
+        "sku": "PL-03",
+        "quantity": 14
+      }
+    },
+    {
+      "template": "train-receive-5",
+      "request": "Add the five new PL-03 units to the shelf.",
+      "target": {
+        "action": "receive",
+        "sku": "PL-03",
+        "quantity": 5
+      }
+    },
+    {
+      "template": "train-receive-1",
+      "request": "Receive 5 units of BK-14.",
+      "target": {
+        "action": "receive",
+        "sku": "BK-14",
+        "quantity": 5
+      }
+    },
+    {
+      "template": "train-receive-5",
+      "request": "Add the 3 new CL-24 units to the shelf.",
+      "target": {
+        "action": "receive",
+        "sku": "CL-24",
+        "quantity": 3
+      }
+    },
+    {
+      "template": "train-receive-7",
+      "request": "The supplier delivered 2 of MT-15, although we ordered 14.",
+      "target": {
+        "action": "receive",
+        "sku": "MT-15",
+        "quantity": 2
+      }
+    },
+    {
+      "template": "train-issue-6",
+      "request": "The technician picked up 19 of SP-19.",
+      "target": {
+        "action": "issue",
+        "sku": "SP-19",
+        "quantity": 19
+      }
+    },
+    {
+      "template": "train-issue-8",
+      "request": "Record the 18 units of PN-07 that left, not the 22 requested.",
+      "target": {
+        "action": "issue",
+        "sku": "PN-07",
+        "quantity": 18
+      }
+    },
+    {
+      "template": "train-receive-6",
+      "request": "WT-20 arrived today. Book eight.",
+      "target": {
+        "action": "receive",
+        "sku": "WT-20",
+        "quantity": 8
+      }
+    },
+    {
+      "template": "train-issue-7",
+      "request": "The customer ordered 26 of NT-12. We dispatched nineteen.",
+      "target": {
+        "action": "issue",
+        "sku": "NT-12",
+        "quantity": 19
+      }
+    },
+    {
+      "template": "train-count-8",
+      "request": "Our actual count of NT-12 is 20; the old figure was 23.",
+      "target": {
+        "action": "count",
+        "sku": "NT-12",
+        "quantity": 20
+      }
+    },
+    {
+      "template": "train-count-4",
+      "request": "Set the on-hand total for RB-16 to twenty-one.",
+      "target": {
+        "action": "count",
+        "sku": "RB-16",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "train-count-5",
+      "request": "An audit found one of PN-07 on hand.",
+      "target": {
+        "action": "count",
+        "sku": "PN-07",
+        "quantity": 1
+      }
+    },
+    {
+      "template": "train-count-2",
+      "request": "We counted twenty-two units of MT-15.",
+      "target": {
+        "action": "count",
+        "sku": "MT-15",
+        "quantity": 22
+      }
+    },
+    {
+      "template": "train-count-4",
+      "request": "Set the on-hand total for MT-15 to eleven.",
+      "target": {
+        "action": "count",
+        "sku": "MT-15",
+        "quantity": 11
+      }
+    },
+    {
+      "template": "train-issue-3",
+      "request": "We shipped 17 units of CL-24.",
+      "target": {
+        "action": "issue",
+        "sku": "CL-24",
+        "quantity": 17
+      }
+    },
+    {
+      "template": "train-count-8",
+      "request": "Our actual count of BK-14 is 13; the old figure was 22.",
+      "target": {
+        "action": "count",
+        "sku": "BK-14",
+        "quantity": 13
+      }
+    },
+    {
+      "template": "train-count-3",
+      "request": "Stocktake: MT-15, quantity 10.",
+      "target": {
+        "action": "count",
+        "sku": "MT-15",
+        "quantity": 10
+      }
+    },
+    {
+      "template": "train-receive-3",
+      "request": "We took delivery of 13 units of MT-15.",
+      "target": {
+        "action": "receive",
+        "sku": "MT-15",
+        "quantity": 13
+      }
+    }
+  ],
+  "test": [
+    {
+      "template": "test-receive-4",
+      "request": "Of the 14 units of MT-15 due in, the warehouse signed for 4.",
+      "target": {
+        "action": "receive",
+        "sku": "MT-15",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "test-issue-2",
+      "request": "A courier collected thirteen pieces of BK-14 from our shelf.",
+      "target": {
+        "action": "issue",
+        "sku": "BK-14",
+        "quantity": 13
+      }
+    },
+    {
+      "template": "test-issue-1",
+      "request": "Book 23 of BL-06 against the batch that left today.",
+      "target": {
+        "action": "issue",
+        "sku": "BL-06",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "test-receive-4",
+      "request": "Of the 17 units of TK-31 due in, the warehouse signed for 15.",
+      "target": {
+        "action": "receive",
+        "sku": "TK-31",
+        "quantity": 15
+      }
+    },
+    {
+      "template": "test-count-3",
+      "request": "The system shows 31 of BL-06. A physical check puts it at twenty-two.",
+      "target": {
+        "action": "count",
+        "sku": "BL-06",
+        "quantity": 22
+      }
+    },
+    {
+      "template": "test-issue-4",
+      "request": "For VR-53, dispatch confirmed twenty-three pieces rather than the proposed 28.",
+      "target": {
+        "action": "issue",
+        "sku": "VR-53",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "test-count-1",
+      "request": "During the recount we found twenty-one pieces of VR-53.",
+      "target": {
+        "action": "count",
+        "sku": "VR-53",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "test-receive-4",
+      "request": "Of the 28 units of HD-32 due in, the warehouse signed for 23.",
+      "target": {
+        "action": "receive",
+        "sku": "HD-32",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "test-receive-2",
+      "request": "VR-53 came in on the morning truck, 17 in all.",
+      "target": {
+        "action": "receive",
+        "sku": "VR-53",
+        "quantity": 17
+      }
+    },
+    {
+      "template": "test-count-3",
+      "request": "The system shows 17 of CL-24. A physical check puts it at 6.",
+      "target": {
+        "action": "count",
+        "sku": "CL-24",
+        "quantity": 6
+      }
+    },
+    {
+      "template": "test-receive-1",
+      "request": "Can you log the delivery of 9 pieces of HD-32?",
+      "target": {
+        "action": "receive",
+        "sku": "HD-32",
+        "quantity": 9
+      }
+    },
+    {
+      "template": "test-count-2",
+      "request": "At closing, the bin for PL-03 contained 16 units.",
+      "target": {
+        "action": "count",
+        "sku": "PL-03",
+        "quantity": 16
+      }
+    },
+    {
+      "template": "test-issue-4",
+      "request": "For BL-06, dispatch confirmed 24 pieces rather than the proposed 31.",
+      "target": {
+        "action": "issue",
+        "sku": "BL-06",
+        "quantity": 24
+      }
+    },
+    {
+      "template": "test-count-4",
+      "request": "Replace yesterday's 32 on the PN-07 count sheet with the verified 23.",
+      "target": {
+        "action": "count",
+        "sku": "PN-07",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "test-receive-3",
+      "request": "The packing slip lists 36 of TK-31. We accepted 24 at the dock.",
+      "target": {
+        "action": "receive",
+        "sku": "TK-31",
+        "quantity": 24
+      }
+    },
+    {
+      "template": "test-receive-2",
+      "request": "SP-19 came in on the morning truck, 13 in all.",
+      "target": {
+        "action": "receive",
+        "sku": "SP-19",
+        "quantity": 13
+      }
+    },
+    {
+      "template": "test-count-2",
+      "request": "At closing, the bin for PL-03 contained 5 units.",
+      "target": {
+        "action": "count",
+        "sku": "PL-03",
+        "quantity": 5
+      }
+    },
+    {
+      "template": "test-issue-1",
+      "request": "Book 13 of BX-25 against the batch that left today.",
+      "target": {
+        "action": "issue",
+        "sku": "BX-25",
+        "quantity": 13
+      }
+    },
+    {
+      "template": "test-issue-3",
+      "request": "The pick list called for 18 of SP-19. The number sent was eight.",
+      "target": {
+        "action": "issue",
+        "sku": "SP-19",
+        "quantity": 8
+      }
+    },
+    {
+      "template": "test-count-4",
+      "request": "Replace yesterday's 24 on the BX-25 count sheet with the verified 21.",
+      "target": {
+        "action": "count",
+        "sku": "BX-25",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "test-issue-2",
+      "request": "A courier collected 3 pieces of VR-53 from our shelf.",
+      "target": {
+        "action": "issue",
+        "sku": "VR-53",
+        "quantity": 3
+      }
+    },
+    {
+      "template": "test-issue-4",
+      "request": "For MT-15, dispatch confirmed 11 pieces rather than the proposed 19.",
+      "target": {
+        "action": "issue",
+        "sku": "MT-15",
+        "quantity": 11
+      }
+    },
+    {
+      "template": "test-issue-2",
+      "request": "A courier collected eleven pieces of QD-29 from our shelf.",
+      "target": {
+        "action": "issue",
+        "sku": "QD-29",
+        "quantity": 11
+      }
+    },
+    {
+      "template": "test-receive-3",
+      "request": "The packing slip lists 6 of SP-19. We accepted 3 at the dock.",
+      "target": {
+        "action": "receive",
+        "sku": "SP-19",
+        "quantity": 3
+      }
+    },
+    {
+      "template": "test-receive-4",
+      "request": "Of the 33 units of QD-29 due in, the warehouse signed for 21.",
+      "target": {
+        "action": "receive",
+        "sku": "QD-29",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "test-receive-3",
+      "request": "The packing slip lists 22 of BK-14. We accepted 15 at the dock.",
+      "target": {
+        "action": "receive",
+        "sku": "BK-14",
+        "quantity": 15
+      }
+    },
+    {
+      "template": "test-receive-1",
+      "request": "Can you log the delivery of 24 pieces of VR-53?",
+      "target": {
+        "action": "receive",
+        "sku": "VR-53",
+        "quantity": 24
+      }
+    },
+    {
+      "template": "test-count-4",
+      "request": "Replace yesterday's 25 on the PN-07 count sheet with the verified thirteen.",
+      "target": {
+        "action": "count",
+        "sku": "PN-07",
+        "quantity": 13
+      }
+    },
+    {
+      "template": "test-count-1",
+      "request": "During the recount we found 1 pieces of WT-20.",
+      "target": {
+        "action": "count",
+        "sku": "WT-20",
+        "quantity": 1
+      }
+    },
+    {
+      "template": "test-count-3",
+      "request": "The system shows 18 of CP-47. A physical check puts it at 16.",
+      "target": {
+        "action": "count",
+        "sku": "CP-47",
+        "quantity": 16
+      }
+    },
+    {
+      "template": "test-receive-1",
+      "request": "Can you log the delivery of 16 pieces of SP-19?",
+      "target": {
+        "action": "receive",
+        "sku": "SP-19",
+        "quantity": 16
+      }
+    },
+    {
+      "template": "test-count-1",
+      "request": "During the recount we found 23 pieces of RB-16.",
+      "target": {
+        "action": "count",
+        "sku": "RB-16",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "test-count-3",
+      "request": "The system shows 11 of QD-29. A physical check puts it at 1.",
+      "target": {
+        "action": "count",
+        "sku": "QD-29",
+        "quantity": 1
+      }
+    },
+    {
+      "template": "test-issue-2",
+      "request": "A courier collected 9 pieces of CP-47 from our shelf.",
+      "target": {
+        "action": "issue",
+        "sku": "CP-47",
+        "quantity": 9
+      }
+    },
+    {
+      "template": "test-count-4",
+      "request": "Replace yesterday's 27 on the TK-31 count sheet with the verified 20.",
+      "target": {
+        "action": "count",
+        "sku": "TK-31",
+        "quantity": 20
+      }
+    },
+    {
+      "template": "test-count-4",
+      "request": "Replace yesterday's 28 on the VR-53 count sheet with the verified 19.",
+      "target": {
+        "action": "count",
+        "sku": "VR-53",
+        "quantity": 19
+      }
+    },
+    {
+      "template": "test-count-1",
+      "request": "During the recount we found 5 pieces of CP-47.",
+      "target": {
+        "action": "count",
+        "sku": "CP-47",
+        "quantity": 5
+      }
+    },
+    {
+      "template": "test-issue-3",
+      "request": "The pick list called for 32 of CP-47. The number sent was twenty.",
+      "target": {
+        "action": "issue",
+        "sku": "CP-47",
+        "quantity": 20
+      }
+    },
+    {
+      "template": "test-count-3",
+      "request": "The system shows 13 of GL-08. A physical check puts it at 4.",
+      "target": {
+        "action": "count",
+        "sku": "GL-08",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "test-receive-1",
+      "request": "Can you log the delivery of 1 pieces of VR-53?",
+      "target": {
+        "action": "receive",
+        "sku": "VR-53",
+        "quantity": 1
+      }
+    },
+    {
+      "template": "test-issue-1",
+      "request": "Book 8 of HZ-11 against the batch that left today.",
+      "target": {
+        "action": "issue",
+        "sku": "HZ-11",
+        "quantity": 8
+      }
+    },
+    {
+      "template": "test-receive-3",
+      "request": "The packing slip lists 20 of BL-06. We accepted 13 at the dock.",
+      "target": {
+        "action": "receive",
+        "sku": "BL-06",
+        "quantity": 13
+      }
+    },
+    {
+      "template": "test-count-2",
+      "request": "At closing, the bin for MT-15 contained twenty-one units.",
+      "target": {
+        "action": "count",
+        "sku": "MT-15",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "test-receive-2",
+      "request": "HD-32 came in on the morning truck, 4 in all.",
+      "target": {
+        "action": "receive",
+        "sku": "HD-32",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "test-count-4",
+      "request": "Replace yesterday's 22 on the VR-53 count sheet with the verified fourteen.",
+      "target": {
+        "action": "count",
+        "sku": "VR-53",
+        "quantity": 14
+      }
+    },
+    {
+      "template": "test-receive-3",
+      "request": "The packing slip lists 15 of SP-19. We accepted six at the dock.",
+      "target": {
+        "action": "receive",
+        "sku": "SP-19",
+        "quantity": 6
+      }
+    },
+    {
+      "template": "test-receive-4",
+      "request": "Of the 26 units of CL-24 due in, the warehouse signed for twenty-two.",
+      "target": {
+        "action": "receive",
+        "sku": "CL-24",
+        "quantity": 22
+      }
+    },
+    {
+      "template": "test-issue-1",
+      "request": "Book one of RB-16 against the batch that left today.",
+      "target": {
+        "action": "issue",
+        "sku": "RB-16",
+        "quantity": 1
+      }
+    },
+    {
+      "template": "test-count-2",
+      "request": "At closing, the bin for TK-31 contained 22 units.",
+      "target": {
+        "action": "count",
+        "sku": "TK-31",
+        "quantity": 22
+      }
+    },
+    {
+      "template": "test-issue-1",
+      "request": "Book five of TK-31 against the batch that left today.",
+      "target": {
+        "action": "issue",
+        "sku": "TK-31",
+        "quantity": 5
+      }
+    },
+    {
+      "template": "test-receive-1",
+      "request": "Can you log the delivery of four pieces of HZ-11?",
+      "target": {
+        "action": "receive",
+        "sku": "HZ-11",
+        "quantity": 4
+      }
+    },
+    {
+      "template": "test-issue-1",
+      "request": "Book 20 of MT-15 against the batch that left today.",
+      "target": {
+        "action": "issue",
+        "sku": "MT-15",
+        "quantity": 20
+      }
+    },
+    {
+      "template": "test-receive-2",
+      "request": "TK-31 came in on the morning truck, 1 in all.",
+      "target": {
+        "action": "receive",
+        "sku": "TK-31",
+        "quantity": 1
+      }
+    },
+    {
+      "template": "test-issue-3",
+      "request": "The pick list called for 17 of BX-25. The number sent was 7.",
+      "target": {
+        "action": "issue",
+        "sku": "BX-25",
+        "quantity": 7
+      }
+    },
+    {
+      "template": "test-issue-3",
+      "request": "The pick list called for 14 of VR-53. The number sent was 12.",
+      "target": {
+        "action": "issue",
+        "sku": "VR-53",
+        "quantity": 12
+      }
+    },
+    {
+      "template": "test-issue-3",
+      "request": "The pick list called for 26 of TK-31. The number sent was 14.",
+      "target": {
+        "action": "issue",
+        "sku": "TK-31",
+        "quantity": 14
+      }
+    },
+    {
+      "template": "test-issue-4",
+      "request": "For TK-31, dispatch confirmed 22 pieces rather than the proposed 26.",
+      "target": {
+        "action": "issue",
+        "sku": "TK-31",
+        "quantity": 22
+      }
+    },
+    {
+      "template": "test-count-2",
+      "request": "At closing, the bin for BL-06 contained 7 units.",
+      "target": {
+        "action": "count",
+        "sku": "BL-06",
+        "quantity": 7
+      }
+    },
+    {
+      "template": "test-issue-3",
+      "request": "The pick list called for 9 of NT-12. The number sent was 3.",
+      "target": {
+        "action": "issue",
+        "sku": "NT-12",
+        "quantity": 3
+      }
+    },
+    {
+      "template": "test-receive-1",
+      "request": "Can you log the delivery of seven pieces of RB-16?",
+      "target": {
+        "action": "receive",
+        "sku": "RB-16",
+        "quantity": 7
+      }
+    },
+    {
+      "template": "test-receive-2",
+      "request": "WT-20 came in on the morning truck, nine in all.",
+      "target": {
+        "action": "receive",
+        "sku": "WT-20",
+        "quantity": 9
+      }
+    },
+    {
+      "template": "test-issue-4",
+      "request": "For MT-15, dispatch confirmed ten pieces rather than the proposed 15.",
+      "target": {
+        "action": "issue",
+        "sku": "MT-15",
+        "quantity": 10
+      }
+    },
+    {
+      "template": "test-issue-2",
+      "request": "A courier collected 13 pieces of NT-12 from our shelf.",
+      "target": {
+        "action": "issue",
+        "sku": "NT-12",
+        "quantity": 13
+      }
+    },
+    {
+      "template": "test-count-1",
+      "request": "During the recount we found thirteen pieces of MT-15.",
+      "target": {
+        "action": "count",
+        "sku": "MT-15",
+        "quantity": 13
+      }
+    },
+    {
+      "template": "test-issue-4",
+      "request": "For RB-16, dispatch confirmed 16 pieces rather than the proposed 28.",
+      "target": {
+        "action": "issue",
+        "sku": "RB-16",
+        "quantity": 16
+      }
+    },
+    {
+      "template": "test-count-1",
+      "request": "During the recount we found 7 pieces of CP-47.",
+      "target": {
+        "action": "count",
+        "sku": "CP-47",
+        "quantity": 7
+      }
+    },
+    {
+      "template": "test-receive-3",
+      "request": "The packing slip lists 33 of CP-47. We accepted twenty-three at the dock.",
+      "target": {
+        "action": "receive",
+        "sku": "CP-47",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "test-receive-2",
+      "request": "BL-06 came in on the morning truck, six in all.",
+      "target": {
+        "action": "receive",
+        "sku": "BL-06",
+        "quantity": 6
+      }
+    },
+    {
+      "template": "test-receive-4",
+      "request": "Of the 32 units of VR-53 due in, the warehouse signed for twenty-one.",
+      "target": {
+        "action": "receive",
+        "sku": "VR-53",
+        "quantity": 21
+      }
+    },
+    {
+      "template": "test-issue-2",
+      "request": "A courier collected 23 pieces of RB-16 from our shelf.",
+      "target": {
+        "action": "issue",
+        "sku": "RB-16",
+        "quantity": 23
+      }
+    },
+    {
+      "template": "test-count-2",
+      "request": "At closing, the bin for BL-06 contained three units.",
+      "target": {
+        "action": "count",
+        "sku": "BL-06",
+        "quantity": 3
+      }
+    },
+    {
+      "template": "test-count-3",
+      "request": "The system shows 36 of BK-14. A physical check puts it at twenty-four.",
+      "target": {
+        "action": "count",
+        "sku": "BK-14",
+        "quantity": 24
+      }
+    }
+  ]
+}

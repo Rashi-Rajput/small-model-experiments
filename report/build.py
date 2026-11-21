@@ -92,31 +92,50 @@ class Page:
         self.pdf.showPage()
 
 
-def classification(pdf):
+def generation(pdf):
     r = load("task1_lora/results.json")
     m = load("task1_lora/memory.json")
-    p = Page(pdf, 1, "Task 1  /  Low-rank adaptation", "Routing banking requests")
-    p.paragraph(f"Can a small encoder tell a delayed transfer from a declined payment? The experiment used "
-                f"12 related Banking77 intents, {r['train_size']} training requests and {r['test_size']} requests "
-                "from the official test split. Each intent had equal representation. Sampling excluded duplicate "
-                "texts after normalising whitespace and case.")
+    settings = r["settings"]
+    p = Page(pdf, 1, "Task 1  /  Generative LoRA", "From stock notes to JSON")
+    p.paragraph(f"SmolLM2-135M-Instruct trained on {r['train_size']} synthetic inventory notes. Each target "
+                f"has an action, a SKU and an integer quantity. All {r['test_size']} test notes use held-out "
+                "templates and target records. Half contain unseen SKUs.")
     n = r["test_size"]
-    p.table([.42, .30, .28], ["Same test set", "Correct / tested", "Top-1 accuracy"],
-            [(name, f"{r[key]} / {n}", f"{r[key]/n:.1%}") for name, key in
-             [("MiniLM base", "base_correct"), ("MiniLM + LoRA", "tuned_correct")]])
-    p.paragraph("Both classifiers picked the nearest intent description by cosine similarity. The description "
-                "vectors stayed fixed, so the change in accuracy came from adapting the request encoder.")
-    p.heading("What changed during training")
-    p.paragraph(f"The base had {r['base_parameters']:,} parameters. Rank 8 adapters on query and value "
-                f"added {r['adapter_parameters']:,} trainable weights. These two projections let attention "
-                "change which words it follows and what information it carries. A small rank kept CPU training "
-                "practical. Alpha 16 scaled the update by 16/8 = 2. AdamW at 0.0005 gave the adapters small "
-                "updates over four passes through the training set. These settings were fixed before evaluation.")
-    p.heading("Three held-out mistakes")
-    p.table([.34, .30, .36], ["Request", "Gold / predicted", "Likely explanation"], [
-        ("Why did I get a fee?", "ATM fee / card payment fee", "The request never says where the fee appeared. Either route is plausible."),
-        ("My cash withdrawal was partly declined", "Wrong cash amount / declined withdrawal", "The word declined is explicit. Partly carries the clue that some cash was dispensed."),
-        ("How do I know when my card will arrive?", "Card arrival / delivery estimate", "The model read when as a request for a forecast. The annotation treats it as tracking an existing order.")], 9.2)
+    p.table([.37, .24, .23, .16], ["Checkpoint", "Schema valid", "All fields right", "Exact rate"],
+            [(label, f"{r[name + '_schema']}/{n}", f"{r[name + '_correct']}/{n}", f"{r[name + '_correct']/n:.1%}")
+             for name, label in [("base", "Original checkpoint"), ("tuned", "With trained LoRA")]])
+    capped = sum(not row["base"]["ended"] for row in r["predictions"])
+    p.paragraph(f"Both checkpoints generated greedily from identical prompts. {capped}/{n} base replies hit "
+                f"the {settings['max_new_tokens']}-token cap. Exact credit requires the whole reply to parse "
+                "with the right keys, types and values, allowing different whitespace or key order.", 9.5)
+    example = next((row for row in r["predictions"] if row["tuned"]["correct"]), r["predictions"][0])
+    p.paragraph("<b>Actual generation</b> &nbsp; " + escape(example["request"]) +
+                "<br/><b>Base</b> &nbsp; " + escape(example["base"]["text"]) +
+                "<br/><b>LoRA</b> &nbsp; " + escape(example["tuned"]["text"]), 9.4)
+    issue = [row for row in r["predictions"] if row["target"]["action"] == "issue"]
+    copied = sum(row["tuned"]["schema"] and json.loads(row["tuned"]["text"])["sku"] == row["target"]["sku"]
+                 for row in r["predictions"])
+    check = load("task1_lora/quantity_check.json")
+    p.paragraph(f"The adapter copied {copied}/{n} SKUs, but got {sum(row['tuned']['correct'] for row in issue)}"
+                f"/{len(issue)} outgoing records right. In the main data, confirmed quantities are always "
+                "smaller than competing figures. On separate paired notes that swap those numbers, it got "
+                f"both versions right in {check['both_correct']}/{check['pairs']} pairs.", 9.4)
+    p.heading("What the adapter learned from")
+    p.paragraph(f"The base decoder had {r['base_parameters']:,} parameters. Rank {settings['rank']} "
+                f"query and value adapters added {r['adapter_parameters']:,} trainable weights. Their small "
+                "size kept CPU training feasible while allowing attention to follow item codes and quantities. "
+                f"Alpha {settings['alpha']} scales the update by {settings['alpha']/settings['rank']:g}. "
+                f"AdamW at {settings['lr']} and {settings['epochs']} passes gave the new weights repeated, small "
+                "updates. Only next-token errors on the JSON and end-of-turn token contributed to the loss.", 9.7)
+    p.heading("Three held-out generation errors")
+    records = {row["request"]: row for row in r["predictions"]}
+    mistakes = []
+    for failure in load("task1_lora/failures.json"):
+        row = records[failure["request"]]
+        if row["tuned"]["correct"] or row["tuned"]["text"] != failure["generated"]:
+            raise ValueError("Failure analysis does not match the saved generation")
+        mistakes.append((row["request"], failure["difference"], failure["explanation"]))
+    p.table([.39, .24, .37], ["Request", "Expected / generated", "Likely explanation"], mistakes, 8.7, 3)
     p.heading("A 7B training budget in decimal GB")
     p.paragraph("Assume BF16 weights and gradients, an FP32 master copy and two FP32 Adam moments. "
                 "Each trained parameter costs 2 + 2 + 4 + 4 + 4 = 16 bytes. For square query and value "
@@ -129,7 +148,7 @@ def classification(pdf):
         ("LoRA", "7B × 2 bytes + 4,194,304 × 16 bytes + 4 GB", f"{totals['lora']:.1f} GB"),
         ("QLoRA", "7B × (0.5 + 2/64) bytes + adapter state + 4 GB", f"{totals['qlora']:.1f} GB")])
     p.paragraph("The QLoRA estimate assumes packed 4-bit weights and one 2-byte scale per 64 weights. "
-                "These are planning calculations. The measured training run used MiniLM on CPU.", 9.2)
+                "These are planning calculations. The measured run trained SmolLM2 on CPU.", 9.2)
     p.paragraph("AI drafted the test questions and report prose. The measurements come from runs on the "
                 "local machine.", 9.2)
     p.end("Evidence in task1_lora/results.json, adapter.safetensors and memory.json")
@@ -277,6 +296,6 @@ def inference(pdf):
 if __name__ == "__main__":
     pdf = Canvas(str(ROOT / "report.pdf"), pagesize=A4)
     pdf.setTitle("Small model experiments")
-    for section in (classification, retrieval, questions, inference):
+    for section in (generation, retrieval, questions, inference):
         section(pdf)
     pdf.save()

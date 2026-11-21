@@ -1,0 +1,35 @@
+[
+  {
+    "request": "A courier collected 3 pieces of VR-53 from our shelf.",
+    "expected": {
+      "action": "issue",
+      "sku": "VR-53",
+      "quantity": 3
+    },
+    "generated": "{\"action\":\"receive\",\"sku\":\"VR-53\",\"quantity\":3}",
+    "difference": "issue / receive",
+    "explanation": "Collected describes movement from the courier's perspective. The decoder reversed the direction of the stock movement."
+  },
+  {
+    "request": "The packing slip lists 22 of BK-14. We accepted 15 at the dock.",
+    "expected": {
+      "action": "receive",
+      "sku": "BK-14",
+      "quantity": 15
+    },
+    "generated": "{\"action\":\"receive\",\"sku\":\"BK-14\",\"quantity\":22}",
+    "difference": "15 / 22",
+    "explanation": "It copied the quantity on the slip. The later verb accepted identifies the figure to book."
+  },
+  {
+    "request": "The pick list called for 32 of CP-47. The number sent was twenty.",
+    "expected": {
+      "action": "issue",
+      "sku": "CP-47",
+      "quantity": 20
+    },
+    "generated": "{\"action\":\"receive\",\"sku\":\"CP-47\",\"quantity\":22}",
+    "difference": "issue, 20 / receive, 22",
+    "explanation": "It missed sent as the outgoing cue. The generated 22 matches neither input amount, suggesting a number-generation error."
+  }
+]

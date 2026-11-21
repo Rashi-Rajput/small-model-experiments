@@ -1,37 +1,25 @@
-import csv
-import io
+import argparse
 import json
 import math
 import random
-from collections import defaultdict
 from pathlib import Path
-from urllib.request import urlopen
 
 import torch
-from safetensors.torch import save_file
+from safetensors.torch import load_file, save_file
 from torch import nn
 from torch.nn import functional as F
-
-from encoder import Encoder, MODEL, REVISION
+from torch.nn.utils.rnn import pad_sequence
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
 HERE = Path(__file__).resolve().parent
-DATA = "https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/57ec275d8078af65b7731c2a98be812d844a6d6b/banking_data"
-LABELS = {
-    "card_arrival": "My ordered card has not arrived.",
-    "card_delivery_estimate": "How long does delivery of a card usually take?",
-    "cash_withdrawal_charge": "There is a fee for withdrawing cash from an ATM.",
-    "wrong_amount_of_cash_received": "The cash machine gave me the wrong amount of money.",
-    "declined_cash_withdrawal": "The cash machine refused my withdrawal.",
-    "pending_cash_withdrawal": "My ATM withdrawal is still pending.",
-    "pending_transfer": "A bank transfer is still pending.",
-    "failed_transfer": "My transfer of money failed.",
-    "transfer_not_received_by_recipient": "My recipient has not received the transfer.",
-    "declined_card_payment": "A merchant declined my card payment.",
-    "pending_card_payment": "A payment I made with my card is pending.",
-    "card_payment_fee_charged": "I was charged a fee for paying by card.",
-}
-CONFIG = dict(rank=8, alpha=16, targets=["query", "value"], lr=0.0005, epochs=4, batch=16, seed=41)
+MODEL = "HuggingFaceTB/SmolLM2-135M-Instruct"
+REVISION = "12fd25f77366fa6b3b4b768ec3050bf629380bac"
+SYSTEM = ('Read the inventory note. Return only JSON with keys "action", "sku", and "quantity". '
+          'Use "receive" for arrivals, "issue" for departures, or "count" for stocktakes. '
+          'Copy the SKU and use the confirmed quantity as an integer.')
+SETTINGS = dict(rank=8, alpha=16, targets=["q_proj", "v_proj"], lr=0.0008, epochs=3,
+                batch=8, max_new_tokens=48, seed=41, cpu_threads=4)
 
 
 class LoRALinear(nn.Module):
@@ -48,76 +36,150 @@ class LoRALinear(nn.Module):
         return self.linear(x) + self.up(self.down(x)) * self.scale
 
 
-def sample_split(name, per_label, excluded):
-    with urlopen(f"{DATA}/{name}.csv", timeout=60) as response:
-        rows = csv.DictReader(io.StringIO(response.read().decode("utf-8-sig")))
-        groups = defaultdict(list)
-        for row in rows:
-            text, label = row["text"].strip(), row["category"]
-            key = " ".join(text.casefold().split())
-            if label in LABELS and key not in excluded:
-                groups[label].append(text)
-                excluded.add(key)
-    rng = random.Random(CONFIG["seed"])
-    return [(t, i) for i, label in enumerate(LABELS) for t in rng.sample(groups[label], per_label)]
+def install_adapters(model):
+    model.requires_grad_(False)
+    for layer in model.model.layers:
+        for name in SETTINGS["targets"]:
+            linear = getattr(layer.self_attn, name)
+            setattr(layer.self_attn, name, LoRALinear(linear, SETTINGS["rank"], SETTINGS["alpha"]))
+    return {k: p for k, p in model.named_parameters() if p.requires_grad}
 
 
-@torch.no_grad()
-def predict(model, rows, anchors):
+def prompt_ids(tokenizer, note):
+    messages = [dict(role="system", content=SYSTEM), dict(role="user", content=note)]
+    return tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=True, return_dict=False)
+
+
+def training_pair(tokenizer, row):
+    prompt = prompt_ids(tokenizer, row["request"])
+    text = json.dumps(row["target"], separators=(",", ":"))
+    target = tokenizer.encode(text, add_special_tokens=False) + [tokenizer.eos_token_id]
+    return torch.tensor(prompt + target), torch.tensor([-100] * len(prompt) + target)
+
+
+def train(model, tokenizer, rows, weights):
+    pairs = [training_pair(tokenizer, row) for row in rows]
+    optimizer = torch.optim.AdamW(weights.values(), lr=SETTINGS["lr"])
+    rng = random.Random(SETTINGS["seed"])
+    model.train()
+    losses = []
+    for epoch in range(SETTINGS["epochs"]):
+        rng.shuffle(pairs)
+        total, count = 0.0, 0
+        for start in range(0, len(pairs), SETTINGS["batch"]):
+            batch = pairs[start:start + SETTINGS["batch"]]
+            inputs = pad_sequence([x for x, _ in batch], batch_first=True, padding_value=tokenizer.pad_token_id)
+            labels = pad_sequence([y for _, y in batch], batch_first=True, padding_value=-100)
+            mask = torch.arange(inputs.size(1))[None, :] < torch.tensor([len(x) for x, _ in batch])[:, None]
+            states = model.model(input_ids=inputs, attention_mask=mask, use_cache=False).last_hidden_state
+            targets = labels[:, 1:]
+            supervised = targets != -100
+            logits = model.lm_head(states[:, :-1][supervised])
+            loss = F.cross_entropy(logits, targets[supervised])
+            optimizer.zero_grad(set_to_none=True)
+            loss.backward()
+            optimizer.step()
+            tokens = int(supervised.sum())
+            total += loss.item() * tokens
+            count += tokens
+            if start % (SETTINGS["batch"] * 8) == 0:
+                print(f"Epoch {epoch + 1}, batch {start // SETTINGS['batch'] + 1}: {loss.item():.3f}", flush=True)
+        losses.append(total / count)
+    return losses
+
+
+@torch.inference_mode()
+def generate(model, tokenizer, notes):
     model.eval()
-    predictions = []
-    for start in range(0, len(rows), CONFIG["batch"]):
-        texts = [t for t, _ in rows[start:start + CONFIG["batch"]]]
-        predictions.extend((model(texts) @ anchors.T).argmax(dim=1).tolist())
-    return predictions
+    output = []
+    for start in range(0, len(notes), SETTINGS["batch"]):
+        prompts = [prompt_ids(tokenizer, s) for s in notes[start:start + SETTINGS["batch"]]]
+        batch = tokenizer.pad({"input_ids": prompts}, padding=True, return_tensors="pt", padding_side="left")
+        ids = model.generate(**batch, do_sample=False, max_new_tokens=SETTINGS["max_new_tokens"],
+                             pad_token_id=tokenizer.pad_token_id, eos_token_id=tokenizer.eos_token_id)
+        for row in ids[:, batch.input_ids.shape[1]:].tolist():
+            ended = tokenizer.eos_token_id in row
+            if ended:
+                row = row[:row.index(tokenizer.eos_token_id)]
+            output.append(dict(text=tokenizer.decode(row, skip_special_tokens=False), ended=ended))
+    return output
+
+
+def unique_keys(pairs):
+    result = dict(pairs)
+    if len(result) != len(pairs):
+        raise ValueError("Duplicate JSON key")
+    return result
+
+
+def grade(raw, target):
+    try:
+        value = json.loads(raw, object_pairs_hook=unique_keys)
+    except ValueError:
+        return dict(schema=False, correct=False)
+    schema = (isinstance(value, dict) and value.keys() == target.keys()
+              and value["action"] in ("receive", "issue", "count")
+              and type(value["sku"]) is str and type(value["quantity"]) is int)
+    return dict(schema=schema, correct=schema and value == target)
+
+
+def load_adapter(weights):
+    saved = load_file(HERE / "adapter.safetensors")
+    if saved.keys() != weights.keys():
+        raise ValueError("Adapter tensors do not match the decoder")
+    with torch.no_grad():
+        for name, param in weights.items():
+            param.copy_(saved[name])
 
 
 def main():
-    torch.manual_seed(CONFIG["seed"])
-    torch.set_num_threads(3)
-    rng = random.Random(CONFIG["seed"])
-    seen = set()
-    train = sample_split("train", 40, seen)
-    test = sample_split("test", 16, seen)
-    model = Encoder().eval()
-    model.requires_grad_(False)
-    base_params = sum(p.numel() for p in model.parameters())
-    with torch.no_grad():
-        anchors = model(list(LABELS.values()))
-    baseline = predict(model, test, anchors)
-    for name, layer in list(model.backbone.named_modules()):
-        if name.split(".")[-1] in CONFIG["targets"] and isinstance(layer, nn.Linear):
-            model.backbone.set_submodule(name, LoRALinear(layer, CONFIG["rank"], CONFIG["alpha"]))
-    trainable = {n: p for n, p in model.named_parameters() if p.requires_grad}
-    assert trainable and predict(model, test, anchors) == baseline
-    optimizer = torch.optim.AdamW(trainable.values(), lr=CONFIG["lr"])
-    losses = []
-    model.train()
-    for epoch in range(CONFIG["epochs"]):
-        rng.shuffle(train)
-        total = 0
-        for i in range(0, len(train), CONFIG["batch"]):
-            batch = train[i:i + CONFIG["batch"]]
-            scores = 20 * model([t for t, _ in batch]) @ anchors.T
-            loss = F.cross_entropy(scores, torch.tensor([y for _, y in batch]))
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-            total += loss.item() * len(batch)
-        losses.append(total / len(train))
-        print(f"Epoch {epoch + 1}: {losses[-1]:.4f}", flush=True)
-    tuned = predict(model, test, anchors)
-    labels = list(LABELS)
-    records = [dict(text=t, gold=labels[y], base=labels[b], tuned=labels[f])
-               for (t, y), b, f in zip(test, baseline, tuned, strict=True)]
-    result = dict(model=MODEL, revision=REVISION, settings=CONFIG, train_size=len(train),
-                  base_parameters=base_params, adapter_parameters=sum(p.numel() for p in trainable.values()),
-                  train_losses=losses, test_size=len(test), predictions=records)
-    for key in ("base", "tuned"):
-        result[key + "_correct"] = sum(r[key] == r["gold"] for r in records)
+    parser = argparse.ArgumentParser()
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--ask")
+    mode.add_argument("--verify", action="store_true")
+    args = parser.parse_args()
+    torch.manual_seed(SETTINGS["seed"])
+    torch.set_num_threads(SETTINGS["cpu_threads"])
+    tokenizer = AutoTokenizer.from_pretrained(MODEL, revision=REVISION)
+    model = AutoModelForCausalLM.from_pretrained(MODEL, revision=REVISION, dtype=torch.float32)
+    if args.ask is not None:
+        load_adapter(install_adapters(model))
+        print(generate(model, tokenizer, [args.ask])[0]["text"])
+        return
+    splits = json.loads((HERE / "dataset.json").read_text(encoding="utf-8"))
+    notes = [row["request"] for row in splits["test"]]
+    if args.verify:
+        load_adapter(install_adapters(model))
+        saved = json.loads((HERE / "results.json").read_text(encoding="utf-8"))["predictions"]
+        outputs = generate(model, tokenizer, notes)
+        for actual, record in zip(outputs, saved, strict=True):
+            expected = record["tuned"]
+            if actual["text"] != expected["text"] or actual["ended"] != expected["ended"]:
+                raise RuntimeError(f"Reloaded adapter disagrees on {record['request']!r}")
+        print(f"Reloaded adapter reproduced all {len(saved)} continuations.")
+        return
+    base_parameters = sum(p.numel() for p in model.parameters())
+    print("Generating with the base checkpoint", flush=True)
+    baseline = generate(model, tokenizer, notes)
+    weights = install_adapters(model)
+    losses = train(model, tokenizer, splits["train"], weights)
+    print("Generating with the trained adapter", flush=True)
+    tuned = generate(model, tokenizer, notes)
+    predictions = []
+    for row, base, adapted in zip(splits["test"], baseline, tuned, strict=True):
+        predictions.append(dict(**row, base={**base, **grade(base["text"], row["target"])},
+                                tuned={**adapted, **grade(adapted["text"], row["target"])}))
+    result = dict(model=MODEL, revision=REVISION, architecture=type(model).__name__, settings=SETTINGS,
+                  system_prompt=SYSTEM, base_parameters=base_parameters, train_size=len(splits["train"]),
+                  test_size=len(notes), adapter_parameters=sum(p.numel() for p in weights.values()),
+                  train_losses=losses, predictions=predictions)
+    for name in ("base", "tuned"):
+        for metric in ("schema", "correct"):
+            result[f"{name}_{metric}"] = sum(p[name][metric] for p in predictions)
+    save_file({k: v.detach().contiguous() for k, v in weights.items()}, HERE / "adapter.safetensors",
+              metadata=dict(base=MODEL, revision=REVISION))
     (HERE / "results.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-    save_file({k: v.detach().contiguous() for k, v in trainable.items()}, HERE / "adapter.safetensors")
-    print(result["base_correct"], result["tuned_correct"], "/", len(test))
+    print("Exact records:", result["base_correct"], "base,", result["tuned_correct"], "tuned, of", len(notes))
 
 
 if __name__ == "__main__":
