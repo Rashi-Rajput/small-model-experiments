@@ -1,0 +1,1182 @@
+{
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "settings": {
+    "rank": 8,
+    "alpha": 16,
+    "targets": [
+      "query",
+      "value"
+    ],
+    "lr": 0.0005,
+    "epochs": 4,
+    "batch": 16,
+    "seed": 41
+  },
+  "train_size": 480,
+  "base_parameters": 22713216,
+  "adapter_parameters": 73728,
+  "train_losses": [
+    0.7908241341511408,
+    0.614120481411616,
+    0.46527379055817925,
+    0.3505335966746012
+  ],
+  "test_size": 192,
+  "predictions": [
+    {
+      "text": "My card has not arrived yet, where is it?",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_arrival"
+    },
+    {
+      "text": "Status of the card I ordered.",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_arrival"
+    },
+    {
+      "text": "I am still waiting for my card after 1 week.  Is this ok?",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "How do I track my card?",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_arrival"
+    },
+    {
+      "text": "Where is the tracking number for the card you sent me?",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_arrival"
+    },
+    {
+      "text": "Where is my new card? I have been waiting a week!",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_arrival"
+    },
+    {
+      "text": "Why hasn't my card been delivered?",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_arrival"
+    },
+    {
+      "text": "I ordered a card and I still haven't received it. It's been two weeks. What can I do?",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_arrival"
+    },
+    {
+      "text": "How do I locate my card?",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_arrival"
+    },
+    {
+      "text": "How do I know when my card will arrive?",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "i have not received my card",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_arrival"
+    },
+    {
+      "text": "What is the tracking number for the card you sent?",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_arrival"
+    },
+    {
+      "text": "I think something went wrong with my card delivery as I haven't received it yet.",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_arrival"
+    },
+    {
+      "text": "I was expecting my new card and am wondering why I haven't received it yet?",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_arrival"
+    },
+    {
+      "text": "Is there tracking info available?",
+      "gold": "card_arrival",
+      "base": "card_payment_fee_charged",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "My card has not arrived yet.",
+      "gold": "card_arrival",
+      "base": "card_arrival",
+      "tuned": "card_arrival"
+    },
+    {
+      "text": "I need my card quickly",
+      "gold": "card_delivery_estimate",
+      "base": "card_arrival",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "How fast can you deliver?",
+      "gold": "card_delivery_estimate",
+      "base": "card_delivery_estimate",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "Does delivery to the US take long?",
+      "gold": "card_delivery_estimate",
+      "base": "card_delivery_estimate",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "I need it delivered on a certain date.",
+      "gold": "card_delivery_estimate",
+      "base": "card_delivery_estimate",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "How long will it take to get to me?",
+      "gold": "card_delivery_estimate",
+      "base": "card_delivery_estimate",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "I live in the US, how long will it take for delivery?",
+      "gold": "card_delivery_estimate",
+      "base": "card_delivery_estimate",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "i need my card quick",
+      "gold": "card_delivery_estimate",
+      "base": "card_arrival",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "How long does shipping take to get to a US destination?",
+      "gold": "card_delivery_estimate",
+      "base": "card_delivery_estimate",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "How long does it take to get my card? Can I choose when to receive it?",
+      "gold": "card_delivery_estimate",
+      "base": "card_delivery_estimate",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "When are cards delivered?",
+      "gold": "card_delivery_estimate",
+      "base": "card_delivery_estimate",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "Whats the delivery time to the United States?",
+      "gold": "card_delivery_estimate",
+      "base": "card_delivery_estimate",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "How long will it take to deliver something to US?",
+      "gold": "card_delivery_estimate",
+      "base": "card_delivery_estimate",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "I need my card as soon as possible.",
+      "gold": "card_delivery_estimate",
+      "base": "card_arrival",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "How long until my card is delivered?",
+      "gold": "card_delivery_estimate",
+      "base": "card_delivery_estimate",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "How long will it take to arrive?",
+      "gold": "card_delivery_estimate",
+      "base": "card_delivery_estimate",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "I need my card to come as soon as possible.",
+      "gold": "card_delivery_estimate",
+      "base": "card_arrival",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "More fees, this time for withdrawing my own cash. Why are you robbing me?",
+      "gold": "cash_withdrawal_charge",
+      "base": "cash_withdrawal_charge",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "Why is there an extra charge for money that was withdrawn?",
+      "gold": "cash_withdrawal_charge",
+      "base": "cash_withdrawal_charge",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "Was charged an ATM fee despite it being a small withdrawal on the 1st day of the month. I thought I was allowed 200 per month?",
+      "gold": "cash_withdrawal_charge",
+      "base": "cash_withdrawal_charge",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "How come I was charged extra when I withdrew cash?",
+      "gold": "cash_withdrawal_charge",
+      "base": "cash_withdrawal_charge",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "Do ATM cash withdrawals carry a charge now? They've been free in the past, but all of a sudden I have to pay to make ATM withdrawals?",
+      "gold": "cash_withdrawal_charge",
+      "base": "cash_withdrawal_charge",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "It looks like I was charged a withdrawal fee for going to my ATM. Why is that because I haven't been charged previously for doing so?",
+      "gold": "cash_withdrawal_charge",
+      "base": "cash_withdrawal_charge",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "Why was I charged a fee for withdrawing cash?",
+      "gold": "cash_withdrawal_charge",
+      "base": "cash_withdrawal_charge",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "Why did my cash get charged a fee that should not be there.",
+      "gold": "cash_withdrawal_charge",
+      "base": "card_payment_fee_charged",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "What is this charge on my account for a cash withdrawl?",
+      "gold": "cash_withdrawal_charge",
+      "base": "cash_withdrawal_charge",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "My account got charged for taking out cash, why did this happen?",
+      "gold": "cash_withdrawal_charge",
+      "base": "declined_cash_withdrawal",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "Why did I get a fee?",
+      "gold": "cash_withdrawal_charge",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "When I got cash, I'm pretty sure there was a glitch that overcharged me.",
+      "gold": "cash_withdrawal_charge",
+      "base": "wrong_amount_of_cash_received",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "I've notice I was charged for withdrawing cash, can you explain why?",
+      "gold": "cash_withdrawal_charge",
+      "base": "cash_withdrawal_charge",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "I see some fees for cash withdraw.",
+      "gold": "cash_withdrawal_charge",
+      "base": "cash_withdrawal_charge",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "I was charged extra for a withdrawal",
+      "gold": "cash_withdrawal_charge",
+      "base": "card_payment_fee_charged",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "Is there a fee for withdrawing cash?",
+      "gold": "cash_withdrawal_charge",
+      "base": "cash_withdrawal_charge",
+      "tuned": "cash_withdrawal_charge"
+    },
+    {
+      "text": "I did not get as much cash as I requested at the ATM.",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "cash_withdrawal_charge",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "I didn't receive the right amount of cash back",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "wrong_amount_of_cash_received",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "Why did I not get my cash back after I withdrew?",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "declined_cash_withdrawal",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "I tried to get $100 but I just got $20",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "wrong_amount_of_cash_received",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "I have got out the wrong amount from an ATM. Please tell me the process to get the cash back as in app its showing the amount i have been actually received.",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "wrong_amount_of_cash_received",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "Hi. I just withdrew cash from an ATM and received the wrong amount. However, my app shows the correct amount I withdrew. How do I get the rest of the cash?",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "cash_withdrawal_charge",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "I'm at an ATM and withdrew 30 pounds and was only given 10. What should I do?",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "pending_cash_withdrawal",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "The amount of cash I received was incorrect",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "wrong_amount_of_cash_received",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "I asked for 100 but only got 20.",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "card_arrival",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "I don't know if this is an issue with the ATM or my account, but I just tried withdrawing 30 pounds from the ATM I'm at now and it only gave me 10. Is this a glitch or what exactly is going on?",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "pending_cash_withdrawal",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "I asked for $100 cash but only got $20?",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "wrong_amount_of_cash_received",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "I didn't get as much cash as I asked for from the ATM, why?",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "wrong_amount_of_cash_received",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "My cash withdrawal was partly declined",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "declined_cash_withdrawal",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "How can I request cash back? The ATM just gave me the wrong amount, the app shows the amount that I've been actually charged though...",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "wrong_amount_of_cash_received",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "The ATM gave me the wrong amount of cash today when I went to withdraw. The app says it was more.",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "pending_cash_withdrawal",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "What do I do if the ATM didn't give me the correct amount I withdrew? I pulled out 30 pounds and the ATM gave me 10 pounds.",
+      "gold": "wrong_amount_of_cash_received",
+      "base": "pending_cash_withdrawal",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "The ATM keeps declining my card. I tried at a couple different ATMs. Can you tell me if there's a problem with my account?",
+      "gold": "declined_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "I want to know why I have been unable to withdrawn funds.",
+      "gold": "declined_cash_withdrawal",
+      "base": "declined_cash_withdrawal",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "Why was my ATM transaction cancelled?",
+      "gold": "declined_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "Why didn't the ATM give me my money?",
+      "gold": "declined_cash_withdrawal",
+      "base": "wrong_amount_of_cash_received",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "Why was my cash withdrawal declined?",
+      "gold": "declined_cash_withdrawal",
+      "base": "declined_cash_withdrawal",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "why couldn't I get cash in the ATM?",
+      "gold": "declined_cash_withdrawal",
+      "base": "cash_withdrawal_charge",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "Why was I declined at the ATM today when I was trying to make a withdraw?",
+      "gold": "declined_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "My withdrawal was cancelled.",
+      "gold": "declined_cash_withdrawal",
+      "base": "declined_cash_withdrawal",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "Can you tell me why you won't let me get my own money out of the money machine? I know I used the right PIN.",
+      "gold": "declined_cash_withdrawal",
+      "base": "wrong_amount_of_cash_received",
+      "tuned": "wrong_amount_of_cash_received"
+    },
+    {
+      "text": "My ATM transaction was unsuccessful.",
+      "gold": "declined_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "The ATM is declining my card. I tried at two different ATMs. Can you tell me if there's anything wrong with my account?",
+      "gold": "declined_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "Hi, My card withdrawal was declined this morning. It was working fine till yesterday. Please check and inform me.",
+      "gold": "declined_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "atm would not give me cash",
+      "gold": "declined_cash_withdrawal",
+      "base": "cash_withdrawal_charge",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "Is there a reason that the ATM declined my transaction?",
+      "gold": "declined_cash_withdrawal",
+      "base": "declined_card_payment",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "Why could I not choose cash at the ATM?",
+      "gold": "declined_cash_withdrawal",
+      "base": "cash_withdrawal_charge",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "This is very frustrating. I can't get my card to work on any ATM I try and I've tried 3 of them so far. What's going on? Can you please fix this issue immediately?",
+      "gold": "declined_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "My transaction is still showing that is pending from my cash withdrawal.",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "I tried taking money from the ATM but no money came out, but the transaction is still pending? How is this possible?",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "Why is my withdrawal still pending?",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "My cash withdrawal is still showing as pending.",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "Why is it taking so long for my cash withdrawal to no longer show as pending?",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "Why does it say pending cash withdrawal on my statement?",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "My account was charged for a withdraw I tried to make that was decline.",
+      "gold": "pending_cash_withdrawal",
+      "base": "declined_cash_withdrawal",
+      "tuned": "declined_cash_withdrawal"
+    },
+    {
+      "text": "Why is my cash withdrawal from the ATM still not yet showing as confirmed in my account?",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "Is my pending cash withdrawal processed?",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "I got some cash of an ATM earlier but this shows up as pending in the app. How can this be still pending, I've got the cash already?",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "my atm cash out is still pending",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "Why is a transaction showing as pending when I recieved cash from an ATM?",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "Is my cash withdrawal pending?",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "I am still waiting for a cash withdrawal to show",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "I have a pending cash withdrawal",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_cash_withdrawal",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "Why am I unable to take money from my card but the statement says the transaction is still pending?",
+      "gold": "pending_cash_withdrawal",
+      "base": "pending_card_payment",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "I would like to know why my payment is still pending, can you help?",
+      "gold": "pending_transfer",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "How long does a transfer take to be confirmed?",
+      "gold": "pending_transfer",
+      "base": "pending_transfer",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "i transfered however its still pending",
+      "gold": "pending_transfer",
+      "base": "pending_transfer",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "How long do transfer pend for?",
+      "gold": "pending_transfer",
+      "base": "pending_transfer",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "Why is a money transfer not showing?",
+      "gold": "pending_transfer",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "I'm trying to transfer money to another country. It's just pending and not sending. My account details are correct. Please help me.",
+      "gold": "pending_transfer",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "I transferred money yesterday, but it still isn't available?",
+      "gold": "pending_transfer",
+      "base": "failed_transfer",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "I am still waiting for a money transfer to show",
+      "gold": "pending_transfer",
+      "base": "pending_transfer",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "When will the transfer be completed?",
+      "gold": "pending_transfer",
+      "base": "pending_transfer",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "I am confused as to why my transfer could still be pending.",
+      "gold": "pending_transfer",
+      "base": "pending_transfer",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "When will my transfer go through?",
+      "gold": "pending_transfer",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "How can I speed up a transfer?  Mine is pending.",
+      "gold": "pending_transfer",
+      "base": "pending_transfer",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "Pending transfer?",
+      "gold": "pending_transfer",
+      "base": "pending_transfer",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "When will the transfer go through?",
+      "gold": "pending_transfer",
+      "base": "pending_transfer",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "My transfer is still coming up as pending.",
+      "gold": "pending_transfer",
+      "base": "pending_transfer",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "I submitted my transfer but it has been pending for quite a while and I was wondering what takes so long? why hasn't it completed",
+      "gold": "pending_transfer",
+      "base": "pending_transfer",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "I can not seem to make a successful transfer, can you tell me what I'm doing wrong?",
+      "gold": "failed_transfer",
+      "base": "failed_transfer",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "My transfer did not go through.",
+      "gold": "failed_transfer",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "Why has my transfer failed?",
+      "gold": "failed_transfer",
+      "base": "failed_transfer",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "can you tell me why my transfer failed?",
+      "gold": "failed_transfer",
+      "base": "failed_transfer",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "I could not get my transfer to happen correctly and was wondering why?",
+      "gold": "failed_transfer",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "I've attempted to do a very standard transfer and have tried 5 times at this point. Can you tell me what the issue is? Is the system down?",
+      "gold": "failed_transfer",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "Please help me make a transfer. I keep receiving an error and I'm trying to make the initial mortgage payment for a flat I'm buying. What is the deal here?",
+      "gold": "failed_transfer",
+      "base": "failed_transfer",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "Why did my transfer fail?",
+      "gold": "failed_transfer",
+      "base": "failed_transfer",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "how come my transfer didn't work",
+      "gold": "failed_transfer",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "Why hasn't my transfer been made?",
+      "gold": "failed_transfer",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "Is the system down? I've been trying to do a transfer and have failed?",
+      "gold": "failed_transfer",
+      "base": "failed_transfer",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "Can you help me figure out what's happening? I'm trying to transfer money to a friend but it keeps getting returned. I'm not sure what i'm doing wrong.",
+      "gold": "failed_transfer",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "My transfer didn't work",
+      "gold": "failed_transfer",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "I tried to transfer money and it did not work.",
+      "gold": "failed_transfer",
+      "base": "failed_transfer",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "My transfer keeps failing and I just want to transfer the money can you please make it work?",
+      "gold": "failed_transfer",
+      "base": "failed_transfer",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "The transfer keeps failing , I tried to transfer some money to friends this morning but it keeps getting rejected for some reason, Would you please check the issue ?",
+      "gold": "failed_transfer",
+      "base": "failed_transfer",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "I transferred some money but the recipient is having trouble withdrawing.",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "how long do money transfers take?",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "pending_transfer",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "I sent my friend some money a few hours ago but she has not received it yet. She really needs it. How long does this take?",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "card_delivery_estimate",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "The day before yesterday, I performed a transfer which was within this country. It still hasn't gone through. Can you check on that? The account number is definitely correct, as I've checked and double checked.",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "I transferred money but the recipient says it has not arrived. Why would this be?",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "I completed a money transaction but the recipient hasn't received it",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "Where is the transaction I made to a friend?",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "How long do transfers need to come through? I sent some money to a friend, she needs it urgently, but seems it's still not there yet after a couple hours.",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "Is there a reason why my transaction is taking so long?",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "pending_card_payment",
+      "tuned": "pending_cash_withdrawal"
+    },
+    {
+      "text": "I sent money.  They haven't received it.",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "I transferred some money but the receiver can't pick it up for some reason.",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "I'm having a problem with a money transfer.  I sent some money to a friend a couple of hours ago, and they haven't received it yet.  Why hasn't it gotten to them? How long do transfers need to go through?",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "How can the recipient see my money transaction?",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "I need to find out why my transfer didn't get there.",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "When will my funds transfer?",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "pending_transfer",
+      "tuned": "pending_transfer"
+    },
+    {
+      "text": "The receipient doesn't see my money transfer.",
+      "gold": "transfer_not_received_by_recipient",
+      "base": "transfer_not_received_by_recipient",
+      "tuned": "transfer_not_received_by_recipient"
+    },
+    {
+      "text": "My card payment didn't work, can you help?",
+      "gold": "declined_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "Why is my debit card being declined when I have money?",
+      "gold": "declined_card_payment",
+      "base": "declined_card_payment",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "Do you know why my card payment did not work?",
+      "gold": "declined_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "How do you fix  my card payment?",
+      "gold": "declined_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "The new card that was just sent to me was declined multiple times yesterday when I tried to use it at a restaurant to pay for my dinner.  I am really disappointed  and embarrassed that my card was denied when I tried to use it to pay for my friend's birthday dinner.",
+      "gold": "declined_card_payment",
+      "base": "declined_card_payment",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "My new card keeps getting declined. I was very excited to use it for the first time today. Why is this doing this?",
+      "gold": "declined_card_payment",
+      "base": "declined_card_payment",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "I was out today looking forward to pay with my new card, turns out the payment just kept getting declined. This is really sad, what's going on?",
+      "gold": "declined_card_payment",
+      "base": "declined_card_payment",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "I finally got my new card and was very excited to use it today. However, my payment kept declining. What is happening?",
+      "gold": "declined_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "My card payment did not complete.",
+      "gold": "declined_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "I know I have enough funds in my account but my card payment hasn't worked for some reason. What do I do?",
+      "gold": "declined_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "failed_transfer"
+    },
+    {
+      "text": "My card was not accepted.",
+      "gold": "declined_card_payment",
+      "base": "card_arrival",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "Why do you keep declining my payment? I tried several times already with this card and it's just not working",
+      "gold": "declined_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "Why was my card payment declined?",
+      "gold": "declined_card_payment",
+      "base": "declined_card_payment",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "My card didn't work in one of the shops.",
+      "gold": "declined_card_payment",
+      "base": "card_arrival",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "I have a card payment that was declined, but why?",
+      "gold": "declined_card_payment",
+      "base": "declined_card_payment",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "My card payment did not work.",
+      "gold": "declined_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "declined_card_payment"
+    },
+    {
+      "text": "I have a pending payment in my account that I paid a while back ago and it still hasnt gone through. Why would it show pending for so long?",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "How long do card transactions take to clear?",
+      "gold": "pending_card_payment",
+      "base": "card_delivery_estimate",
+      "tuned": "card_delivery_estimate"
+    },
+    {
+      "text": "I bought some stuff this morning but the payment shows as pending",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "My payment still hasn't processed!",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "My card payment is pending.",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "Why is there a pending transaction on my card?",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "When will my card payment be done pending?",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "What is a pending payment?",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "How long will this card payment stay pending?",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "I had a payment that I made and it's been some amount of time and would like to know when it's suppose to go though.",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "I recently made a payment, and it is showing up in my account as \"pending\". What does that mean?",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "I was double charged, and the second charge is showing as \"pending\". How long will it be before I get my money back once the second charge has been refunded?",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "How do i finalize a card payment",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "I have a pending payment from stuff I bought this morning.",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "What does it mean by pending payment?",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "Why are my payments showing pending?",
+      "gold": "pending_card_payment",
+      "base": "pending_card_payment",
+      "tuned": "pending_card_payment"
+    },
+    {
+      "text": "I was charged a fee for a card payment. Why?",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "Is there a fee when you pay with your card?",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "Why would I be charged a fee for card payment?",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "How do I avoid getting charged a fee on my card?",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "Why was I charged an extra fee when using a card?",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "Why did I have to pay more when I do it with my card?",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "Why was I charged for card payment?",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "What fees apply when using a card?",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "Is using my card free?",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "They charged me for paying with my card.",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "When would my card be charged an extra fee for a transaction?",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "There is an unauthorized fee.",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "Why was I charged a fee when I paid with card?",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "I used my card for a purchase and was charged a fee",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "I have been charged with a fee for paying with my card.",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    },
+    {
+      "text": "Why was I charged an extra fee when paying with my card?",
+      "gold": "card_payment_fee_charged",
+      "base": "card_payment_fee_charged",
+      "tuned": "card_payment_fee_charged"
+    }
+  ],
+  "base_correct": 131,
+  "tuned_correct": 166
+}

@@ -1,0 +1,55 @@
+[
+  {
+    "id": "copy",
+    "prompt": "Copy the parcel code exactly. Reply with the code only. The code is LT-408.",
+    "expected": "LT-408"
+  },
+  {
+    "id": "sum",
+    "prompt": "A tray has 17 red beads and 8 blue beads. How many beads are there? Reply with the integer only.",
+    "expected": "25"
+  },
+  {
+    "id": "sort",
+    "prompt": "Sort these numbers from smallest to largest: 9, 12, 2. Use a comma-separated list only.",
+    "expected": "2,9,12"
+  },
+  {
+    "id": "extract",
+    "prompt": "The ferry leaves at 08:15 and arrives at 09:40. Reply only with its arrival time in HH:MM format.",
+    "expected": "09:40"
+  },
+  {
+    "id": "sentiment",
+    "prompt": "Label the review positive or negative. Reply with one label only. Review: The plot dragged and I regretted buying a ticket.",
+    "expected": "negative"
+  },
+  {
+    "id": "json",
+    "prompt": "Return a JSON object with exactly two keys: city and seats. The city is Pune and the number of seats is four. Use a JSON number for seats. Return only JSON.",
+    "expected": {
+      "city": "Pune",
+      "seats": 4
+    }
+  },
+  {
+    "id": "deduction",
+    "prompt": "Mina is older than Ravi. Ravi is older than Jo. Who is youngest? Reply with the name only.",
+    "expected": "Jo"
+  },
+  {
+    "id": "missing",
+    "prompt": "A notice reads: 'The hall opens on Friday.' What time does it open? If the time is missing, reply UNKNOWN. Reply with just the answer.",
+    "expected": "UNKNOWN"
+  },
+  {
+    "id": "units",
+    "prompt": "A ribbon is 2.5 metres long. Give its length in centimetres. Reply with the number only.",
+    "expected": "250"
+  },
+  {
+    "id": "initials",
+    "prompt": "Take the first letter of each word in 'bright amber yarn' in order. Reply only with the three lowercase letters.",
+    "expected": "bay"
+  }
+]

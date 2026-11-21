@@ -1,0 +1,362 @@
+[
+  {
+    "id": "Q01",
+    "size": 192,
+    "answer": "Being a user agent does not imply that there is a human user directly interacting with the software agent at the time of a request.",
+    "page": 20,
+    "choices": [
+      [
+        20,
+        "Being a user agent does not imply that there is a human user directly interacting with the software agent at the time of a request."
+      ],
+      [
+        20,
+        "In many cases, a user agent is installed or configured to run in the background and save its results for later inspection (or save only a subset of those results that might be interesting or erroneous)."
+      ],
+      [
+        20,
+        "The most familiar form of user agent is the general-purpose Web browser, but that's only a small percentage of implementations."
+      ],
+      [
+        20,
+        "User Agents The term \"user agent\" refers to any of the various client programs that initiate a request."
+      ]
+    ]
+  },
+  {
+    "id": "Q02",
+    "size": 192,
+    "answer": "The BWS rule is used where the grammar allows optional whitespace only for historical reasons.",
+    "page": 36,
+    "choices": [
+      [
+        36,
+        "The BWS rule is used where the grammar allows optional whitespace only for historical reasons."
+      ],
+      [
+        36,
+        "Whitespace This specification uses three rules to denote the use of linear whitespace: OWS (optional whitespace), RWS (required whitespace), and BWS (\"bad\" whitespace)."
+      ],
+      [
+        36,
+        "For protocol elements where optional whitespace is preferred to improve readability, a sender SHOULD generate the optional whitespace as a single SP; otherwise, a sender SHOULD NOT generate optional whitespace except as needed to overwrite invalid or unwanted protocol elements during in-place message filtering."
+      ],
+      [
+        36,
+        "A recipient MUST parse for such bad whitespace and remove it before interpreting the protocol element."
+      ]
+    ]
+  },
+  {
+    "id": "Q03",
+    "size": 192,
+    "answer": "Date The \"Date\" header field represents the date and time at which the message was originated, having the same semantics as the Origination Date Field (orig-date) defined in Section 3.6.1 of [RFC5322] .",
+    "page": 46,
+    "choices": [
+      [
+        40,
+        "Recipients of a timestamp value in rfc850-date format, which uses a two-digit year, MUST interpret a timestamp that appears to be more than 50 years in the future as representing the most recent year in the past that had the same last two digits."
+      ],
+      [
+        38,
+        "HTTP-date = IMF-fixdate / obs-date An example of the preferred format is Sun, 06 Nov 1994 08:49:37 GMT ; IMF-fixdate Examples of the two obsolete formats are Sunday, 06-Nov-94 08:49:37 GMT ; obsolete RFC 850 format Sun Nov 6 08:49:37 1994 ; ANSI C's asctime() format A recipient that parses a timestamp value in an HTTP field MUST accept all three HTTP-date formats."
+      ],
+      [
+        46,
+        "In theory, the date ought to represent the moment just before generating the message content."
+      ],
+      [
+        46,
+        "Date The \"Date\" header field represents the date and time at which the message was originated, having the same semantics as the Origination Date Field (orig-date) defined in Section 3.6.1 of [RFC5322] ."
+      ]
+    ]
+  },
+  {
+    "id": "Q04",
+    "size": 192,
+    "answer": "The indicated media type defines both the data format and how that data is intended to be processed by a recipient, within the scope of the received message semantics, after any content codings indicated by Content-Encoding are decoded.",
+    "page": 57,
+    "choices": [
+      [
+        57,
+        "The indicated media type defines both the data format and how that data is intended to be processed by a recipient, within the scope of the received message semantics, after any content codings indicated by Content-Encoding are decoded."
+      ],
+      [
+        58,
+        "Media Type HTTP uses media types [RFC2046] in the Content-Type (Section 8.3) and Accept (Section 12.5.1) header fields in order to provide open and extensible data typing and type negotiation."
+      ],
+      [
+        57,
+        "If a Content-Type header field is not present, the recipient MAY either assume a media type of \"application/octet-stream\" ( [RFC2046], Section 4.5.1) or examine the data to determine its type."
+      ],
+      [
+        59,
+        "Content-Encoding The \"Content-Encoding\" header field indicates what content codings have been applied to the representation, beyond those inherent in the media type, and thus what decoding mechanisms have to be applied in order to obtain data in the media type referenced by the Content-Type header field."
+      ]
+    ]
+  },
+  {
+    "id": "Q05",
+    "size": 192,
+    "answer": "An entity tag consists of an opaque quoted string, possibly prefixed by a weakness indicator.",
+    "page": 68,
+    "choices": [
+      [
+        68,
+        "An entity tag consists of an opaque quoted string, possibly prefixed by a weakness indicator."
+      ],
+      [
+        69,
+        "Since the value is opaque, there is no need for the client to be aware of how each entity tag is constructed."
+      ],
+      [
+        68,
+        "An entity tag is an opaque validator for differentiating between multiple representations of the same resource, regardless of whether those multiple representations are due to resource state changes over time, content negotiation resulting in multiple representations being valid at the same time, or both."
+      ],
+      [
+        68,
+        "ETag The \"ETag\" field in a response provides the current entity tag for the selected representation, as determined at the conclusion of handling the request."
+      ]
+    ]
+  },
+  {
+    "id": "Q06",
+    "size": 192,
+    "answer": "Likewise, direct inspection of support might be possible through an OPTIONS request or by interacting with a defined well-known URI [RFC8615] if such inspection is defined along with the field being introduced.",
+    "page": 146,
+    "choices": [
+      [
+        146,
+        "Likewise, direct inspection of support might be possible through an OPTIONS request or by interacting with a defined well-known URI [RFC8615] if such inspection is defined along with the field being introduced."
+      ],
+      [
+        44,
+        "\u2022 Otherwise, the content is unidentified by HTTP, but a more specific identifier might be supplied within the content itself."
+      ],
+      [
+        44,
+        "If the request method is GET and the response status code is 200 (OK), the content is a representation of the target resource (Section 7.1)."
+      ],
+      [
+        44,
+        "If the request method is GET and the response status code is 203 (Non-Authoritative Information), the content is a potentially modified or enhanced representation of the target resource as provided by an intermediary."
+      ]
+    ]
+  },
+  {
+    "id": "Q07",
+    "size": 192,
+    "answer": "417 Expectation Failed The 417 (Expectation Failed) status code indicates that the expectation given in the request's Expect header field (Section 10.1.1) could not be met by at least one of the inbound servers.",
+    "page": 141,
+    "choices": [
+      [
+        141,
+        "417 Expectation Failed The 417 (Expectation Failed) status code indicates that the expectation given in the request's Expect header field (Section 10.1.1) could not be met by at least one of the inbound servers."
+      ],
+      [
+        83,
+        "\u2022 A client that receives a 417 (Expectation Failed) status code in response to a request containing a 100-continue expectation SHOULD repeat that request without a 100-continue expectation, since the 417 response merely indicates that the response chain does not support expectations (e.g., it passes through an HTTP/1.0 server)."
+      ],
+      [
+        140,
+        "413 Content Too Large The 413 (Content Too Large) status code indicates that the server is refusing to process a request because the request content is larger than the server is willing or able to process."
+      ],
+      [
+        140,
+        "412 Precondition Failed The 412 (Precondition Failed) status code indicates that one or more conditions given in the request header fields evaluated to false when tested on the server (Section 13)."
+      ]
+    ]
+  },
+  {
+    "id": "Q08",
+    "size": 192,
+    "answer": "A delay-seconds value is a non-negative decimal integer, representing time in seconds. delay-seconds = 1*DIGIT Two examples of its use are Retry-After: Fri, 31 Dec 1999 23:59:59 GMT Retry-After: 120 In the latter example, the delay is 2 minutes.",
+    "page": 90,
+    "choices": [
+      [
+        90,
+        "A delay-seconds value is a non-negative decimal integer, representing time in seconds. delay-seconds = 1*DIGIT Two examples of its use are Retry-After: Fri, 31 Dec 1999 23:59:59 GMT Retry-After: 120 In the latter example, the delay is 2 minutes."
+      ],
+      [
+        89,
+        "When sent with any 3xx (Redirection) response, Retry-After indicates the minimum time that the user agent is asked to wait before issuing the redirected request."
+      ],
+      [
+        89,
+        "When sent with a 503 (Service Unavailable) response, Retry- After indicates how long the service is expected to be unavailable to the client."
+      ],
+      [
+        89,
+        "The Retry-After field value can be either an HTTP-date or a number of seconds to delay after receiving the response."
+      ]
+    ]
+  },
+  {
+    "id": "Q09",
+    "size": 192,
+    "answer": "Since a 206 response is self-descriptive, the client can still understand a response that only partially satisfies its range request.",
+    "page": 129,
+    "choices": [
+      [
+        129,
+        "Since a 206 response is self-descriptive, the client can still understand a response that only partially satisfies its range request."
+      ],
+      [
+        129,
+        "A client MUST inspect a 206 response's Content-Type and Content-Range field(s) to determine what parts are enclosed and whether additional requests are needed."
+      ],
+      [
+        98,
+        "A server might choose not to send an initial representation, other than the list of alternatives, and thereby indicate that reactive negotiation by the user agent is preferred."
+      ],
+      [
+        116,
+        "Likewise, devices with limited local storage might benefit from being able to request only a subset of a larger representation, such as a single page of a very large document, or the dimensions of an embedded image."
+      ]
+    ]
+  },
+  {
+    "id": "Q10",
+    "size": 192,
+    "answer": "Accept = #( media-range [ weight ] ) media-range = ( \"*/*\" / ( type \"/\" \"*\" ) / ( type \"/\" subtype ) ) parameters The asterisk \"*\" character is used to group media types into ranges, with \"*/*\" indicating all media types and \"type/*\" indicating all subtypes of that type.",
+    "page": 100,
+    "choices": [
+      [
+        100,
+        "Accept = #( media-range [ weight ] ) media-range = ( \"*/*\" / ( type \"/\" \"*\" ) / ( type \"/\" subtype ) ) parameters The asterisk \"*\" character is used to group media types into ranges, with \"*/*\" indicating all media types and \"type/*\" indicating all subtypes of that type."
+      ],
+      [
+        100,
+        "Note: In practice, using wildcards in content negotiation has limited practical value because it is seldom useful to say, for example, \"I prefer image/* more or less than (some other specific value)\"."
+      ],
+      [
+        100,
+        "For example, Accept header fields can be used to indicate that the request is specifically limited to a small set of desired types, as in the case of a request for an in-line image."
+      ],
+      [
+        15,
+        "Syntax Notation This specification uses the Augmented Backus-Naur Form (ABNF) notation of [RFC5234] , extended with the notation for case-sensitivity in strings defined in [RFC7405] ."
+      ]
+    ]
+  },
+  {
+    "id": "Q11",
+    "size": 192,
+    "answer": "This specification defines caching semantics for GET, HEAD, and POST, although the overwhelming majority of cache implementations only support GET and HEAD.",
+    "page": 74,
+    "choices": [
+      [
+        74,
+        "This specification defines caching semantics for GET, HEAD, and POST, although the overwhelming majority of cache implementations only support GET and HEAD."
+      ],
+      [
+        48,
+        "To a Cache If the client has a cache [CACHING] and the request can be satisfied by it, then the request is usually directed there first."
+      ],
+      [
+        114,
+        "For example, the immutable cache directive (defined by [RFC8246] ) instructs caches to forgo forwarding conditional requests when they hold a fresh response."
+      ],
+      [
+        104,
+        "Accept-Language The \"Accept-Language\" header field can be used by user agents to indicate the set of natural languages that are preferred in the response."
+      ]
+    ]
+  },
+  {
+    "id": "Q12",
+    "size": 192,
+    "answer": "An entity tag can be more reliable for validation than a modification date in situations where it is inconvenient to store modification dates, where the one-second resolution of HTTP-date values is not sufficient, or where modification dates are not consistently maintained.",
+    "page": 68,
+    "choices": [
+      [
+        68,
+        "An entity tag can be more reliable for validation than a modification date in situations where it is inconvenient to store modification dates, where the one-second resolution of HTTP-date values is not sufficient, or where modification dates are not consistently maintained."
+      ],
+      [
+        113,
+        "If-Range = entity-tag / HTTP-date A valid entity-tag can be distinguished from a valid HTTP-date by examining the first three characters for a DQUOTE."
+      ],
+      [
+        68,
+        "An entity tag is an opaque validator for differentiating between multiple representations of the same resource, regardless of whether those multiple representations are due to resource state changes over time, content negotiation resulting in multiple representations being valid at the same time, or both."
+      ],
+      [
+        68,
+        "An entity tag consists of an opaque quoted string, possibly prefixed by a weakness indicator."
+      ]
+    ]
+  },
+  {
+    "id": "Q13",
+    "size": 192,
+    "answer": "Partial PUT is not backwards compatible with the original definition of PUT.",
+    "page": 123,
+    "choices": [
+      [
+        123,
+        "Partial PUT is not backwards compatible with the original definition of PUT."
+      ],
+      [
+        78,
+        "The fundamental difference between the POST and PUT methods is highlighted by the different intent for the enclosed representation."
+      ],
+      [
+        78,
+        "A successful PUT request on \"the current version\" URI might therefore create a new version resource in addition to changing the state of the target resource, and might also cause links to be added between the related resources."
+      ],
+      [
+        78,
+        "Hence, the intent of PUT is idempotent and visible to intermediaries, even though the exact effect is only known by the origin server."
+      ]
+    ]
+  },
+  {
+    "id": "Q14",
+    "size": 192,
+    "answer": "307 (Temporary Redirect) and 308 (Permanent Redirect) [RFC7538] were later added to unambiguously indicate method-preserving redirects, and status codes 301 and 302 have been adjusted to allow a POST request to be redirected as GET.",
+    "page": 132,
+    "choices": [
+      [
+        132,
+        "307 (Temporary Redirect) and 308 (Permanent Redirect) [RFC7538] were later added to unambiguously indicate method-preserving redirects, and status codes 301 and 302 have been adjusted to allow a POST request to be redirected as GET."
+      ],
+      [
+        135,
+        "If this behavior is undesired, the 307 (Temporary Redirect) status code can be used instead."
+      ],
+      [
+        132,
+        "Redirection to a previously stored result, as in the 304 (Not Modified) status code."
+      ],
+      [
+        132,
+        "However, early user agents split on whether to redirect POST requests as POST (according to then-current specification) or as GET (the safer alternative when redirected to a different site)."
+      ]
+    ]
+  },
+  {
+    "id": "Q15",
+    "size": 192,
+    "answer": "When sent with a 503 (Service Unavailable) response, Retry- After indicates how long the service is expected to be unavailable to the client.",
+    "page": 89,
+    "choices": [
+      [
+        89,
+        "When sent with a 503 (Service Unavailable) response, Retry- After indicates how long the service is expected to be unavailable to the client."
+      ],
+      [
+        89,
+        "Retry-After Servers send the \"Retry-After\" header field to indicate how long the user agent ought to wait before making a follow-up request."
+      ],
+      [
+        89,
+        "The Retry-After field value can be either an HTTP-date or a number of seconds to delay after receiving the response."
+      ],
+      [
+        89,
+        "Retry-After = HTTP-date / delay-seconds"
+      ]
+    ]
+  }
+]

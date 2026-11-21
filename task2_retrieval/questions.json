@@ -1,0 +1,92 @@
+[
+  {
+    "id": "Q01",
+    "question": "Can a timer-driven background program be a user agent even when nobody is at the keyboard?",
+    "page": 20,
+    "passage": "Being a user agent does not imply that there is a human user directly interacting with the software agent at the time of a request."
+  },
+  {
+    "id": "Q02",
+    "question": "What should a parser do with whitespace that the grammar tolerates only for historical reasons?",
+    "page": 36,
+    "passage": "A recipient MUST parse for such bad whitespace and remove it before interpreting the protocol element."
+  },
+  {
+    "id": "Q03",
+    "question": "An old two-digit date looks more than half a century ahead. Which century should the reader pick?",
+    "page": 40,
+    "passage": "interpret a timestamp that appears to be more than 50 years in the future as representing the most recent year in the past that had the same last two digits."
+  },
+  {
+    "id": "Q04",
+    "question": "No media type arrived with a response. What two ways can the receiver interpret the bytes?",
+    "page": 57,
+    "passage": "the recipient MAY either assume a media type of \"application/octet-stream\" ( [RFC2046], Section 4.5.1) or examine the data to determine its type."
+  },
+  {
+    "id": "Q05",
+    "question": "After creating an item, what can its returned entity tag help a later editor avoid?",
+    "page": 65,
+    "passage": "so that the entity tag can be used as a validator in later conditional requests to prevent the \"lost update\" problem."
+  },
+  {
+    "id": "Q06",
+    "question": "Which request lets a link checker inspect metadata without downloading the body?",
+    "page": 75,
+    "passage": "The HEAD method is identical to GET except that the server MUST NOT send content in the response."
+  },
+  {
+    "id": "Q07",
+    "question": "The server rejected my upload expectation with 417. How should I retry?",
+    "page": 83,
+    "passage": "SHOULD repeat that request without a 100-continue expectation"
+  },
+  {
+    "id": "Q08",
+    "question": "If a retry delay is expressed as a plain integer, what unit does it use?",
+    "page": 90,
+    "passage": "A delay-seconds value is a non-negative decimal integer, representing time in seconds."
+  },
+  {
+    "id": "Q09",
+    "question": "Why might a client dislike sending its display capabilities with every single request?",
+    "page": 97,
+    "passage": "Having the user agent describe its capabilities in every request can be both very inefficient (given that only a small percentage of responses have multiple representations) and a potential risk to the user's privacy;"
+  },
+  {
+    "id": "Q10",
+    "question": "In an Accept pattern, which wildcard stands for every type and subtype?",
+    "page": 100,
+    "passage": "with \"*/*\" indicating all media types"
+  },
+  {
+    "id": "Q11",
+    "question": "Which header tells a shared cache to include the original request's language preference when matching later requests?",
+    "page": 106,
+    "passage": "Vary expands the cache key required to match a new request to the stored cache entry."
+  },
+  {
+    "id": "Q12",
+    "question": "Why does the standard check entity tags before it checks dates?",
+    "page": 115,
+    "passage": "entity tags are presumed to be more accurate than date validators."
+  },
+  {
+    "id": "Q13",
+    "question": "What could an older implementation do to a file when I try to replace just a slice using PUT?",
+    "page": 123,
+    "passage": "It may result in the content being written as a complete replacement for the current representation."
+  },
+  {
+    "id": "Q14",
+    "question": "I need a temporary redirect that keeps the original POST method. Which status is appropriate?",
+    "page": 135,
+    "passage": "If this behavior is undesired, the 307 (Temporary Redirect) status code can be used instead."
+  },
+  {
+    "id": "Q15",
+    "question": "My upload is too large today but might fit later. How does the server tell me when to retry?",
+    "page": 140,
+    "passage": "If the condition is temporary, the server SHOULD generate a Retry-After header field to indicate that it is temporary and after what time the client MAY try again."
+  }
+]

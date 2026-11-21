@@ -1,0 +1,22 @@
+{
+  "parameters": 7000000000,
+  "layers": 32,
+  "width": 4096,
+  "rank": 8,
+  "adapter": 4194304,
+  "bf16_bytes": 2,
+  "fp32_bytes": 4,
+  "trained_bytes_per_parameter": 16,
+  "quant_block": 64,
+  "assumed_temporary_bytes": 4000000000,
+  "model_state_bytes": {
+    "full": 112000000000,
+    "lora": 14067108864,
+    "qlora": 3785858864.0
+  },
+  "estimated_total_gb": {
+    "full": 116.0,
+    "lora": 18.067108864,
+    "qlora": 7.785858864
+  }
+}
